@@ -6,7 +6,7 @@ import { User } from '../models';
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-   apiUrl = '';
+   apiUrl = 'http://localhost:8080';
     constructor(private http: HttpClient) { }
 
     getAll() {
@@ -18,7 +18,7 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${this.apiUrl}/users/register`, user);
+        return this.http.post(`${this.apiUrl}/auth/users/register`, user);
     }
 
     update(user: User) {

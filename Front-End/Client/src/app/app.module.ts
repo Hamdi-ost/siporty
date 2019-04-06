@@ -17,9 +17,6 @@ import {DonationComponent} from './components/donation/donation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// used to create fake backend
-import { fakeBackendProvider } from './helpers';
-import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
@@ -45,13 +42,7 @@ import { AlertComponent } from './components/alert/alert.component';
     HttpClientModule,
     routing
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
