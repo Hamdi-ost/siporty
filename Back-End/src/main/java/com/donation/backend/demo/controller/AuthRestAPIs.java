@@ -22,9 +22,7 @@ import com.donation.backend.demo.repository.RoleRepository;
 import com.donation.backend.demo.security.jwt.JwtProvider;
 import com.donation.backend.demo.repository.UserRepository;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -58,9 +56,17 @@ public class AuthRestAPIs {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         User userDb = userRepository.findByUsername(loginRequest.getUsername()).get();
-        UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getUsername(), userDb.getEmail());
+        List<String> roles = new ArrayList<>();
+        Set<Role> _roles = userDb.getRoles();
+        _roles.forEach(role -> {
+            roles.add(role.getName().name());
+        });
+        UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getUsername(), userDb.getEmail(), roles, userDb.isEnabled());
 
-        return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
+        if(user.isEnabled()) {
+            return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
+        }
+        return new ResponseEntity<>(new ResponseMessage("Fail -> User is banned!"), HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/register")
@@ -77,25 +83,20 @@ public class AuthRestAPIs {
 
         // Creating user's account
         User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()), true);
 
-        Set<String> strRoles = signUpRequest.getRole();
+        //Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
-        strRoles.forEach(role -> {
-            switch (role) {
-                case "admin":
-                    Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not found."));
-                    roles.add(adminRole);
+        /*strRoles.forEach(role -> {
+            Role roleDb = roleRepository.findByName(RoleName.valueOf(role))
+                    .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
+            roles.add(roleDb);
+        });*/
 
-                    break;
-                default:
-                    Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not found."));
-                    roles.add(userRole);
-            }
-        });
+        Role roleDb = roleRepository.findByName(RoleName.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
+        roles.add(roleDb);
 
         user.setRoles(roles);
         userRepository.save(user);

@@ -31,13 +31,11 @@ public class User{
 
     private String firstName;
     private String lastName;
-
     private String username;
-
-    @NaturalId
     private String email;
 
     private String password;
+    private boolean enabled;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", 
@@ -47,12 +45,13 @@ public class User{
 
     public User() {}
 
-    public User(String firstName, String lastName, String username, String email, String password) {
+    public User(String firstName, String lastName, String username, String email, String password, boolean enabled) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -109,5 +108,13 @@ public class User{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
