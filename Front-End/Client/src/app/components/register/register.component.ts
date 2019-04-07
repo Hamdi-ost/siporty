@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 import {
   AlertService,
@@ -9,7 +10,10 @@ import {
   AuthenticationService
 } from '../../services';
 
-@Component({ templateUrl: 'register.component.html' })
+@Component({
+  templateUrl: 'register.component.html',
+  styleUrls: ['./register.component.scss']
+})
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
@@ -22,6 +26,27 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService
   ) {
+    $(function() {
+      $('.hide-show').show();
+      $('.hide-show span').addClass('show');
+
+      $('.hide-show span').click(function() {
+        if ( $(this).hasClass('show') ) {
+          $(this).text('Hide');
+          $('input[name="login[password]"]').attr('type', 'text');
+          $(this).removeClass('show');
+        } else {
+           $(this).text('Show');
+           $('input[name="login[password]"]').attr('type', 'password');
+           $(this).addClass('show');
+        }
+      });
+
+        $('form button[type="submit"]').on('click', function() {
+            $('.hide-show span').text('Show').addClass('show');
+            $('.hide-show').parent().find('input[name="login[password]"]').attr('type', 'password');
+        });
+    });
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);

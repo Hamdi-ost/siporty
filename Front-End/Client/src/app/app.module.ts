@@ -16,7 +16,6 @@ import { NotificationComponent } from './components/notification/notification.co
 import {DonationComponent} from './components/donation/donation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
