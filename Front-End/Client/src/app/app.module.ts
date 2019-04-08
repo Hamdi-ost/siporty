@@ -17,6 +17,8 @@ import {DonationComponent} from './components/donation/donation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertComponent } from './components/alert/alert.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AlertComponent } from './components/alert/alert.component';
     NotificationComponent,
     DonationComponent,
     NotFoundComponent,
-    AlertComponent
+    AlertComponent,
+    AboutUsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

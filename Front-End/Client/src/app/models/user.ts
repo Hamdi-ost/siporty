@@ -5,5 +5,6 @@ export class User {
     firstName: string;
     lastName: string;
     role: string[];
+    enable: boolean;
     token: string;
 }

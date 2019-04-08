@@ -7,7 +7,8 @@ import { IncomeComponent } from './components/income/income.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import {DonationComponent} from './components/donation/donation.component';
-
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 import { AuthGuard } from './guards';
 
 const appRoutes: Routes = [
@@ -18,8 +19,10 @@ const appRoutes: Routes = [
     {path: 'settings', component: SettingsComponent},
     {path: 'notifications', component: NotificationComponent},
     {path: 'donation', component: DonationComponent},
+    {path: 'aboutUs', component: AboutUsComponent},
+    {path: 'contact', component: ContactComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {scrollPositionRestoration: 'enabled'});

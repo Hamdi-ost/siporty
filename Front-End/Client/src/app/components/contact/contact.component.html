@@ -1,0 +1,35 @@
+<div class="login_form">
+  <section class="login-wrapper">
+    <div class="logo">
+      <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
+        <img src="../../../assets/images/contact.png"
+          alt="" /></a>
+    </div>
+
+    <form id="login" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <label for="name">Name</label>
+      <input required name="login[name]" type="text" autocapitalize="off" autocorrect="off" formControlName="name"
+        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+      <!-- E-mail -->
+      <label for="email">E-mail</label>
+      <input class="email" required name="login[email]" type="email" formControlName="email" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">email is required</div>
+      </div>
+      <!-- Message -->
+      <label for="message">Message</label>
+
+      <textarea class="message" required name="login[message]" type="text" formControlName="message" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.message.errors }" cols="30" rows="5"></textarea>
+      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.message.errors" class="invalid-feedback">
+        <div *ngIf="f.message.errors.required">message is required</div>
+      </div>
+      <button [disabled]="loading" type="submit">Send</button>
+    </form>
+  </section>
+</div>

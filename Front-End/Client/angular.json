@@ -23,11 +23,9 @@
               "src/assets"
             ],
             "styles": [
-             
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [
-
               "src/assets/js/script.js"
             ]
           },
@@ -127,5 +125,10 @@
       }
     }
   },
-  "defaultProject": "JEISITE"
+  "defaultProject": "JEISITE",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
