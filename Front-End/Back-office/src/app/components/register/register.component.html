@@ -1,0 +1,80 @@
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Admin</b>SIPORTY</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Register a new membership</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group has-feedback">
+        <input name="login[firstname]" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"
+          formControlName="firstname" type="text" class="form-control" placeholder="First name">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.firstname.errors"
+          class="invalid-feedback">
+          <div  style="margin-top: 1rem; color: red" *ngIf="f.firstname.errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="login[lastname]" formControlName="lastname"
+          [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" type="text" class="form-control"
+          placeholder="Last name">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.lastname.errors"
+          class="invalid-feedback">
+          <div style="margin-top: 1rem; color: red"  *ngIf="f.lastname.errors.required">Last Name is required</div>
+        </div>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="login[username]" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          formControlName="username" type="text" class="form-control" placeholder="Username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.username.errors"
+          class="invalid-feedback">
+          <div  style="margin-top: 1rem; color: red" *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="login[email]" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email"
+          type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div style="margin-top: 1rem; color: red" *ngIf="f.email.errors.required">E-mail is required</div>
+        </div>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="login[password]" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          formControlName="password" type="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors"
+          class="invalid-feedback">
+          <div style="margin-top: 1rem; color: red" *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                <input type="checkbox"
+                  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins
+                  class="iCheck-helper"
+                  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+              </div>
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+
+    <a routerLink="/login" class="text-center">I already have a membership</a>
+  </div>
+  <!-- /.form-box -->
+</div>
