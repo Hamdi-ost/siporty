@@ -12,7 +12,11 @@ export class NavbarComponent implements OnInit {
   username;
   constructor(private router: Router,
     private authenticationService: AuthenticationService) {
-      this.authenticationService.currentUser.subscribe(x => this.username = x['user'].username);
+      this.authenticationService.currentUser.subscribe(x => {
+        if (x) {
+          this.username = x['user'].username
+        }
+      });
   }
 
   ngOnInit() {
