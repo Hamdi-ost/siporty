@@ -117,57 +117,6 @@ public class UserRestAPI {
         }
     }
 
-    /*@GetMapping("/role/{role}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<UserInfo>> allUsersByRole(@PathVariable("role") String roleR) {
-
-        try {
-            List<UserInfo> _users = new ArrayList<>();
-            List<User> users;
-            switch (roleR) {
-                case "admin":
-                    Set<Role> roles1 = new HashSet<>();
-                    roles1.add(new Role(RoleName.ROLE_ADMIN));
-                    //users = new ArrayList<>(userRepository.findUsersByRoles(roles1));
-                    break;
-                default:
-                    Set<Role> roles2 = new HashSet<>();
-                    roles2.add(new Role(RoleName.ROLE_USER));
-                    //users = new ArrayList<>(userRepository.findUsersByRoles(roles2));
-                    break;
-            }
-
-            if(users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            System.out.println("out");
-            users.forEach(user -> {
-                System.out.println("in");
-                UserInfo _user = new UserInfo();
-                _user.setId(user.getId());
-                _user.setFirstname(user.getFirstName());
-                _user.setLastname(user.getLastName());
-                _user.setUsername(user.getUsername());
-                _user.setEmail(user.getEmail());
-                _user.setEnabled(user.isEnabled());
-
-                List<String> _roles = new ArrayList<>();
-                Set<Role> roles = user.getRoles();
-                roles.forEach(role -> {
-                    _roles.add(role.getName().name());
-                });
-
-                _user.setRoles(_roles);
-                _users.add(_user);
-            });
-
-            return new ResponseEntity<>(_users, HttpStatus.OK);
-
-        } catch(Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
-
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserInfo> getUserById(@PathVariable("id") long id) {
