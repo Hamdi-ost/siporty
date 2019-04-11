@@ -13,7 +13,8 @@ export class TableComponent implements OnInit {
   @Input() data;
   @Input() columnsName;
   @Output() ban = new EventEmitter();
-
+  @Output() unban = new EventEmitter();
+  p = 1;
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +22,10 @@ export class TableComponent implements OnInit {
 
   banUser(id) {
     this.ban.emit(id);
+  }
+  
+  unbanUser(id) {
+    this.unban.emit(id);
   }
 
 }

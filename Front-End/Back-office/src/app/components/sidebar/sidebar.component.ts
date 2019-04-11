@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  username;
+  constructor(private router: Router,
+    private authenticationService: AuthenticationService) {
+      this.authenticationService.currentUser.subscribe(x => this.username = x['user'].username);
+  }
 
   ngOnInit() {
   }

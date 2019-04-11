@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { AuthenticationService } from './services/authentification.service';
 
 @Component({
@@ -6,19 +6,21 @@ import { AuthenticationService } from './services/authentification.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   logIn = false;
   title = 'SIPORTY';
 
   constructor(private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    if (JSON.parse(localStorage.getItem('currentUser'))) {
-      this.logIn = true;
-    } else {
-      this.logIn = false;
-    }
-    console.log(this.logIn);
-    
+    // if (JSON.parse(localStorage.getItem('currentUser'))) {
+    //   this.logIn = true;
+    // } else {
+    //   this.logIn = false;
+    // }
+    // console.log(this.logIn);  
+  }
+
+  ngOnChanges() {
   }
 }

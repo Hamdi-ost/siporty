@@ -23,12 +23,7 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
-  ) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
-  }
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -60,7 +55,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/admin']);
         },
         error => {
           this.alertService.error(error);

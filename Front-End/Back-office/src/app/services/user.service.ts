@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-   apiUrl = 'http://localhost:8080';
+    apiUrl = 'http://localhost:8080';
+    token = JSON.parse(localStorage.getItem('currentUser')).token;
+    headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>(`${this.apiUrl}/users`);
+    getAll() {  
+        return this.http.get<User[]>(`${this.apiUrl}/users/`, { headers: this.headers });
     }
 
     getById(id: number) {
@@ -18,7 +21,8 @@ export class UserService {
     }
 
     register(user: User) {
-        return this.http.post(`${this.apiUrl}/auth/users/register`, user);
+        console.log(this.token);
+        return this.http.post(`${this.apiUrl}/users/`, user, { headers: this.headers } );
     }
 
     update(user: User) {
@@ -27,5 +31,9 @@ export class UserService {
 
     ban(id: number) {
         return this.http.delete(`${this.apiUrl}/user/${id}`);
+    }
+
+    unban() {
+
     }
 }

@@ -15,11 +15,16 @@ import { AlertComponent } from './components/alert/alert.component';
 import { UserComponent } from './components/user/user.component';
 import { DonationsComponent } from './components/donations/donations.component';
 import { TableComponent } from './components/table/table.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { FilterPipe } from './filter.pipe';
+import { FormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 const routes : Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard] },
   {path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'users', component: UserComponent },
   { path: 'donations', component: DonationsComponent },
 
@@ -38,13 +43,17 @@ const routes : Routes = [
     AlertComponent,
     UserComponent,
     DonationsComponent,
-    TableComponent
+    TableComponent,
+    AdminComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
