@@ -8,14 +8,13 @@ import com.donation.backend.demo.model.RoleName;
 import com.donation.backend.demo.model.User;
 import com.donation.backend.demo.repository.RoleRepository;
 import com.donation.backend.demo.repository.UserRepository;
+import com.donation.backend.demo.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -68,6 +67,106 @@ public class UserRestAPI {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/role/{role}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserInfo>> UsersByRole(@PathVariable("role") String roleR) {
+
+        try {
+            List<UserInfo> _users = new ArrayList<>();
+            List<User> users;
+            switch (roleR) {
+                case "admin":
+                    users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_ADMIN"));
+                    break;
+                case "user":
+                    users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_USER"));
+                    break;
+                default:
+                    users = new ArrayList<>();
+                    break;
+            }
+
+            if(users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            users.forEach(user -> {
+                UserInfo _user = new UserInfo();
+                _user.setId(user.getId());
+                _user.setFirstname(user.getFirstName());
+                _user.setLastname(user.getLastName());
+                _user.setUsername(user.getUsername());
+                _user.setEmail(user.getEmail());
+                _user.setEnabled(user.isEnabled());
+
+                List<String> _roles = new ArrayList<>();
+                Set<Role> roles = user.getRoles();
+                roles.forEach(role -> {
+                    _roles.add(role.getName().name());
+                });
+
+                _user.setRoles(_roles);
+                _users.add(_user);
+            });
+
+            return new ResponseEntity<>(_users, HttpStatus.OK);
+
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /*@GetMapping("/role/{role}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserInfo>> allUsersByRole(@PathVariable("role") String roleR) {
+
+        try {
+            List<UserInfo> _users = new ArrayList<>();
+            List<User> users;
+            switch (roleR) {
+                case "admin":
+                    Set<Role> roles1 = new HashSet<>();
+                    roles1.add(new Role(RoleName.ROLE_ADMIN));
+                    //users = new ArrayList<>(userRepository.findUsersByRoles(roles1));
+                    break;
+                default:
+                    Set<Role> roles2 = new HashSet<>();
+                    roles2.add(new Role(RoleName.ROLE_USER));
+                    //users = new ArrayList<>(userRepository.findUsersByRoles(roles2));
+                    break;
+            }
+
+            if(users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            System.out.println("out");
+            users.forEach(user -> {
+                System.out.println("in");
+                UserInfo _user = new UserInfo();
+                _user.setId(user.getId());
+                _user.setFirstname(user.getFirstName());
+                _user.setLastname(user.getLastName());
+                _user.setUsername(user.getUsername());
+                _user.setEmail(user.getEmail());
+                _user.setEnabled(user.isEnabled());
+
+                List<String> _roles = new ArrayList<>();
+                Set<Role> roles = user.getRoles();
+                roles.forEach(role -> {
+                    _roles.add(role.getName().name());
+                });
+
+                _user.setRoles(_roles);
+                _users.add(_user);
+            });
+
+            return new ResponseEntity<>(_users, HttpStatus.OK);
+
+        } catch(Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }*/
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -160,7 +259,7 @@ public class UserRestAPI {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<HttpStatus> banUserInfoUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> banUserById(@PathVariable("id") Long id) {
 
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()) {
