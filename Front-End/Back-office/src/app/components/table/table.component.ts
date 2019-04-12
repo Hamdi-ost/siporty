@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   @Output() ban = new EventEmitter();
   @Output() unban = new EventEmitter();
   p = 1;
+  
   constructor() { }
 
   ngOnInit() {

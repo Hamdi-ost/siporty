@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  
+
   title = "Users";
   users = [
     // {id: 1, username: 'hamdi', email: 'hamdi@gmail.com', revenue: 10, enable: true},
@@ -17,15 +17,22 @@ export class UserComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.userService.getAll().subscribe(users => {
-      this.users = Array.from(users);      
+  fetchData() {
+    this.userService.getAllUsers().subscribe(users => {
+      if (users) {
+        this.users = Array.from(users).reverse();
+      }
     })
   }
 
+  ngOnInit() {
+    this.fetchData();
+  }
+
   banUser(id) {
-    console.log(id);
-    // this.userService.ban(id).subscribe();
+    this.userService.ban(id).subscribe(data => {
+      this.fetchData();
+    });
   }
 
   unbanUser(id) {
