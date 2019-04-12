@@ -68,6 +68,43 @@ public class UserRestAPI {
         }
     }
 
+    @GetMapping("/banned")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserInfo>> getBannedUsers() {
+
+        try {
+            List<UserInfo> _users = new ArrayList<>();
+            List<User> users = new ArrayList<>(userRepository.findUsersByEnabled(false));
+            if(users.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            users.forEach(user -> {
+                UserInfo _user = new UserInfo();
+                _user.setId(user.getId());
+                _user.setFirstname(user.getFirstName());
+                _user.setLastname(user.getLastName());
+                _user.setUsername(user.getUsername());
+                _user.setEmail(user.getEmail());
+                _user.setEnabled(user.isEnabled());
+
+                List<String> _roles = new ArrayList<>();
+                Set<Role> roles = user.getRoles();
+                roles.forEach(role -> {
+                    _roles.add(role.getName().name());
+                });
+
+                _user.setRoles(_roles);
+                _users.add(_user);
+            });
+
+            return new ResponseEntity<>(_users, HttpStatus.OK);
+
+        } catch(Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/role/{role}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserInfo>> UsersByRole(@PathVariable("role") String roleR) {
@@ -214,6 +251,21 @@ public class UserRestAPI {
         if(userOptional.isPresent()) {
             User _user = userOptional.get();
             _user.setEnabled(false);
+            userRepository.save(_user);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/unban/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> unbanUserById(@PathVariable("id") Long id) {
+
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isPresent()) {
+            User _user = userOptional.get();
+            _user.setEnabled(true);
             userRepository.save(_user);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
