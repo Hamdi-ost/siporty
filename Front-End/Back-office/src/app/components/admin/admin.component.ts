@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-admin',
@@ -8,12 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   title = "Admin";
-  admin = [
-    {id: 1, name:'hamdii', username: 'hamdi', email: 'hamdi@gmail.com'},
-    {id: 2, name:'hamzaa', username: 'hamza', email: 'hamza@gmail.com'}
-  ];
-  columnsName = ['name', 'username', 'email'];
-  constructor() { }
+  admins = [];
+
+  columnsName = ['firstname', 'username', 'email'];
+  constructor(private userService: UserService) { 
+    this.userService.getAllAdmins().subscribe(admins => {
+      this.admins = Array.from(admins).reverse();      
+    })
+  }
 
   ngOnInit() {
   }

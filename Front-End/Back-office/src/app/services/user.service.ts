@@ -12,8 +12,12 @@ export class UserService {
     
     constructor(private http: HttpClient) { }
 
-    getAll() {  
-        return this.http.get<User[]>(`${this.apiUrl}/users/`, { headers: this.headers });
+    getAllUsers() {  
+        return this.http.get<User[]>(`${this.apiUrl}/users/role/user`, { headers: this.headers });
+    }
+
+    getAllAdmins() {  
+        return this.http.get<User[]>(`${this.apiUrl}/users/role/admin`, { headers: this.headers });
     }
 
     getById(id: number) {
@@ -25,12 +29,12 @@ export class UserService {
         return this.http.post(`${this.apiUrl}/users/`, user, { headers: this.headers } );
     }
 
-    update(user: User) {
-        return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
-    }
+    // update(user: User) {
+    //     return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
+    // }
 
     ban(id: number) {
-        return this.http.delete(`${this.apiUrl}/user/${id}`);
+        return this.http.delete(`${this.apiUrl}/users/${id}`, { headers: this.headers } );
     }
 
     unban() {

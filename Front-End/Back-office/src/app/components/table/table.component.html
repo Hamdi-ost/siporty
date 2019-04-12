@@ -23,19 +23,19 @@
               <tr role="row">
                 <th *ngFor="let columnName of columnsName" class="sorting_asc" tabindex="0" aria-controls="example1"
                   rowspan="1" colspan="1" aria-sort="ascending"
-                  aria-label="columnName: activate to sort column descending" style="width: 182px;">{{columnName}}</th>
+                  aria-label="columnName: activate to sort column descending" style="width: 182px;">{{columnName | uppercase}}</th>
 
                 <th *ngIf="title == 'Users'" class="sorting_asc" tabindex="0" aria-controls="example1"
                   rowspan="1" colspan="1" aria-sort="ascending"
-                  aria-label="columnName: activate to sort column descending" style="width: 182px;">Action</th>
+                  aria-label="columnName: activate to sort column descending" style="width: 182px;">ACTION</th>
 
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let row of data | filter : searchText | paginate: { itemsPerPage: 5, currentPage: p }" role="row" class="odd">
                 <td *ngFor="let col of columnsName" class="sorting_1">{{row[col]}}</td>
-                <td *ngIf="title == 'Users' && row['enable']" class="sorting_1"><button type="button" class="btn btn-danger" (click)="banUser(row.id)">BAN</button></td>
-                <td *ngIf="title == 'Users' && !row['enable']" class="sorting_1"><button type="button" class="btn btn-success" (click)="unbanUser(row.id)">UNBAN</button></td>
+                <td *ngIf="title == 'Users' && row['enabled']" class="sorting_1"><button type="button" class="btn btn-danger" (click)="banUser(row.id)">BAN</button></td>
+                <td *ngIf="title == 'Users' && !row['enabled']" class="sorting_1"><button type="button" class="btn btn-success" (click)="unbanUser(row.id)">UNBAN</button></td>
               </tr>
             </tbody>
           </table>
