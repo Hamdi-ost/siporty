@@ -1,6 +1,9 @@
 package com.donation.backend.demo.model;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -13,6 +16,7 @@ public class Message {
     private String content;
     private String email;
     private boolean enabled;
+    private String date;
 
     public Message() { }
 
@@ -21,6 +25,10 @@ public class Message {
         this.content = content;
         this.email = email;
         this.enabled = enabled;
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        this.date = dateFormat.format(date);
     }
 
     public Long getId() {
@@ -61,5 +69,13 @@ public class Message {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
