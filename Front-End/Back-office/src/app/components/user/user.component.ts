@@ -36,7 +36,9 @@ export class UserComponent implements OnInit {
   }
 
   unbanUser(id) {
-    console.log(id);
+    this.userService.unban(id).subscribe(data => {
+      this.fetchData();
+    });
   }
 
 }

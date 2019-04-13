@@ -9,14 +9,14 @@ export class UserService {
     apiUrl = 'http://localhost:8080';
     token = JSON.parse(localStorage.getItem('currentUser')).token;
     headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-    
+
     constructor(private http: HttpClient) { }
 
-    getAllUsers() {  
+    getAllUsers() {
         return this.http.get<User[]>(`${this.apiUrl}/users/role/user`, { headers: this.headers });
     }
 
-    getAllAdmins() {  
+    getAllAdmins() {
         return this.http.get<User[]>(`${this.apiUrl}/users/role/admin`, { headers: this.headers });
     }
 
@@ -26,7 +26,7 @@ export class UserService {
 
     register(user: User) {
         console.log(this.token);
-        return this.http.post(`${this.apiUrl}/users/`, user, { headers: this.headers } );
+        return this.http.post(`${this.apiUrl}/users/`, user, { headers: this.headers });
     }
 
     // update(user: User) {
@@ -34,10 +34,10 @@ export class UserService {
     // }
 
     ban(id: number) {
-        return this.http.delete(`${this.apiUrl}/users/${id}`, { headers: this.headers } );
+        return this.http.delete(`${this.apiUrl}/users/${id}`, { headers: this.headers });
     }
 
-    unban() {
-
+    unban(id: number) {
+        return this.http.delete(`${this.apiUrl}/users/unban/${id}`, { headers: this.headers });
     }
 }

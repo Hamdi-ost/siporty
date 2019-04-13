@@ -16,24 +16,44 @@
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
+        <li class="dropdown messages-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-envelope-o"></i>
+            <span class="label label-success">{{messages.length}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">You have {{messages.length}} messages</li>
+            <li>
+              <!-- inner menu: contains the actual data -->
+              <ul class="menu">
+                <li>
+                  <!-- start message -->
+                  <a href="#" *ngFor="let message of messages">
+                    <div class="pull-left">
+                      <img src="../../../assets/user.png" class="img-circle" alt="User Image">
+                    </div>
+                    <h4>
+                      {{message.name}}
+                      <small><i class="fa fa-clock-o"></i> 2 days</small>
+                    </h4>
+                    <p>{{message.content}}</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer"><a routerLink="messages">See All Messages</a></li>
+          </ul>
+        </li>
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img
-              src="../../../assets/dist/img/user2-160x160.jpg"
-              class="user-image"
-              alt="User Image"
-            />
+            <img src="../../../assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
             <span class="hidden-xs">{{username}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img
-                src="../../../assets/dist/img/user2-160x160.jpg"
-                class="img-circle"
-                alt="User Image"
-              />
+              <img src="../../../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
               <p>
                 {{ username }} - Admin
               </p>
@@ -41,7 +61,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-right">
-                <a  class="btn btn-default btn-flat" (click)="logout()">Sign out</a>
+                <a class="btn btn-default btn-flat" (click)="logout()">Sign out</a>
               </div>
             </li>
           </ul>

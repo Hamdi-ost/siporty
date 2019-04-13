@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentification.service';
 import { User } from 'src/app/models';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +11,28 @@ import { User } from 'src/app/models';
 })
 export class NavbarComponent implements OnInit {
   username;
+  messages = [];
+
   constructor(private router: Router,
-    private authenticationService: AuthenticationService) {
-      this.authenticationService.currentUser.subscribe(x => {
-        if (x) {
-          this.username = x['user'].username
-        }
-      });
+    private authenticationService: AuthenticationService,
+    private messagesService: ContactService) {
+    this.authenticationService.currentUser.subscribe(x => {
+      if (x) {
+        this.username = x['user'].username
+      }
+    });
   }
 
+  fetchMessages() {
+    this.messagesService.getAllMessages().subscribe(messages => {
+      if (messages) {
+        this.messages = Array.from(messages).reverse();
+      }
+    })
+
+  }
   ngOnInit() {
+    this.fetchMessages();
   }
 
   logout() {

@@ -4,9 +4,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'http://localhost:8080/contact';
+const apiUrl = 'http://localhost:8080/messages/auth/';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,7 @@ export class ContactService {
 
 
   postContact(data): Observable<any> {
+    console.log(data);
     return this.http.post(apiUrl, data, httpOptions).pipe(
       catchError(this.handleError)
     );
