@@ -17,6 +17,7 @@ public class Message {
     public Message() { }
 
     public Message(String name, String content, String email, boolean enabled) {
+        this.name = name;
         this.content = content;
         this.email = email;
         this.enabled = enabled;

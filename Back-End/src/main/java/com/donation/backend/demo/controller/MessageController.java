@@ -54,7 +54,7 @@ public class MessageController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("/auth/")
     public ResponseEntity<?> newMessage(@RequestBody MessageForm messageForm) {
 
         Message message = new Message(messageForm.getName(), messageForm.getContent(), messageForm.getEmail(), true);
