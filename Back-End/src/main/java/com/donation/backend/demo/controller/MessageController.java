@@ -55,10 +55,9 @@ public class MessageController {
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> newMessage(@RequestBody MessageForm messageForm) {
 
-        Message message = new Message(messageForm.getContent(), messageForm.getEmail(), true);
+        Message message = new Message(messageForm.getName(), messageForm.getContent(), messageForm.getEmail(), true);
         messageRepository.save(message);
         return new ResponseEntity<>(new ResponseMessage("Message created successfully!"), HttpStatus.OK);
     }

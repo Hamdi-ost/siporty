@@ -9,13 +9,14 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
     private String content;
     private String email;
     private boolean enabled;
 
     public Message() { }
 
-    public Message(String content, String email, boolean enabled) {
+    public Message(String name, String content, String email, boolean enabled) {
         this.content = content;
         this.email = email;
         this.enabled = enabled;
@@ -51,5 +52,13 @@ public class Message {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
