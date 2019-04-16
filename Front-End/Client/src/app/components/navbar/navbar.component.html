@@ -1,6 +1,29 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
-</nav>
+<div class="cd-tabs js-cd-tabs" *ngIf="currentUser">
+  <nav>
+    <ul class="cd-tabs__navigation js-cd-navigation">
+      <li><a data-content="inbox" class="cd-selected" routerLink="/">Home</a></li>
+      <li><a data-content="new" routerLink="/settings">Settings</a></li>
+      <li><a data-content="gallery" routerLink="/income">Income</a></li>
+      <li><a data-content="store" routerLink="/notifications">Notifications</a></li>
+      <li><a data-content="settings" href="#" (click)="logout()">Logout</a></li>
+    </ul> <!-- cd-tabs__navigation -->
+  </nav>
+
+  <ul class="cd-tabs__content js-cd-content">
+    <li data-content="inbox" class="cd-selected">
+      <app-profile></app-profile>
+    </li>
+
+    <li data-content="new">
+      <app-settings></app-settings>
+    </li>
+
+    <li data-content="gallery">
+      <app-income></app-income>
+    </li>
+
+    <li data-content="store">
+      <app-notification></app-notification>
+    </li>
+  </ul> <!-- cd-tabs__content -->
+</div> <!-- cd-tabs -->

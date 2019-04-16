@@ -9,10 +9,7 @@ import { UserService } from 'src/app/services';
 export class UserComponent implements OnInit {
 
   title = "Users";
-  users = [
-    // {id: 1, username: 'hamdi', email: 'hamdi@gmail.com', revenue: 10, enable: true},
-    // {id: 2, username: 'hamza', email: 'hamza@gmail.com', revenue: 10, enable: false}
-  ];
+  users = [];
   columnsName = ['firstname', 'username', 'email'];
 
   constructor(private userService: UserService) { }

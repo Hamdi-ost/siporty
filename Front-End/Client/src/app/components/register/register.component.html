@@ -80,84 +80,44 @@
   <section class="login-wrapper">
     <div class="logo">
       <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
-        <img
-          src="https://unrealnavigation.com/_themes/unrealnavigation/img/unreal-navigation-logo.png?v=1474018625"
-          alt=""
-      /></a>
+        <img src="https://unrealnavigation.com/_themes/unrealnavigation/img/unreal-navigation-logo.png?v=1474018625"
+          alt="" /></a>
     </div>
 
     <form id="login" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-     <!-- First name-->
+      <!-- First name-->
       <label for="firstname">First Name</label>
-      <input
-        required
-        name="login[firstname]"
-        type="text"
-        autocapitalize="off"
-        autocorrect="off"
-        formControlName="firstname"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"
-      />
+      <input required name="login[firstname]" type="text" autocapitalize="off" autocorrect="off"
+        formControlName="firstname" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
         <div *ngIf="f.firstname.errors.required">First Name is required</div>
       </div>
       <!-- Last name-->
       <label for="lastname">Last Name</label>
-      <input
-        class="lastname"
-        required
-        name="login[lastname]"
-        type="lastname"
-        formControlName="lastname"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"
-      />
+      <input class="lastname" required name="login[lastname]" type="lastname" formControlName="lastname"
+        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
         <div *ngIf="f.lastname.errors.required">Last Name is required</div>
       </div>
       <!-- Email-->
       <label for="email">E-mail</label>
-      <input
-        required
-        name="login[email]"
-        type="email"
-        autocapitalize="off"
-        autocorrect="off"
-        formControlName="email"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-      />
+      <input required name="login[email]" type="email" autocapitalize="off" autocorrect="off" formControlName="email"
+        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors" class="invalid-feedback">
         <div *ngIf="f.email.errors.required">E-mail is required</div>
       </div>
       <!--  username-->
       <label for="username">Username</label>
-      <input
-        required
-        name="login[username]"
-        type="text"
-        autocapitalize="off"
-        autocorrect="off"
-        formControlName="username"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-      />
+      <input required name="login[username]" type="text" autocapitalize="off" autocorrect="off"
+        formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.username.errors" class="invalid-feedback">
         <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
       <!-- Password-->
       <label for="password">Password</label>
-      <input
-        required
-        name="login[password]"
-        type="password"
-        autocapitalize="off"
-        autocorrect="off"
-        formControlName="password"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-      />
+      <input required name="login[password]" type="password" autocapitalize="off" autocorrect="off"
+        formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>

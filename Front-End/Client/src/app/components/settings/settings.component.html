@@ -1,3 +1,30 @@
-<p>
-  settings works!
-</p>
+<form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <!-- Email-->
+  <label for="email">E-mail</label>
+  <input required name="login[email]" type="email" autocapitalize="off" autocorrect="off" formControlName="email"
+    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+  <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors" class="invalid-feedback">
+    <div *ngIf="f.email.errors.required">E-mail is required</div>
+  </div>
+  <!-- New password-->
+  <label for="password">New Password</label>
+  <input class="password" required name="login[password]" type="password" formControlName="password"
+    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+  <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
+    <div *ngIf="f.password.errors.required">Password is required</div>
+  </div>
+  <!-- Re-Type password-->
+  <label for="password">Re-Type Password</label>
+  <input class="password" required name="login[password]" type="password" formControlName="password"
+    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+  <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
+    <div *ngIf="f.password.errors.required">Password is required</div>
+  </div>
+  <div class="hide-show">
+    <span>Show</span>
+  </div>
+  <label>
+    This is the URL to your tip page where views can send you donations. https://...........
+  </label>
+  <button style="width: 20%;" [disabled]="loading" type="submit">Save</button>
+</form>

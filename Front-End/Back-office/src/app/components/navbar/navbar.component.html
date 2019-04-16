@@ -28,16 +28,18 @@
               <ul class="menu">
                 <li>
                   <!-- start message -->
-                  <a href="#" *ngFor="let message of messages">
-                    <div class="pull-left">
-                      <img src="../../../assets/user.png" class="img-circle" alt="User Image">
-                    </div>
-                    <h4>
-                      {{message.name}}
-                      <small><i class="fa fa-clock-o"></i> 2 days</small>
-                    </h4>
-                    <p>{{message.content}}</p>
-                  </a>
+                  <ng-container *ngFor="let message of messages">
+                    <a routerLink='messages/{{message.id}}' routerLinkActive="router-link-active">
+                      <div class="pull-left">
+                        <img src="../../../assets/user.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        {{message.name}}
+                        <small><i class="fa fa-clock-o"></i> 2 days</small>
+                      </h4>
+                      <p>{{message.content}}</p>
+                    </a>
+                  </ng-container>
                 </li>
               </ul>
             </li>

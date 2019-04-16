@@ -8,11 +8,18 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor(private messages: ContactService) { }
+  title = 'Messages';
+  messages = [];
+  columnsName = ['name', 'email', 'content'];
+  p = 1;
+
+  constructor(private message: ContactService) { }
 
   ngOnInit() {
-    this.messages.getAllMessages().subscribe(messages => {
-      console.log(messages);
+    this.message.getAllMessages().subscribe(messages => {
+      if (messages) {
+        this.messages = Array.from(messages).reverse();
+      }
     })
   }
 

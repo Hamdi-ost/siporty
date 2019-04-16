@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { User } from '../../models';
 import { UserService, AuthenticationService } from '../../services';
 
-@Component({ templateUrl: 'profile.component.html' })
+@Component({ selector: 'app-profile', templateUrl: 'profile.component.html' })
 export class ProfileComponent implements OnInit, OnDestroy {
     currentUser: User;
     currentUserSubscription: Subscription;
@@ -16,12 +16,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
         private userService: UserService
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
-            this.currentUser = user;
+            if (user) {
+                this.currentUser = user['user'].username;
+            }
         });
     }
 
     ngOnInit() {
-        this.loadAllUsers();
     }
 
     ngOnDestroy() {
@@ -29,15 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUserSubscription.unsubscribe();
     }
 
-    deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => {
-            this.loadAllUsers();
-        });
-    }
 
-    private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            this.users = users;
-        });
-    }
+
+
 }

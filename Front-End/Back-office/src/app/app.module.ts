@@ -19,12 +19,14 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MessagesComponent } from './components/messages/messages.component'; // <-- import the module
+import { MessagesComponent } from './components/messages/messages.component';
+import { MessageDetailComponent } from './components/message-detail/message-detail.component'; // <-- import the module
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'messages', component: MessagesComponent },
+  { path: 'messages/:id', component: MessageDetailComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'users', component: UserComponent },
@@ -48,7 +50,8 @@ const routes: Routes = [
     TableComponent,
     AdminComponent,
     FilterPipe,
-    MessagesComponent
+    MessagesComponent,
+    MessageDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log();
 
     // stop here if form is invalid
     if (this.contactForm.invalid) {
@@ -41,10 +42,13 @@ export class ContactComponent implements OnInit {
 
     this.loading = true;
     this.contactService
-      .postContact(this.f.value)
+      .postContact(this.contactForm.value)
       .subscribe(
         data => {
-          this.alertService.error('Your message sent');
+          this.alertService.success('Your message sent');
+          this.contactForm.value.name = '';
+          this.contactForm.value.email = '';
+          this.contactForm.value.content = '';
         },
         error => {
           this.alertService.error(error);

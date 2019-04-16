@@ -2,5 +2,5 @@
 <!-- main app container -->
 <div class="container">
   <alert></alert>
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="!logIn"></router-outlet>
 </div>
