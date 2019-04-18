@@ -1,16 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class UserService implements OnInit {
 
-   apiUrl = 'http://localhost:8080';
+    apiUrl = 'http://localhost:8080';
+    token;
+    headers;
+
+
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>(`${this.apiUrl}/users`);
+    ngOnInit(): void {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
     }
 
     getById(id: number) {
@@ -22,10 +27,7 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
+        return this.http.put(`${this.apiUrl}/users/`, user, { headers: this.headers });
     }
 
-    delete(id: number) {
-        return this.http.delete(`${this.apiUrl}/users/${id}`);
-    }
 }

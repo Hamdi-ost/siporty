@@ -21,6 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageDetailComponent } from './components/message-detail/message-detail.component'; // <-- import the module
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogueComponent } from './components/confirmation-dialogue/confirmation-dialogue.component';
+import { InformationsComponent } from './components/informations/informations.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -29,6 +32,7 @@ const routes: Routes = [
   { path: 'messages/:id', component: MessageDetailComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'infos', component: InformationsComponent },
   { path: 'users', component: UserComponent },
   { path: 'donations', component: DonationsComponent },
 
@@ -51,9 +55,13 @@ const routes: Routes = [
     AdminComponent,
     FilterPipe,
     MessagesComponent,
-    MessageDetailComponent
+    MessageDetailComponent,
+    ConfirmationDialogueComponent,
+    InformationsComponent
   ],
+  entryComponents: [ConfirmationDialogueComponent],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),

@@ -24,14 +24,14 @@
                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                 </div>
               </td>
-              <td class="mailbox-star"><a routerLink='messages/{{message.id}}'><i
-                    class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a routerLink='messages/{{message.id}}'
-                  routerLinkActive="router-link-active">{{message.name}}</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+              <td class="mailbox-star"><a><i class="fa fa-star text-yellow"></i></a></td>
+              <td class="mailbox-name"><a routerLink='{{message.id}}'
+                  routerLinkActive="router-link-active">{{message.name}}</a>
+              </td>
+              <td class="mailbox-subject"><b>SIPORTY Issue</b> - Trying to find a solution to this problem...
               </td>
               <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">15 days ago</td>
+              <td class="mailbox-date">{{message.date}}</td>
             </tr>
           </tbody>
         </table>

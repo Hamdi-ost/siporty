@@ -38,7 +38,7 @@ public class UserRestAPI {
         try {
             List<UserInfo> _users = new ArrayList<>();
             List<User> users = new ArrayList<>(userRepository.findAll());
-            if(users.isEmpty()) {
+            if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
@@ -63,7 +63,7 @@ public class UserRestAPI {
 
             return new ResponseEntity<>(_users, HttpStatus.OK);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,7 +75,7 @@ public class UserRestAPI {
         try {
             List<UserInfo> _users = new ArrayList<>();
             List<User> users = new ArrayList<>(userRepository.findUsersByEnabled(false));
-            if(users.isEmpty()) {
+            if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
@@ -100,7 +100,7 @@ public class UserRestAPI {
 
             return new ResponseEntity<>(_users, HttpStatus.OK);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -113,18 +113,18 @@ public class UserRestAPI {
             List<UserInfo> _users = new ArrayList<>();
             List<User> users;
             switch (roleR) {
-                case "admin":
-                    users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_ADMIN"));
-                    break;
-                case "user":
-                    users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_USER"));
-                    break;
-                default:
-                    users = new ArrayList<>();
-                    break;
+            case "admin":
+                users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_ADMIN"));
+                break;
+            case "user":
+                users = new ArrayList<>(userRepository.findUsersByRoles("ROLE_USER"));
+                break;
+            default:
+                users = new ArrayList<>();
+                break;
             }
 
-            if(users.isEmpty()) {
+            if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             users.forEach(user -> {
@@ -148,7 +148,7 @@ public class UserRestAPI {
 
             return new ResponseEntity<>(_users, HttpStatus.OK);
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -160,7 +160,7 @@ public class UserRestAPI {
 
         Optional<User> userOptional = userRepository.findById(id);
 
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
 
             User user = userOptional.get();
             UserInfo _user = new UserInfo();
@@ -200,17 +200,17 @@ public class UserRestAPI {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()), true);
+        User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(),
+                signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()), true);
 
-        //Set<String> strRoles = signUpRequest.getRole();
+        // Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
-        /*strRoles.forEach(role -> {
-            Role roleDb = roleRepository.findByName(RoleName.valueOf(role))
-                    .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
-            roles.add(roleDb);
-        });*/
+        /*
+         * strRoles.forEach(role -> { Role roleDb =
+         * roleRepository.findByName(RoleName.valueOf(role)) .orElseThrow(() -> new
+         * RuntimeException("Fail! -> Cause: Role not found.")); roles.add(roleDb); });
+         */
 
         Role roleDb = roleRepository.findByName(RoleName.ROLE_ADMIN)
                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
@@ -226,7 +226,7 @@ public class UserRestAPI {
     public ResponseEntity<UserInfo> updateUser(@RequestBody UserInfo user) {
 
         Optional<User> userOptional = userRepository.findById(user.getId());
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             User _user = userOptional.get();
 
             _user.setFirstName(user.getFirstname());
@@ -234,7 +234,7 @@ public class UserRestAPI {
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
-            //_user.setPassword(encoder.encode(user.getPassword());
+            // _user.setPassword(encoder.encode(user.getPassword());
 
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -248,7 +248,7 @@ public class UserRestAPI {
     public ResponseEntity<HttpStatus> banUserById(@PathVariable("id") Long id) {
 
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             User _user = userOptional.get();
             _user.setEnabled(false);
             userRepository.save(_user);
@@ -263,7 +263,7 @@ public class UserRestAPI {
     public ResponseEntity<HttpStatus> unbanUserById(@PathVariable("id") Long id) {
 
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             User _user = userOptional.get();
             _user.setEnabled(true);
             userRepository.save(_user);

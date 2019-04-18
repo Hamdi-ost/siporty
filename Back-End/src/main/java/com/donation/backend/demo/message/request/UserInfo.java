@@ -12,9 +12,11 @@ public class UserInfo {
     private List<String> roles;
     private boolean enabled;
 
-    public UserInfo() {};
+    public UserInfo() {
+    };
 
-    public UserInfo(Long id, String firstname, String lastname, String username, String email, List<String> roles, boolean enabled) {
+    public UserInfo(Long id, String firstname, String lastname, String username, String email, List<String> roles,
+            boolean enabled) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

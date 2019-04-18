@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-table',
@@ -8,15 +7,15 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  
+
   @Input() title;
   @Input() data;
   @Input() columnsName;
   @Output() ban = new EventEmitter();
   @Output() unban = new EventEmitter();
   p = 1;
-  
-  constructor() { }
+
+  constructor(private excelService: ExcelService) { }
 
   ngOnInit() {
   }
@@ -24,9 +23,13 @@ export class TableComponent implements OnInit {
   banUser(id) {
     this.ban.emit(id);
   }
-  
+
   unbanUser(id) {
     this.unban.emit(id);
+  }
+
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.data, 'sample');
   }
 
 }

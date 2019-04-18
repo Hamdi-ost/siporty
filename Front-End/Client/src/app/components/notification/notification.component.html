@@ -1,3 +1,27 @@
-<p>
-  notification works!
-</p>
+<div class="container">
+  <table class="rwd-table">
+    <tbody>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Message</th>
+        <th>Amount</th>
+
+      </tr>
+      <tr *ngFor="let notification of notifications">
+        <td data-th="Supplier Code">
+          {{notification.id}}
+        </td>
+        <td data-th="Supplier Name">
+          {{notification.username}}
+        </td>
+        <td data-th="Invoice Number">
+          {{notification.message}}
+        </td>
+        <td data-th="Invoice Date">
+          {{notification.amount}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -7,16 +7,24 @@ import { User } from '../models';
 export class UserService {
 
     apiUrl = 'http://localhost:8080';
-    token = JSON.parse(localStorage.getItem('currentUser')).token;
-    headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    token;
+    headers;
 
     constructor(private http: HttpClient) { }
 
+    ngOnInit(): void {
+
+    }
+
     getAllUsers() {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.get<User[]>(`${this.apiUrl}/users/role/user`, { headers: this.headers });
     }
 
     getAllAdmins() {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.get<User[]>(`${this.apiUrl}/users/role/admin`, { headers: this.headers });
     }
 
@@ -25,7 +33,8 @@ export class UserService {
     }
 
     register(user: User) {
-        console.log(this.token);
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.post(`${this.apiUrl}/users/`, user, { headers: this.headers });
     }
 
@@ -34,10 +43,14 @@ export class UserService {
     // }
 
     ban(id: number) {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.delete(`${this.apiUrl}/users/${id}`, { headers: this.headers });
     }
 
     unban(id: number) {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.delete(`${this.apiUrl}/users/unban/${id}`, { headers: this.headers });
     }
 }
