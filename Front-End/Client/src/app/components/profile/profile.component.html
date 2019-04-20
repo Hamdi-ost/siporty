@@ -1,3 +1,74 @@
-<h1>Hi {{currentUser}}!</h1>
-<p>You're logged in with Angular 7!!</p>
-<h3>All registered users:</h3>
+<div class="row">
+    <div class="col-6">
+        Top fans (week)
+    </div>
+    <div class="col-6">
+        Top fans (month)
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <form id="login">
+            <button onclick="document.getElementById('id01').style.display='block'" style="width: 20%; float: right;"
+                [disabled]="loading" type="submit">Payout Method</button>
+        </form>
+    </div>
+
+</div>
+
+<div class="w3-container">
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container" style="background-color:black">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                    class="w3-button w3-display-topright">&times;</span>
+                <div class="login_form">
+                    <section class="login-wrapper">
+                        <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <h1 style="text-align: center">Payout Method</h1>
+                            <label for="">
+                                <hr style="text-align: center;border: 1px solid white"></label>
+                            <label for="accountName">Name on Account</label>
+                            <input required name="login[accountName]" type="text" autocapitalize="off" autocorrect="off"
+                                formControlName="accountName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
+                            <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.accountName.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.accountName.errors.required">Account Name is required</div>
+                            </div>
+                            <label for="rib">RIB</label>
+                            <input required name="login[rib]" type="number" autocapitalize="off" autocorrect="off"
+                                formControlName="rib" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.rib.errors }" />
+                            <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.rib.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.rib.errors.required">RIB is required</div>
+                            </div>
+                            <label for="bankName">Bank Name</label>
+                            <input required name="login[bankName]" type="text" autocapitalize="off" autocorrect="off"
+                                formControlName="bankName" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }" />
+                            <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.bankName.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.bankName.errors.required">Bank Name is required</div>
+                            </div>
+                            <label for="agency">Agency</label>
+                            <input class="agency" required name="login[agency]" type="text" formControlName="agency"
+                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.agency.errors }" />
+                            <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.agency.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.agency.errors.required">Agency is required</div>
+                            </div>
+                            <div class="hide-show">
+                                <span>Show</span>
+                            </div>
+                            <button [disabled]="loading" type="submit">Save Changes</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
