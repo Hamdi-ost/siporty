@@ -20,6 +20,10 @@ public class UserPrinciple implements UserDetails {
 
     private String lastName;
 
+    private String banque;
+    private String agence;
+    private String ccb;
+
     private String username;
 
     private String email;
@@ -30,11 +34,15 @@ public class UserPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserPrinciple(Long id, String firstName, String lastName,
+                         String banque, String agence, String ccb,
                          String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.banque = banque;
+        this.agence = agence;
+        this.ccb = ccb;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -50,6 +58,9 @@ public class UserPrinciple implements UserDetails {
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
+                user.getBanque(),
+                user.getAgence(),
+                user.getCcb(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -71,6 +82,18 @@ public class UserPrinciple implements UserDetails {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getBanque() {
+        return banque;
+    }
+
+    public String getAgence() {
+        return agence;
+    }
+
+    public String getCcb() {
+        return ccb;
     }
 
     @Override

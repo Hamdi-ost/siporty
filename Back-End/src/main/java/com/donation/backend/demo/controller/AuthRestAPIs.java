@@ -62,7 +62,7 @@ public class AuthRestAPIs {
         _roles.forEach(role -> {
             roles.add(role.getName().name());
         });
-        UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getUsername(), userDb.getEmail(), roles, userDb.isEnabled());
+        UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getBanque(), userDb.getAgence(), userDb.getCcb(), userDb.getUsername(), userDb.getEmail(), roles, userDb.isEnabled());
 
         if(user.isEnabled()) {
             return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
@@ -83,7 +83,9 @@ public class AuthRestAPIs {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(), signUpRequest.getEmail(),
+        User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(),
+                signUpRequest.getBanque(), signUpRequest.getAgence(), signUpRequest.getCcb(),
+                signUpRequest.getUsername(), signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()), true);
 
         //Set<String> strRoles = signUpRequest.getRole();

@@ -7,6 +7,9 @@ public class SignUpForm {
     private String firstname;
     private String lastname;
     private String username;
+    private String banque;
+    private String agence;
+    private String ccb;
     private String email;
     private Set<String> role;
     private String password;
@@ -57,5 +60,29 @@ public class SignUpForm {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getBanque() {
+        return banque;
+    }
+
+    public void setBanque(String banque) {
+        this.banque = banque;
+    }
+
+    public String getAgence() {
+        return agence;
+    }
+
+    public void setAgence(String agence) {
+        this.agence = agence;
+    }
+
+    public String getCcb() {
+        return ccb;
+    }
+
+    public void setCcb(String ccb) {
+        this.ccb = ccb;
     }
 }
