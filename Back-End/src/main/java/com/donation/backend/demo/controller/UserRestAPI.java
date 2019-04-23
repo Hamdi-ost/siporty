@@ -53,6 +53,7 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
+                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -93,6 +94,7 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
+                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -144,6 +146,7 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
+                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -182,6 +185,7 @@ public class UserRestAPI {
             _user.setCcb(user.getCcb());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
+            _user.setPassword(user.getPassword());
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = user.getRoles();
@@ -212,10 +216,13 @@ public class UserRestAPI {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getFirstname(), signUpRequest.getLastname(),
-                signUpRequest.getBanque(), signUpRequest.getAgence(), signUpRequest.getCcb(),
-                signUpRequest.getUsername(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()), true);
+        User user = new User();
+        user.setFirstName(signUpRequest.getFirstname());
+        user.setLastName(signUpRequest.getLastname());
+        user.setUsername(signUpRequest.getUsername());
+        user.setEmail(signUpRequest.getEmail());
+        user.setPassword(encoder.encode(signUpRequest.getPassword()));
+        user.setEnabled(true);
 
         //Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -237,11 +244,28 @@ public class UserRestAPI {
     }
 
     @PutMapping("/")
-    public ResponseEntity<UserInfo> updateUser(@RequestBody UserInfo user) {
-
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> updateUser(@RequestBody UserInfo user) {
+        
         Optional<User> userOptional = userRepository.findById(user.getId());
         if(userOptional.isPresent()) {
             User _user = userOptional.get();
+
+            if(!_user.getUsername().equals(user.getUsername()))
+            {
+                if (userRepository.existsByUsername(user.getUsername())) {
+                    return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
+                            HttpStatus.BAD_REQUEST);
+                }
+            }
+
+            if(!_user.getEmail().equals(user.getEmail()))
+            {
+                if (userRepository.existsByEmail(user.getEmail())) {
+                    return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
+                            HttpStatus.BAD_REQUEST);
+                }
+            }
 
             _user.setFirstName(user.getFirstname());
             _user.setLastName(user.getLastname());
@@ -251,7 +275,14 @@ public class UserRestAPI {
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
-            //_user.setPassword(encoder.encode(user.getPassword());
+            _user.setPassword(encoder.encode(user.getPassword()));
+
+            List<String> _roles = new ArrayList<>();
+            Set<Role> roles = _user.getRoles();
+            roles.forEach(role -> {
+                _roles.add(role.getName().name());
+            });
+            user.setRoles(_roles);
 
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);
