@@ -14,13 +14,11 @@ public class UserInfo {
     private String email;
     private List<String> roles;
     private boolean enabled;
-    private String password;
 
     public UserInfo() {};
 
     public UserInfo(Long id, String firstname, String lastname, String banque, String agence,
-                    String ccb, String username, String email, List<String> roles,
-                    boolean enabled, String password) {
+                    String ccb, String username, String email, List<String> roles, boolean enabled) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -31,7 +29,6 @@ public class UserInfo {
         this.email = email;
         this.roles = roles;
         this.enabled = enabled;
-        this.password = password;
     }
 
     public Long getId() {
@@ -112,13 +109,5 @@ public class UserInfo {
 
     public void setCcb(String ccb) {
         this.ccb = ccb;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

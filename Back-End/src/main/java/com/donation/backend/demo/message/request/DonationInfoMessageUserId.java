@@ -7,7 +7,7 @@ public class DonationInfoMessageUserId {
     private long id;
     private String title;
     private String message;
-    private float solde;
+    private String solde;
     private String image;
     private String url;
     private UserInfo userInfo;
@@ -16,7 +16,7 @@ public class DonationInfoMessageUserId {
     public DonationInfoMessageUserId() {
     }
 
-    public DonationInfoMessageUserId(long id, String title, String message, float solde, String image, String url,
+    public DonationInfoMessageUserId(long id, String title, String message, String solde, String image, String url,
                                      UserInfo userInfo, List<DonationMessage> donationMessages) {
         this.id = id;
         this.title = title;
@@ -52,11 +52,11 @@ public class DonationInfoMessageUserId {
         this.message = message;
     }
 
-    public float getSolde() {
+    public String getSolde() {
         return solde;
     }
 
-    public void setSolde(float solde) {
+    public void setSolde(String solde) {
         this.solde = solde;
     }
 

@@ -158,6 +158,7 @@ public class DonationInfoController {
 
         donationInfo.setTitle(donationInfoMessage.getTitle());
         donationInfo.setMessage(donationInfoMessage.getMessage());
+        donationInfo.setSolde(0);
         donationInfo.setImage(donationInfoMessage.getImage());
         donationInfo.setDonations(new ArrayList<>());
         donationInfo.setEnabled(true);
@@ -166,6 +167,11 @@ public class DonationInfoController {
         if(_user.isPresent())
         {
             User user = _user.get();
+            Optional<DonationInfo> _donationInfo = donationInfoRepository.findDonationInfoByUser(user);
+            if (_donationInfo.isPresent()) {
+                return new ResponseEntity<>(new ResponseMessage("Fail -> User already has a donation page!"),
+                        HttpStatus.BAD_REQUEST);
+            }
             donationInfo.setUser(user);
 
             RandomString randomString = new RandomString();

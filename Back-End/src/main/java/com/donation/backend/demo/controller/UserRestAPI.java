@@ -1,5 +1,6 @@
 package com.donation.backend.demo.controller;
 
+import com.donation.backend.demo.message.request.PasswordChangeForm;
 import com.donation.backend.demo.message.request.SignUpForm;
 import com.donation.backend.demo.message.request.UserInfo;
 import com.donation.backend.demo.message.response.ResponseMessage;
@@ -53,7 +54,6 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
-                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -94,7 +94,6 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
-                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -146,7 +145,6 @@ public class UserRestAPI {
                 _user.setCcb(user.getCcb());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
-                _user.setPassword(user.getPassword());
 
                 List<String> _roles = new ArrayList<>();
                 Set<Role> roles = user.getRoles();
@@ -185,7 +183,6 @@ public class UserRestAPI {
             _user.setCcb(user.getCcb());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
-            _user.setPassword(user.getPassword());
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = user.getRoles();
@@ -275,10 +272,6 @@ public class UserRestAPI {
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
-            if(user.getPassword()!= null && !encoder.matches(user.getPassword(), _user.getPassword()))
-            {
-                _user.setPassword(encoder.encode(user.getPassword()));
-            }
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = _user.getRoles();
@@ -289,6 +282,26 @@ public class UserRestAPI {
 
             userRepository.save(_user);
             return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/change-password")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<?> updateUser(@RequestBody PasswordChangeForm passwordChangeForm) {
+
+        Optional<User> userOptional = userRepository.findById(passwordChangeForm.getId());
+        if(userOptional.isPresent()) {
+            User _user = userOptional.get();
+
+            if(passwordChangeForm.getPassword()!= null && !encoder.matches(passwordChangeForm.getPassword(), _user.getPassword()))
+            {
+                _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));
+            }
+
+            userRepository.save(_user);
+            return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
