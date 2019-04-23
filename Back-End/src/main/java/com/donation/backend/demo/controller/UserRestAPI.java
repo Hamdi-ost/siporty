@@ -246,7 +246,7 @@ public class UserRestAPI {
     @PutMapping("/")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> updateUser(@RequestBody UserInfo user) {
-        
+
         Optional<User> userOptional = userRepository.findById(user.getId());
         if(userOptional.isPresent()) {
             User _user = userOptional.get();
@@ -275,7 +275,10 @@ public class UserRestAPI {
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
-            _user.setPassword(encoder.encode(user.getPassword()));
+            if(user.getPassword()!= null && !encoder.matches(user.getPassword(), _user.getPassword()))
+            {
+                _user.setPassword(encoder.encode(user.getPassword()));
+            }
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = _user.getRoles();
