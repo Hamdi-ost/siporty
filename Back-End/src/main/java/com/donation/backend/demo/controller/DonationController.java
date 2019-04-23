@@ -14,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +49,8 @@ public class DonationController {
             donations.forEach(donation -> {
                 DonationMessage dm = new DonationMessage();
                 dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
                 dm.setDate(donation.getDate());
                 donationMessages.add(dm);
             });
@@ -67,6 +72,8 @@ public class DonationController {
 
             DonationMessage dm = new DonationMessage();
             dm.setMontant(donation.getMontant());
+            dm.setName(donation.getName());
+            dm.setMessage(donation.getMessage());
             dm.setDate(donation.getDate());
 
             return new ResponseEntity<>(dm, HttpStatus.OK);
@@ -80,8 +87,13 @@ public class DonationController {
 
         Donation donation = new Donation();
         donation.setMontant(donationMessage.getMontant());
-        donation.setDate(donationMessage.getDate());
+        donation.setName(donationMessage.getName());
+        donation.setMessage(donationMessage.getMessage());
         donation.setEnabled(true);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        donation.setDate(dateFormat.format(date));
 
         Optional<User> _user = userRepository.findById(donationMessage.getId());
         if(_user.isPresent())
@@ -91,8 +103,14 @@ public class DonationController {
             if(_donationInfo.isPresent())
             {
                 DonationInfo donationInfo = _donationInfo.get();
+                float solde = donationInfo.getSolde() + donationMessage.getMontant();
+                donationInfo.setSolde(solde);
                 donation.setDonationInfo(donationInfo);
+                donationInfo.getDonations().add(donation);
+
                 donationRepository.save(donation);
+                donationInfoRepository.save(donationInfo);
+
                 return new ResponseEntity<>(new ResponseMessage("Donation created successfully!"), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(new ResponseMessage("Donation info not found!"), HttpStatus.NOT_FOUND);

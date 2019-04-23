@@ -4,13 +4,17 @@ public class DonationMessage {
 
     private float montant;
     private String date;
+    private String name;
+    private String message;
 
     public DonationMessage() {
     }
 
-    public DonationMessage(float montant, String date) {
+    public DonationMessage(float montant, String date, String name, String message) {
         this.montant = montant;
         this.date = date;
+        this.name = name;
+        this.message = message;
     }
 
     public float getMontant() {
@@ -27,5 +31,21 @@ public class DonationMessage {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

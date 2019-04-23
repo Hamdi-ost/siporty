@@ -1,6 +1,9 @@
 package com.donation.backend.demo.model;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Donation {
@@ -14,15 +17,23 @@ public class Donation {
 
     private float montant;
     private String date;
+    private String name;
+    private String message;
     private boolean enabled;
 
     public Donation() {
     }
 
-    public Donation(DonationInfo donationInfo, float montant, String date, boolean enabled) {
+    public Donation(DonationInfo donationInfo, float montant, String name, String message, boolean enabled) {
         this.donationInfo = donationInfo;
         this.montant = montant;
-        this.date = date;
+        this.name = name;
+        this.message = message;
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        this.date = dateFormat.format(date);
+
         this.enabled = enabled;
     }
 
@@ -64,5 +75,21 @@ public class Donation {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

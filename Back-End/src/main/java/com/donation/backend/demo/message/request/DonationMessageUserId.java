@@ -4,15 +4,17 @@ public class DonationMessageUserId {
 
     private long id;
     private float montant;
-    private String date;
+    private String name;
+    private String message;
 
     public DonationMessageUserId() {
     }
 
-    public DonationMessageUserId(long id, float montant, String date) {
+    public DonationMessageUserId(long id, float montant, String name, String message) {
         this.id = id;
         this.montant = montant;
-        this.date = date;
+        this.name = name;
+        this.message = message;
     }
 
     public long getId() {
@@ -31,11 +33,19 @@ public class DonationMessageUserId {
         this.montant = montant;
     }
 
-    public String getDate() {
-        return date;
+    public String getName() {
+        return name;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

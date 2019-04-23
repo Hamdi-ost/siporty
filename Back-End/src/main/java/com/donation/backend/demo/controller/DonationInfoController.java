@@ -16,10 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -62,6 +61,8 @@ public class DonationInfoController {
                     DonationMessage dm = new DonationMessage();
                     dm.setMontant(donation.getMontant());
                     dm.setDate(donation.getDate());
+                    dm.setName(donation.getName());
+                    dm.setMessage(donation.getMessage());
                     donationMessages.add(dm);
                 });
                 dim.setDonationMessages(donationMessages);
@@ -99,7 +100,7 @@ public class DonationInfoController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<DonationInfoMessage> getDonationById(@PathVariable("id") long id) {
+    public ResponseEntity<DonationInfoMessage> getDonationInfoById(@PathVariable("id") long id) {
 
         Optional<DonationInfo> _donationInfo = donationInfoRepository.findById(id);
         if(_donationInfo.isPresent()) {
@@ -119,6 +120,8 @@ public class DonationInfoController {
                 DonationMessage dm = new DonationMessage();
                 dm.setMontant(donation.getMontant());
                 dm.setDate(donation.getDate());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
                 donationMessages.add(dm);
             });
             dim.setDonationMessages(donationMessages);
@@ -152,7 +155,7 @@ public class DonationInfoController {
 
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<?> newMessage(@RequestBody DonationInfoMessageUserId donationInfoMessage) {
+    public ResponseEntity<?> newDonationInfo(@RequestBody DonationInfoMessageUserId donationInfoMessage) {
 
         DonationInfo donationInfo = new DonationInfo();
 
@@ -189,6 +192,48 @@ public class DonationInfoController {
             return new ResponseEntity<>(new ResponseMessage("User profile not found!"), HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @PutMapping("/")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public ResponseEntity<?> updateDonationInfo(@RequestBody DonationInfoMessageUserId donationInfoMessage) {
+
+        Optional<User> _user = userRepository.findById(donationInfoMessage.getId());
+        if(_user.isPresent()) {
+            User user = _user.get();
+            Optional<DonationInfo> _donationInfo = donationInfoRepository.findDonationInfoByUser(user);
+            if(_donationInfo.isPresent()) {
+                DonationInfo donationInfo = _donationInfo.get();
+                donationInfo.setTitle(donationInfoMessage.getTitle());
+                donationInfo.setMessage(donationInfoMessage.getMessage());
+                donationInfo.setImage(donationInfoMessage.getImage());
+
+                donationInfoRepository.save(donationInfo);
+
+                return new ResponseEntity<>(donationInfoMessage, HttpStatus.OK);
+
+                /*List<DonationMessage> donationMessages = donationInfoMessage.getDonationMessages();
+
+                donationMessages.forEach(donationMessage -> {
+                    float solde = donationInfo.getSolde() + donationMessage.getMontant();
+                    donationInfo.setSolde(solde);
+
+                    Donation donation = new Donation();
+                    donation.setMontant(donationMessage.getMontant());
+                    donation.setDonationInfo(donationInfo);
+                    donation.setEnabled(true);
+
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    Date date = new Date();
+                    donation.setDate(dateFormat.format(date));
+                });*/
+            } else {
+                return new ResponseEntity<>(new ResponseMessage("Donation Info not found!"), HttpStatus.NOT_FOUND);
+            }
+
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("User profile not found!"), HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
