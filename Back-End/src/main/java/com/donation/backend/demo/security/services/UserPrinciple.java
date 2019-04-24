@@ -23,7 +23,7 @@ public class UserPrinciple implements UserDetails {
     private String banque;
     private String agence;
     private String ccb;
-    private String accoutName;
+    private String accountName;
 
     private String username;
 
@@ -35,7 +35,7 @@ public class UserPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserPrinciple(Long id, String firstName, String lastName,
-                         String banque, String agence, String ccb, String accoutName,
+                         String banque, String agence, String ccb, String accountName,
                          String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -44,7 +44,7 @@ public class UserPrinciple implements UserDetails {
         this.banque = banque;
         this.agence = agence;
         this.ccb = ccb;
-        this.accoutName = accoutName;
+        this.accountName = accountName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -63,7 +63,7 @@ public class UserPrinciple implements UserDetails {
                 user.getBanque(),
                 user.getAgence(),
                 user.getCcb(),
-                user.getAccoutName(),
+                user.getAccountName(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -99,8 +99,8 @@ public class UserPrinciple implements UserDetails {
         return ccb;
     }
 
-    public String getAccoutName() {
-        return accoutName;
+    public String getAccountName() {
+        return accountName;
     }
 
     @Override

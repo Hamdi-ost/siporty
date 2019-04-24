@@ -63,7 +63,7 @@ public class AuthRestAPIs {
             roles.add(role.getName().name());
         });
         UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getBanque(),
-                userDb.getAgence(), userDb.getCcb(), userDb.getAccoutName(), userDb.getUsername(), userDb.getEmail(),
+                userDb.getAgence(), userDb.getCcb(), userDb.getAccountName(), userDb.getUsername(), userDb.getEmail(),
                 roles, userDb.isEnabled());
 
         if(user.isEnabled()) {

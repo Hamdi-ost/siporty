@@ -10,7 +10,7 @@ public class UserInfo {
     private String banque;
     private String agence;
     private String ccb;
-    private String accoutName;
+    private String accountName;
     private String username;
     private String email;
     private List<String> roles;
@@ -19,14 +19,14 @@ public class UserInfo {
     public UserInfo() {};
 
     public UserInfo(Long id, String firstname, String lastname, String banque, String agence,
-                    String ccb, String accoutName, String username, String email, List<String> roles, boolean enabled) {
+                    String ccb, String accountName, String username, String email, List<String> roles, boolean enabled) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.banque = banque;
         this.agence = agence;
         this.ccb = ccb;
-        this.accoutName = accoutName;
+        this.accountName = accountName;
         this.username = username;
         this.email = email;
         this.roles = roles;
@@ -113,11 +113,11 @@ public class UserInfo {
         this.ccb = ccb;
     }
 
-    public String getAccoutName() {
-        return accoutName;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setAccoutName(String accoutName) {
-        this.accoutName = accoutName;
+    public void setAccountName(String accoutName) {
+        this.accountName = accountName;
     }
 }

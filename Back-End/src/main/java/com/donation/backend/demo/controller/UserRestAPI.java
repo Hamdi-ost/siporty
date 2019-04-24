@@ -52,7 +52,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
-                _user.setAccoutName(user.getAccoutName());
+                _user.setAccountName(user.getAccountName());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -93,7 +93,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
-                _user.setAccoutName(user.getAccoutName());
+                _user.setAccountName(user.getAccountName());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -145,7 +145,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
-                _user.setAccoutName(user.getAccoutName());
+                _user.setAccountName(user.getAccountName());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -184,7 +184,7 @@ public class UserRestAPI {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
-            _user.setAccoutName(user.getAccoutName());
+            _user.setAccountName(user.getAccountName());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
 
@@ -273,10 +273,9 @@ public class UserRestAPI {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
-            _user.setAccoutName(user.getAccoutName());
+            _user.setAccountName(user.getAccountName());
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
-            _user.setEnabled(user.isEnabled());
 
             List<String> _roles = new ArrayList<>();
             Set<Role> roles = _user.getRoles();

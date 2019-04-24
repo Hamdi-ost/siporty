@@ -25,7 +25,7 @@ public class User{
     private String banque;
     private String agence;
     private String ccb;
-    private String accoutName;
+    private String accountName;
     private String username;
     private String email;
 
@@ -41,14 +41,14 @@ public class User{
     public User() {}
 
     public User(String firstName, String lastName, String banque, String agence, String ccb,
-                String accoutName, String username,
+                String accountName, String username,
                 String email, String password, boolean enabled) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.banque = banque;
         this.agence = agence;
         this.ccb = ccb;
-        this.accoutName = accoutName;
+        this.accountName = accountName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -143,11 +143,11 @@ public class User{
         this.ccb = ccb;
     }
 
-    public String getAccoutName() {
-        return accoutName;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setAccoutName(String accoutName) {
-        this.accoutName = accoutName;
+    public void setAccountName(String accoutName) {
+        this.accountName = accoutName;
     }
 }
