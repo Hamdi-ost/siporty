@@ -14,8 +14,6 @@ export class UserService implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit(): void {
-        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
-        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
     }
 
     getById(id: number) {
@@ -26,8 +24,16 @@ export class UserService implements OnInit {
         return this.http.post(`${this.apiUrl}/auth/users/register`, user);
     }
 
-    update(user: User) {
+    update(user: any) {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
         return this.http.put(`${this.apiUrl}/users/`, user, { headers: this.headers });
+    }
+
+    changePassword(newPassword) {
+        this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+        this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+        return this.http.put(`${this.apiUrl}/users/change-password`, newPassword, { headers: this.headers });
     }
 
 }

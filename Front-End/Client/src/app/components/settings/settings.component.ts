@@ -34,8 +34,10 @@ export class SettingsComponent implements OnInit {
 
     this.settingsForm = this.formBuilder.group({
       email: [this.currentUser.user.email, Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required, Validators.minLength(6)],
+      repassword: ['', Validators.required]
     });
+
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -44,6 +46,7 @@ export class SettingsComponent implements OnInit {
   get f() {
     return this.settingsForm.controls;
   }
+
   onSubmit() {
     this.submitted = true;
 
@@ -51,22 +54,23 @@ export class SettingsComponent implements OnInit {
     if (this.settingsForm.invalid) {
       return;
     }
+
+    if (this.settingsForm.value.password !== this.settingsForm.value.repassword) {
+      this.alertService.error('Password not matched');
+      return;
+    }
+
     if (this.currentUser) {
       this.userUpdated = {
         id: this.currentUser.user.id,
-        username: this.currentUser.user.username,
-        firstname: this.currentUser.user.firstname,
-        lastname: this.currentUser.user.lastname,
-        enabled: this.currentUser.user.enabled,
-        email: this.f.email.value,
-        password: this.f.password.value,
-        roles: ['ROLE_USER']
+        password: this.f.password.value
       };
     }
+
     if (this.userUpdated) {
       this.loading = true;
       this.userService
-        .update(this.userUpdated)
+        .changePassword(this.userUpdated)
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);

@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { AlertService, AuthenticationService } from '../../services';
 
 @Component({
+  selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['./login.component.scss']
 })

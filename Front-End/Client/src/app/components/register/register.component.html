@@ -119,13 +119,16 @@
       <input required name="login[password]" type="password" autocapitalize="off" autocorrect="off"
         formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.required">Password is required </div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters long. </div>
       </div>
       <div class="hide-show">
         <span>Show</span>
       </div>
       <button [disabled]="loading" type="submit">Register</button>
-      <a routerLink="/login" class="cnl">Already have an account</a>
+      <div class="cnl">
+        <a routerLink="/login" class="cnl">Already have an account</a>
+      </div>
     </form>
   </section>
 </div>

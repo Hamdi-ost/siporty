@@ -8,22 +8,22 @@
   </div>
   <!-- New password-->
   <label for="password">New Password</label>
-  <input class="password" required name="update[password]" type="password" formControlName="password"
+  <input minlength="6" class="password" required name="update[password]" type="password" formControlName="password"
     class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
   <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
     <div *ngIf="f.password.errors.required">Password is required</div>
+    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters long. </div>
   </div>
   <!-- Re-Type password-->
-  <label for="password">Re-Type Password</label>
-  <input class="password" required name="update[password]" type="password" formControlName="password"
-    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-  <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
-    <div *ngIf="f.password.errors.required">Password is required</div>
+  <label for="repassword">Re-Type Password</label>
+  <input class="repassword" required name="update[repassword]" type="password" formControlName="repassword"
+    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+  <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
+    <div *ngIf="f.repassword.errors.required">Re-Type your new Password</div>
   </div>
   <label class="link">
     This is the URL to your tip page where views can send you donations. <br>
-    <a href="https://siporty.com/{{currentUser.user.id}}"
-      target="_blank">https://siporty.com/{{currentUser.user.id}}</a>
+    <a routerLink="/donation/{{currentUser.user.id}}">https://siporty.com/{{currentUser.user.id}}</a>
 
   </label>
   <button style="width: 20%;" [disabled]="loading" type="submit">Save</button>

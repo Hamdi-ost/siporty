@@ -27,8 +27,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ) {
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             if (user) {
-                this.currentUser = user['user'].username;
+                this.currentUser = user['user'];
             }
+            console.log(this.currentUser);
         });
     }
 
@@ -62,24 +63,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
             return;
         }
 
-        console.log(this.loginForm.value);
 
-        // this.loading = true;
-        // this.authenticationService
-        //     .login(this.f.username.value, this.f.password.value)
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //             window.location.reload();
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         }
-        //     );
+
+        const updatedUser = {
+            id: this.currentUser.id,
+            firstname: this.currentUser['firstname'],
+            lastname: this.currentUser['lastname'],
+            banque: this.loginForm.value.bankName,
+            agence: this.loginForm.value.agency,
+            ccb: this.loginForm.value.rib,
+            username: this.currentUser.username,
+            // password: this.currentUser.firstName,
+            email: this.currentUser['email'],
+            enabled: this.currentUser['enabled'],
+        };
+        console.log(updatedUser);
+
+        this.loading = true;
+        this.userService.update(updatedUser).subscribe(data => {
+            this.alertService.success('Payout Method successful', true);
+            window.location.reload();
+        });
+
     }
-
-
-
-
 }
