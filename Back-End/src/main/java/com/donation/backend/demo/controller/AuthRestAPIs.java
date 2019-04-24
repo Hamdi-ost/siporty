@@ -63,7 +63,8 @@ public class AuthRestAPIs {
             roles.add(role.getName().name());
         });
         UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getBanque(),
-                userDb.getAgence(), userDb.getCcb(), userDb.getUsername(), userDb.getEmail(), roles, userDb.isEnabled());
+                userDb.getAgence(), userDb.getCcb(), userDb.getAccoutName(), userDb.getUsername(), userDb.getEmail(),
+                roles, userDb.isEnabled());
 
         if(user.isEnabled()) {
             return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
