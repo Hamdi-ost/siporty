@@ -12,7 +12,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(targetEntity = DonationInfo.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = DonationInfo.class)
     private DonationInfo donationInfo;
 
     private float montant;

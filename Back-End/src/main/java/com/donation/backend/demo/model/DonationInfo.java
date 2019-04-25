@@ -17,10 +17,10 @@ public class DonationInfo {
     private String url;
     private boolean enabled;
 
-    @OneToMany(targetEntity = Donation.class)
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Donation.class)
     private List<Donation> donations;
 
-    @OneToOne(targetEntity = User.class)
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = User.class)
     private User user;
 
     public DonationInfo() {
