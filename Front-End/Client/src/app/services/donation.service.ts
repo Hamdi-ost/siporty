@@ -5,15 +5,16 @@ import { Injectable } from '@angular/core';
 import { Donation } from '../models/donation';
 
 const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'http://localhost:8080/donation';
+const apiUrl = 'http://localhost:8080/donations/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonationService {
-
+  token;
+  headers;
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
@@ -33,41 +34,16 @@ export class DonationService {
 
   private extractData(res: Response) {
     const body = res;
-    return Donation.dataToDisplay(body) || { };
-  }
-
-  getDonations(): Observable<any> {
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
-
-  getDonation(id: string): Observable<any> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.get(url, httpOptions).pipe(
-      catchError(this.handleError));
+    return Donation.dataToDisplay(body) || {};
   }
 
   postDonation(data): Observable<any> {
-    return this.http.post(apiUrl, data, httpOptions).pipe(
+    return this.http.post(apiUrl, data).pipe(
       catchError(this.handleError)
     );
   }
 
-  updateDonation(data, id): Observable<any> {
-    return this.http.put(`${apiUrl}/${id}`, data, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
 
-  deleteDonation(id: string): Observable<{}> {
-    const url = `${apiUrl}/${id}`;
-    return this.http.delete(url, httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
 
 
 }

@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.currentUser = user['user'];
             }
             console.log(this.currentUser);
+            console.log(user);
         });
     }
 
@@ -69,20 +70,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
             id: this.currentUser.id,
             firstname: this.currentUser['firstname'],
             lastname: this.currentUser['lastname'],
+            email: this.currentUser['email'],
+            enabled: this.currentUser['enabled'],
             banque: this.loginForm.value.bankName,
             agence: this.loginForm.value.agency,
             ccb: this.loginForm.value.rib,
             username: this.currentUser.username,
-            // password: this.currentUser.firstName,
-            email: this.currentUser['email'],
-            enabled: this.currentUser['enabled'],
+            accountName: this.loginForm.value.accountName,
+            roles: [
+                'ROLE_USER'
+            ]
         };
         console.log(updatedUser);
 
         this.loading = true;
         this.userService.update(updatedUser).subscribe(data => {
             this.alertService.success('Payout Method successful', true);
-            window.location.reload();
+            // window.location.reload();
         });
 
     }

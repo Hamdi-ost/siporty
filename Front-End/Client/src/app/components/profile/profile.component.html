@@ -32,15 +32,15 @@
                                 <hr style="text-align: center;border: 1px solid white"></label>
                             <label for="accountName">Name on Account</label>
                             <input required name="login[accountName]" type="text" autocapitalize="off" autocorrect="off"
-                                formControlName="accountName" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
+                                placeholder="The full name of your bank account" formControlName="accountName"
+                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
                             <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.accountName.errors"
                                 class="invalid-feedback">
                                 <div *ngIf="f.accountName.errors.required">Account Name is required</div>
                             </div>
                             <label for="rib">RIB</label>
                             <input required name="login[rib]" type="number" autocapitalize="off" autocorrect="off"
-                                formControlName="rib" class="form-control"
+                                placeholder="RIB series" formControlName="rib" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.rib.errors }" />
                             <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.rib.errors"
                                 class="invalid-feedback">
@@ -48,7 +48,7 @@
                             </div>
                             <label for="bankName">Bank Name</label>
                             <input required name="login[bankName]" type="text" autocapitalize="off" autocorrect="off"
-                                formControlName="bankName" class="form-control"
+                                placeholder="Examples: ATB, UIB ..." formControlName="bankName" class="form-control"
                                 [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }" />
                             <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.bankName.errors"
                                 class="invalid-feedback">
@@ -56,7 +56,8 @@
                             </div>
                             <label for="agency">Agency</label>
                             <input class="agency" required name="login[agency]" type="text" formControlName="agency"
-                                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.agency.errors }" />
+                                placeholder="Examples: Tunis, Bizerte ..." class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.agency.errors }" />
                             <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.agency.errors"
                                 class="invalid-feedback">
                                 <div *ngIf="f.agency.errors.required">Agency is required</div>

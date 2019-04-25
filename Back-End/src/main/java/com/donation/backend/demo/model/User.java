@@ -7,15 +7,9 @@ import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-            "username"
-        }),
-        @UniqueConstraint(columnNames = {
-            "email"
-        })
-})
-public class User{
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
+        @UniqueConstraint(columnNames = { "email" }) })
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,16 +27,14 @@ public class User{
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles", 
-    	joinColumns = @JoinColumn(name = "user_id"), 
-    	inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String firstName, String lastName, String banque, String agence, String ccb,
-                String accountName, String username,
-                String email, String password, boolean enabled) {
+    public User(String firstName, String lastName, String banque, String agence, String ccb, String accountName,
+            String username, String email, String password, boolean enabled) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.banque = banque;
@@ -148,6 +140,6 @@ public class User{
     }
 
     public void setAccountName(String accoutName) {
-        this.accountName = accoutName;
+        this.accountName = accountName;
     }
 }
