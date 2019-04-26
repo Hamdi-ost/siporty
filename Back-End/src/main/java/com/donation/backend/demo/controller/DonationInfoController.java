@@ -149,60 +149,6 @@ public class DonationInfoController {
         }
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<DonationInfoMessage> getDonationStat(@PathVariable("id") long id) {
-
-        Optional<DonationInfo> _donationInfo = donationInfoRepository.findById(id);
-        if(_donationInfo.isPresent()) {
-            DonationInfo donationInfo = _donationInfo.get();
-
-            DonationInfoMessage dim = new DonationInfoMessage();
-
-            dim.setUrl(donationInfo.getUrl());
-            dim.setSocialLink(donationInfo.getSocialLink());
-            dim.setSolde(donationInfo.getSolde());
-
-            List<DonationMessage> donationMessages = new ArrayList<>();
-            List<Donation> donations = donationInfo.getDonations();
-            donations.forEach(donation -> {
-                DonationMessage dm = new DonationMessage();
-                dm.setMontant(donation.getMontant());
-                dm.setDate(donation.getDate());
-                dm.setName(donation.getName());
-                dm.setMessage(donation.getMessage());
-                donationMessages.add(dm);
-            });
-            dim.setDonationMessages(donationMessages);
-
-            User user = donationInfo.getUser();
-            UserInfo _user = new UserInfo();
-            _user.setId(user.getId());
-            _user.setFirstname(user.getFirstName());
-            _user.setLastname(user.getLastName());
-            _user.setUsername(user.getUsername());
-            _user.setBanque(user.getBanque());
-            _user.setAgence(user.getAgence());
-            _user.setCcb(user.getCcb());
-            _user.setAccountName(user.getAccountName());
-            _user.setEmail(user.getEmail());
-            _user.setEnabled(user.isEnabled());
-
-            List<String> _roles = new ArrayList<>();
-            Set<Role> roles = user.getRoles();
-            roles.forEach(role -> {
-                _roles.add(role.getName().name());
-            });
-            _user.setRoles(_roles);
-
-            dim.setUserInfo(_user);
-
-            return new ResponseEntity<>(dim, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> newDonationInfo(@RequestBody DonationInfoMessageUserId donationInfoMessage) {
