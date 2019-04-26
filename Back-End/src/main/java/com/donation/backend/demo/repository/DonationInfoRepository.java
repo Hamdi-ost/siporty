@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface DonationInfoRepository extends JpaRepository<DonationInfo, Long> {
     Optional<DonationInfo> findDonationInfoByUser(User user);
     Optional<DonationInfo> findDonationInfoByUrl(String url);
+    Optional<DonationInfo> findByUserId(long id);
 }

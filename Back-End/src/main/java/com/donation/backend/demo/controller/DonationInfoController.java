@@ -99,7 +99,7 @@ public class DonationInfoController {
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<DonationInfoMessage> getDonationInfoById(@PathVariable("id") long id) {
 
-        Optional<DonationInfo> _donationInfo = donationInfoRepository.findById(id);
+        Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(id);
         if(_donationInfo.isPresent()) {
             DonationInfo donationInfo = _donationInfo.get();
 
@@ -148,6 +148,13 @@ public class DonationInfoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    /*@GetMapping("/stats")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public List<DonationInfoMessage> getStats() {
+
+
+    }*/
 
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")

@@ -117,7 +117,7 @@ public class UserInfo {
         return accountName;
     }
 
-    public void setAccountName(String accoutName) {
+    public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
 }
