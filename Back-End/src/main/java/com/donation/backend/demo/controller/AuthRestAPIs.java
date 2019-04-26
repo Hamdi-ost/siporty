@@ -110,6 +110,14 @@ public class AuthRestAPIs {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+        List<String> _roles = new ArrayList<>();
+        roles.forEach(role -> {
+            _roles.add(role.getName().name());
+        });
+        UserInfo userInfo = new UserInfo(user.getId(), user.getFirstName(), user.getLastName(), user.getBanque(),
+                user.getAgence(), user.getCcb(), user.getAccountName(), user.getUsername(), user.getEmail()
+        ,_roles, user.isEnabled());
+
+        return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
 }

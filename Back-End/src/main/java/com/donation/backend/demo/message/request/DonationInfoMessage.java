@@ -4,42 +4,21 @@ import java.util.List;
 
 public class DonationInfoMessage {
 
-    private String title;
-    private String message;
     private float solde;
-    private String image;
     private String url;
+    private String socialLink;
     private UserInfo userInfo;
     private List<DonationMessage> donationMessages;
 
     public DonationInfoMessage() {
     }
 
-    public DonationInfoMessage(String title, String message, float solde, String image,
-                               String url, UserInfo userInfo, List<DonationMessage> donationMessages) {
-        this.title = title;
-        this.message = message;
+    public DonationInfoMessage(float solde, String url, String socialLink, UserInfo userInfo, List<DonationMessage> donationMessages) {
         this.solde = solde;
-        this.image = image;
         this.url = url;
+        this.socialLink = socialLink;
         this.userInfo = userInfo;
         this.donationMessages = donationMessages;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public float getSolde() {
@@ -48,14 +27,6 @@ public class DonationInfoMessage {
 
     public void setSolde(float solde) {
         this.solde = solde;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getUrl() {
@@ -80,5 +51,13 @@ public class DonationInfoMessage {
 
     public void setDonationMessages(List<DonationMessage> donationMessages) {
         this.donationMessages = donationMessages;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }

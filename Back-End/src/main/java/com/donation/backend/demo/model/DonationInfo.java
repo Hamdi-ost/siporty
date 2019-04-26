@@ -10,10 +10,8 @@ public class DonationInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String message;
     private float solde;
-    private String image;
+    private String socialLink;
     private String url;
     private boolean enabled;
 
@@ -26,13 +24,11 @@ public class DonationInfo {
     public DonationInfo() {
     }
 
-    public DonationInfo(String title, String message, float solde, String image, String url, boolean enabled,
+    public DonationInfo(float solde, String socialLink, String url, boolean enabled,
                         List<Donation> donations, User user) {
-        this.title = title;
-        this.message = message;
         this.solde = solde;
-        this.image = image;
         this.url = url;
+        this.socialLink = socialLink;
         this.enabled = enabled;
         this.donations = donations;
         this.user = user;
@@ -46,36 +42,12 @@ public class DonationInfo {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public float getSolde() {
         return solde;
     }
 
     public void setSolde(float solde) {
         this.solde = solde;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getUrl() {
@@ -108,5 +80,13 @@ public class DonationInfo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }

@@ -5,25 +5,21 @@ import java.util.List;
 public class DonationInfoMessageUserId {
 
     private long id;
-    private String title;
-    private String message;
     private String solde;
-    private String image;
     private String url;
+    private String socialLink;
     private UserInfo userInfo;
     private List<DonationMessage> donationMessages;
 
     public DonationInfoMessageUserId() {
     }
 
-    public DonationInfoMessageUserId(long id, String title, String message, String solde, String image, String url,
+    public DonationInfoMessageUserId(long id, String solde, String url, String socialLink,
                                      UserInfo userInfo, List<DonationMessage> donationMessages) {
         this.id = id;
-        this.title = title;
-        this.message = message;
         this.solde = solde;
-        this.image = image;
         this.url = url;
+        this.socialLink = socialLink;
         this.userInfo = userInfo;
         this.donationMessages = donationMessages;
     }
@@ -36,36 +32,12 @@ public class DonationInfoMessageUserId {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getSolde() {
         return solde;
     }
 
     public void setSolde(String solde) {
         this.solde = solde;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getUrl() {
@@ -90,5 +62,13 @@ public class DonationInfoMessageUserId {
 
     public void setDonationMessages(List<DonationMessage> donationMessages) {
         this.donationMessages = donationMessages;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }
