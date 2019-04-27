@@ -7,7 +7,7 @@ import { Donation } from '../models/donation';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'http://localhost:8080/donations/';
+const apiUrl = 'http://localhost:8080/';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +38,12 @@ export class DonationService {
   }
 
   postDonation(data): Observable<any> {
-    return this.http.post(apiUrl, data).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post(apiUrl + 'donations/auth/', data);
   }
 
+  postDonationDetails(data) {
+    return this.http.post(apiUrl + 'donation-details/', data);
+  }
 
 
 

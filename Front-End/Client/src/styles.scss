@@ -7,7 +7,8 @@ body {
 }
 
 body {
-  background-color: #262626;
+  // background-color: #262626;
+  background-image: linear-gradient(to right, #0b161c, #31c3a2, #0b161c);
 }
 
 /* .container {
@@ -49,7 +50,7 @@ body {
 }
 
 $maincolor: #1fd100;
-$maincolor2: #262626;
+$maincolor2: #0b161c;
 @mixin flexbox() {
   display: -webkit-box;
   display: -moz-box;

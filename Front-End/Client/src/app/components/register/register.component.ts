@@ -9,6 +9,7 @@ import {
   UserService,
   AuthenticationService
 } from '../../services';
+import { DonationService } from 'src/app/services/donation.service';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private donationDetails: DonationService
   ) {
     $(function () {
       $('.hide-show').show();
@@ -83,6 +85,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
+          this.donationDetails.postDonationDetails({ id: data['id'], socialLink: null }).subscribe(dataa => console.log(dataa));
           this.router.navigate(['/login']);
         },
         error => {
