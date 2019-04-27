@@ -2,6 +2,7 @@ package com.donation.backend.demo.controller;
 
 import com.donation.backend.demo.message.request.*;
 import com.donation.backend.demo.message.response.ResponseMessage;
+import com.donation.backend.demo.message.response.StatAdmin;
 import com.donation.backend.demo.model.Donation;
 import com.donation.backend.demo.model.DonationInfo;
 import com.donation.backend.demo.model.Role;
@@ -17,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -54,12 +56,14 @@ public class DonationInfoController {
                 List<DonationMessage> donationMessages = new ArrayList<>();
                 List<Donation> donations = donationInfo.getDonations();
                 donations.forEach(donation -> {
-                    DonationMessage dm = new DonationMessage();
-                    dm.setMontant(donation.getMontant());
-                    dm.setDate(donation.getDate());
-                    dm.setName(donation.getName());
-                    dm.setMessage(donation.getMessage());
-                    donationMessages.add(dm);
+                    if(donation.isEnabled()) {
+                        DonationMessage dm = new DonationMessage();
+                        dm.setMontant(donation.getMontant());
+                        dm.setDate(donation.getDate());
+                        dm.setName(donation.getName());
+                        dm.setMessage(donation.getMessage());
+                        donationMessages.add(dm);
+                    }
                 });
                 dim.setDonationMessages(donationMessages);
 
@@ -112,12 +116,14 @@ public class DonationInfoController {
             List<DonationMessage> donationMessages = new ArrayList<>();
             List<Donation> donations = donationInfo.getDonations();
             donations.forEach(donation -> {
-                DonationMessage dm = new DonationMessage();
-                dm.setMontant(donation.getMontant());
-                dm.setDate(donation.getDate());
-                dm.setName(donation.getName());
-                dm.setMessage(donation.getMessage());
-                donationMessages.add(dm);
+                if(donation.isEnabled()) {
+                    DonationMessage dm = new DonationMessage();
+                    dm.setMontant(donation.getMontant());
+                    dm.setDate(donation.getDate());
+                    dm.setName(donation.getName());
+                    dm.setMessage(donation.getMessage());
+                    donationMessages.add(dm);
+                }
             });
             dim.setDonationMessages(donationMessages);
 
@@ -149,12 +155,59 @@ public class DonationInfoController {
         }
     }
 
-    /*@GetMapping("/stats")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public List<DonationInfoMessage> getStats() {
+    @GetMapping("/stats/")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<StatAdmin> getStats() {
 
+        try {
+            StatAdmin statAdmin = new StatAdmin();
 
-    }*/
+            List<DonationInfo> donationInfos = new ArrayList<>(donationInfoRepository.findAll());
+            if(donationInfos.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            //List<DonationInfoMessage> donationInfoMessages = new ArrayList<>();
+            donationInfos.forEach(donationInfo -> {
+                float newTotal = statAdmin.getTotalMoney() + donationInfo.getSolde();
+                statAdmin.setTotalMoney(newTotal);
+
+            });
+
+            long totalUsers = userRepository.countByRoles("ROLE_USER");
+            statAdmin.setTotalUsers(totalUsers);
+
+            //List<Donation> donations = donationRepository.getDonationsPerMonth(4,2019);
+            List<Donation> donations = new ArrayList<>(donationRepository.findAll());
+            List<DonationMessage> donationMessages = new ArrayList<>();
+            donations.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages.add(dm);
+            });
+            statAdmin.setDonations(donationMessages);
+
+            List<Donation> donations1 = donationRepository.getTopDonors();
+            List<DonationMessage> donationMessages1 = new ArrayList<>();
+            donations1.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages1.add(dm);
+            });
+            statAdmin.setTopTenDonors(donationMessages1);
+
+            return new ResponseEntity<>(statAdmin, HttpStatus.OK);
+
+        } catch(Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
@@ -204,28 +257,11 @@ public class DonationInfoController {
             User user = _user.get();
             Optional<DonationInfo> _donationInfo = donationInfoRepository.findDonationInfoByUser(user);
             if(_donationInfo.isPresent()) {
+
                 DonationInfo donationInfo = _donationInfo.get();
                 donationInfo.setSocialLink(donationInfoMessage.getSocialLink());
-
                 donationInfoRepository.save(donationInfo);
-
                 return new ResponseEntity<>(donationInfoMessage, HttpStatus.OK);
-
-                /*List<DonationMessage> donationMessages = donationInfoMessage.getDonationMessages();
-
-                donationMessages.forEach(donationMessage -> {
-                    float solde = donationInfo.getSolde() + donationMessage.getMontant();
-                    donationInfo.setSolde(solde);
-
-                    Donation donation = new Donation();
-                    donation.setMontant(donationMessage.getMontant());
-                    donation.setDonationInfo(donationInfo);
-                    donation.setEnabled(true);
-
-                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    Date date = new Date();
-                    donation.setDate(dateFormat.format(date));
-                });*/
             } else {
                 return new ResponseEntity<>(new ResponseMessage("Donation Info not found!"), HttpStatus.NOT_FOUND);
             }
@@ -239,7 +275,8 @@ public class DonationInfoController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteMessage(@PathVariable("id") Long id) {
 
-        Optional<DonationInfo> donationInfoOptional = donationInfoRepository.findById(id);
+        Optional<User> _user = userRepository.findById(id);
+        Optional<DonationInfo> donationInfoOptional = donationInfoRepository.findDonationInfoByUser(_user.get());
         if(donationInfoOptional.isPresent()) {
             DonationInfo donationInfo = donationInfoOptional.get();
             donationInfo.setEnabled(false);
@@ -247,6 +284,33 @@ public class DonationInfoController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/check/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> checkDonationsMessage(@PathVariable("id") Long id) {
+
+        Optional<User> _user = userRepository.findById(id);
+        if(_user.isPresent()) {
+            User user = _user.get();
+            Optional<DonationInfo> donationInfoOptional = donationInfoRepository.findDonationInfoByUser(user);
+            if(donationInfoOptional.isPresent()) {
+                DonationInfo donationInfo = donationInfoOptional.get();
+                List<Donation> donations = donationInfo.getDonations();
+                donations.forEach(donation -> {
+                    donation.setEnabled(false);
+                    donationRepository.save(donation);
+                });
+                donationInfo.setSolde(0);
+                donationInfoRepository.save(donationInfo);
+
+                return new ResponseEntity<>(new ResponseMessage("Donation Info updated!"), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ResponseMessage("Donation Info not found!"), HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("User not found!"), HttpStatus.NOT_FOUND);
         }
     }
 }

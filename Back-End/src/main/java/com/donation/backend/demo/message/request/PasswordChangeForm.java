@@ -4,13 +4,15 @@ public class PasswordChangeForm {
 
     private Long id;
     private String password;
+    private String socialLink;
 
     public PasswordChangeForm() {
     }
 
-    public PasswordChangeForm(Long id, String password) {
+    public PasswordChangeForm(Long id, String password, String socialLink) {
         this.id = id;
         this.password = password;
+        this.socialLink = socialLink;
     }
 
     public Long getId() {
@@ -27,5 +29,13 @@ public class PasswordChangeForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }

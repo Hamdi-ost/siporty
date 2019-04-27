@@ -1,12 +1,15 @@
 package com.donation.backend.demo.controller;
 
+import com.donation.backend.demo.message.request.DonationInfoMessage;
 import com.donation.backend.demo.message.request.PasswordChangeForm;
 import com.donation.backend.demo.message.request.SignUpForm;
 import com.donation.backend.demo.message.request.UserInfo;
 import com.donation.backend.demo.message.response.ResponseMessage;
+import com.donation.backend.demo.model.DonationInfo;
 import com.donation.backend.demo.model.Role;
 import com.donation.backend.demo.model.RoleName;
 import com.donation.backend.demo.model.User;
+import com.donation.backend.demo.repository.DonationInfoRepository;
 import com.donation.backend.demo.repository.RoleRepository;
 import com.donation.backend.demo.repository.UserRepository;
 import com.donation.backend.demo.security.services.UserDetailsServiceImpl;
@@ -25,6 +28,9 @@ public class UserRestAPI {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    DonationInfoRepository donationInfoRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -302,6 +308,8 @@ public class UserRestAPI {
             if(passwordChangeForm.getPassword()!= null && !encoder.matches(passwordChangeForm.getPassword(), _user.getPassword()))
             {
                 _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));
+                Optional<DonationInfo> donationInfo = donationInfoRepository.findDonationInfoByUser(_user);
+                donationInfo.get().setSocialLink(passwordChangeForm.getSocialLink());
             }
 
             userRepository.save(_user);

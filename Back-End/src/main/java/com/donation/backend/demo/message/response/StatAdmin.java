@@ -1,59 +1,34 @@
 package com.donation.backend.demo.message.response;
 
+import com.donation.backend.demo.message.request.DonationMessage;
+import com.donation.backend.demo.message.request.UserInfo;
+
+import java.util.List;
+
 public class StatAdmin {
 
-    private String donationsPerDay;
-    private String donationsPerWeek;
-    private String donationsPerMonth;
+    private List<DonationMessage> donations;
 
     private String visitPerDay;
     private String visitPerWeek;
     private String visitPerMonth;
 
-    private String totalFlous;
+    private float totalMoney;
 
-    private String totalUsers;
+    private long totalUsers;
 
-    private String topTenDonors;
+    private List<DonationMessage> topTenDonors;
 
     public StatAdmin() {
+        this.totalMoney = 0;
     }
 
-    public StatAdmin(String donationsPerDay, String donationsPerWeek, String donationsPerMonth, String visitPerDay,
-                     String visitPerWeek, String visitPerMonth, String totalFlous, String totalUsers, String topTenDonors) {
-        this.donationsPerDay = donationsPerDay;
-        this.donationsPerWeek = donationsPerWeek;
-        this.donationsPerMonth = donationsPerMonth;
-        this.visitPerDay = visitPerDay;
-        this.visitPerWeek = visitPerWeek;
-        this.visitPerMonth = visitPerMonth;
-        this.totalFlous = totalFlous;
-        this.totalUsers = totalUsers;
-        this.topTenDonors = topTenDonors;
+    public List<DonationMessage> getDonations() {
+        return donations;
     }
 
-    public String getDonationsPerDay() {
-        return donationsPerDay;
-    }
-
-    public void setDonationsPerDay(String donationsPerDay) {
-        this.donationsPerDay = donationsPerDay;
-    }
-
-    public String getDonationsPerWeek() {
-        return donationsPerWeek;
-    }
-
-    public void setDonationsPerWeek(String donationsPerWeek) {
-        this.donationsPerWeek = donationsPerWeek;
-    }
-
-    public String getDonationsPerMonth() {
-        return donationsPerMonth;
-    }
-
-    public void setDonationsPerMonth(String donationsPerMonth) {
-        this.donationsPerMonth = donationsPerMonth;
+    public void setDonations(List<DonationMessage> donations) {
+        this.donations = donations;
     }
 
     public String getVisitPerDay() {
@@ -80,27 +55,27 @@ public class StatAdmin {
         this.visitPerMonth = visitPerMonth;
     }
 
-    public String getTotalFlous() {
-        return totalFlous;
+    public float getTotalMoney() {
+        return totalMoney;
     }
 
-    public void setTotalFlous(String totalFlous) {
-        this.totalFlous = totalFlous;
+    public void setTotalMoney(float totalMoney) {
+        this.totalMoney = totalMoney;
     }
 
-    public String getTotalUsers() {
+    public long getTotalUsers() {
         return totalUsers;
     }
 
-    public void setTotalUsers(String totalUsers) {
+    public void setTotalUsers(long totalUsers) {
         this.totalUsers = totalUsers;
     }
 
-    public String getTopTenDonors() {
+    public List<DonationMessage> getTopTenDonors() {
         return topTenDonors;
     }
 
-    public void setTopTenDonors(String topTenDonors) {
+    public void setTopTenDonors(List<DonationMessage> topTenDonors) {
         this.topTenDonors = topTenDonors;
     }
 }
