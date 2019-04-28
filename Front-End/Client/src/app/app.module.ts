@@ -13,12 +13,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { IncomeComponent } from './components/income/income.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NotificationComponent } from './components/notification/notification.component';
-import {DonationComponent} from './components/donation/donation.component';
+import { DonationComponent } from './components/donation/donation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertComponent } from './components/alert/alert.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ContactComponent } from './components/contact/contact.component';
     ContactComponent
   ],
   imports: [
+    AngularFontAwesomeModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

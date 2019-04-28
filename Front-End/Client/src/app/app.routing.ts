@@ -12,17 +12,19 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AuthGuard } from './guards';
 
 const appRoutes: Routes = [
-    { path: '', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'income', component: IncomeComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'notifications', component: NotificationComponent },
-    { path: 'donation/:id', component: DonationComponent },
-    { path: 'aboutUs', component: AboutUsComponent },
-    { path: 'contact', component: ContactComponent },
-    // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+
+  { path: '', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'income', component: IncomeComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'notifications', component: NotificationComponent },
+  { path: 'donation/:username', component: DonationComponent },
+  { path: 'aboutUs', component: AboutUsComponent },
+  { path: 'contact', component: ContactComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'enabled' });

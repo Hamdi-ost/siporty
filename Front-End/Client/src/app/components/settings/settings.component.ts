@@ -1,3 +1,4 @@
+import { DonationService } from './../../services/donation.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService, AuthenticationService, AlertService } from 'src/app/services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -24,7 +25,8 @@ export class SettingsComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private donationDetails: DonationService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class SettingsComponent implements OnInit {
     this.settingsForm = this.formBuilder.group({
       email: [this.currentUser.user.email, Validators.required],
       password: ['', Validators.required, Validators.minLength(6)],
-      repassword: ['', Validators.required]
+      repassword: ['', Validators.required],
+      socialLink: ['']
     });
 
 
@@ -63,11 +66,14 @@ export class SettingsComponent implements OnInit {
     if (this.currentUser) {
       this.userUpdated = {
         id: this.currentUser.user.id,
-        password: this.f.password.value
+        password: this.f.password.value,
+        socialLink: this.f.socialLink.value
       };
     }
 
     if (this.userUpdated) {
+      // tslint:disable-next-line:max-line-length
+      this.donationDetails.postDonationDetails({ id: this.userUpdated.id, socialLink: this.userUpdated.socialLink }).subscribe(dataa => console.log(dataa));
       this.loading = true;
       this.userService
         .changePassword(this.userUpdated)

@@ -42,7 +42,9 @@ export class DonationService {
   }
 
   postDonationDetails(data) {
-    return this.http.post(apiUrl + 'donation-details/', data);
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    return this.http.post(apiUrl + 'donation-details/', data, { headers: this.headers });
   }
 
 

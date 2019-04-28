@@ -28,21 +28,9 @@ export class UserComponent implements OnInit {
   }
 
   banUser(id) {
-    this.confirmationDialogueService
-      .confirm('Confirmer s\'il vous plait..', ' Vous etes sur de supprimer ce produit?')
-      .then(confirmed => {
-        console.log('User confirmed:', confirmed);
-        if (confirmed) {
-          this.userService.ban(id).subscribe(data => {
-            this.fetchData();
-          });
-        }
-      })
-      .catch(() =>
-        console.log(
-          'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
-        )
-      );
+    this.userService.ban(id).subscribe(data => {
+      this.fetchData();
+    });
   }
 
   unbanUser(id) {

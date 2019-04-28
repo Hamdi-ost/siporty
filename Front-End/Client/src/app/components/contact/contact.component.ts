@@ -46,9 +46,7 @@ export class ContactComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Your message sent');
-          this.contactForm.value.name = '';
-          this.contactForm.value.email = '';
-          this.contactForm.value.content = '';
+          location.reload();
         },
         error => {
           this.alertService.error(error);

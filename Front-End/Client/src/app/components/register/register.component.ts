@@ -78,6 +78,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    console.log(this.registerForm.value);
+
     this.loading = true;
     this.userService
       .register(this.registerForm.value)

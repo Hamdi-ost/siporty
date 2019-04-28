@@ -1,5 +1,6 @@
 import { Component, AfterViewChecked } from '@angular/core';
 import { AuthenticationService } from './services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent implements AfterViewChecked {
   title = 'JEISITE';
   logIn = false;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngAfterViewChecked() {
     setTimeout(() => {
@@ -20,5 +21,11 @@ export class AppComponent implements AfterViewChecked {
         this.logIn = false;
       }
     });
+  }
+
+  logout() {
+
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

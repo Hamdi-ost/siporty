@@ -22,9 +22,15 @@
             "styles": [
               "src/assets/css/reset.css",
               "src/assets/css/demo.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": ["src/assets/js/script.js"]
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/script.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,50 +1,98 @@
 <div class="login_form">
-    <section class="login-wrapper">
-        <div class="logo">
-            <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
-                <img src="../../../assets/images/donation.png" alt="" /></a>
+  <section class="login-wrapper">
+    <div class="logo">
+      <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
+        <img src="../../../assets/images/donation.png" alt=""
+      /></a>
+    </div>
+
+    <form id="login" [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <div class="row">
+        <div class="col-md-8">
+          <label for="">
+            {{ username }}
+          </label>
         </div>
-
-        <form id="login" [formGroup]="donationForm" (ngSubmit)="onSubmit()">
-            <!-- Name -->
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="name">Your Name</label>
-                    <input required name="login[name]" type="text" autocapitalize="off" autocorrect="off"
-                        placeholder="Your nickname..." formControlName="name" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-                    <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.name.errors"
-                        class="invalid-feedback">
-                        <div *ngIf="f.name.errors.required">Name is required</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <!-- Donation montant -->
-                    <label for="montant">Amount</label>
-                    <input class="montant" required name="login[montant]" type="number" formControlName="montant"
-                        placeholder="5.00 DT" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" />
-                    <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.montant.errors"
-                        class="invalid-feedback">
-                        <div *ngIf="f.montant.errors.required">layout-align-md-space-around-start is required</div>
-                    </div>
-                </div>
+        <div class="col-md-4">
+          <label for="">
+            Social link
+          </label>
+        </div>
+      </div>
+      <hr style="margin-left: 0.5rem; border: 1px solid white" />
+      <div class="row">
+        <div class="col-md-8">
+          <label for="name">Your Name</label>
+          <input
+            required
+            name="login[name]"
+            type="text"
+            autocapitalize="off"
+            autocorrect="off"
+            placeholder="Your nickname..."
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          />
+          <div
+            style="margin-left: 1rem; margin-top:-1rem"
+            *ngIf="submitted && f.name.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!-- Donation montant -->
+          <label for="montant">Amount</label>
+          <input
+            class="montant"
+            required
+            name="login[montant]"
+            type="number"
+            formControlName="montant"
+            placeholder="5.00 DT"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.montant.errors }"
+          />
+          <div
+            style="margin-left: 1rem; margin-top:-1rem"
+            *ngIf="submitted && f.montant.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.montant.errors.required">
+              layout-align-md-space-around-start is required
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- content -->
-            <label for="message">Message</label>
+      <!-- content -->
+      <label for="message">Message</label>
 
-            <textarea class="message" required name="login[message]" type="text" formControlName="message"
-                placeholder="Your message here ..." class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.message.errors }" cols="30" rows="5"></textarea>
-            <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.message.errors"
-                class="invalid-feedback">
-                <div *ngIf="f.message.errors.required">Message is required</div>
-            </div>
+      <textarea
+        class="message"
+        required
+        name="login[message]"
+        type="text"
+        formControlName="message"
+        placeholder="Your message here ..."
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.message.errors }"
+        cols="30"
+        rows="5"
+      ></textarea>
+      <div
+        style="margin-left: 1rem; margin-top:-1rem"
+        *ngIf="submitted && f.message.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f.message.errors.required">Message is required</div>
+      </div>
 
-            <label for="">Donate at least 1 DTN</label>
-            <button [disabled]="loading" type="submit">Send</button>
-        </form>
-
-    </section>
+      <label for="">Donate at least 1 DTN</label>
+      <button [disabled]="loading" type="submit">Send</button>
+    </form>
+  </section>
 </div>

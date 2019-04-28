@@ -16,6 +16,7 @@ export class DonationComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   id;
+  username;
 
   constructor(private formBuilder: FormBuilder,
     private alertService: AlertService,
@@ -24,7 +25,8 @@ export class DonationComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      // this.id = params['id'];
+      this.username = params['username'];
     });
 
     this.donationForm = this.formBuilder.group({
