@@ -209,8 +209,56 @@ public class DonationInfoController {
         }
     }
 
-    @PostMapping("/")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @GetMapping("/stats/{id}/")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<StatAdmin> getStatsById(@PathVariable("id") long id) {
+
+        try {
+            StatAdmin statAdmin = new StatAdmin();
+
+            Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(id);
+            if(!_donationInfo.isPresent()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            //List<DonationInfoMessage> donationInfoMessages = new ArrayList<>();
+            DonationInfo donationInfo = _donationInfo.get();
+            float newTotal = statAdmin.getTotalMoney() + donationInfo.getSolde();
+            statAdmin.setTotalMoney(newTotal);
+
+            //List<Donation> donations = donationRepository.getDonationsPerMonth(4,2019);
+            List<Donation> donations = donationInfo.getDonations();
+            List<DonationMessage> donationMessages = new ArrayList<>();
+            donations.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages.add(dm);
+            });
+            statAdmin.setDonations(donationMessages);
+
+            List<Donation> donations1 = donationRepository.getTopDonors();
+            List<DonationMessage> donationMessages1 = new ArrayList<>();
+            donations1.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages1.add(dm);
+            });
+            statAdmin.setTopTenDonors(donationMessages1);
+
+            return new ResponseEntity<>(statAdmin, HttpStatus.OK);
+
+        } catch(Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/auth/")
     public ResponseEntity<?> newDonationInfo(@RequestBody DonationInfoMessageUserId donationInfoMessage) {
 
         DonationInfo donationInfo = new DonationInfo();
