@@ -72,8 +72,6 @@ export class SettingsComponent implements OnInit {
     }
 
     if (this.userUpdated) {
-      // tslint:disable-next-line:max-line-length
-      this.donationDetails.postDonationDetails({ id: this.userUpdated.id, socialLink: this.userUpdated.socialLink }).subscribe(dataa => console.log(dataa));
       this.loading = true;
       this.userService
         .changePassword(this.userUpdated)

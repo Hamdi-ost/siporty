@@ -15,8 +15,8 @@
           </label>
         </div>
         <div class="col-md-4">
-          <label for="">
-            Social link
+          <label *ngIf="socialLink" for="">
+            {{ socialLink }}
           </label>
         </div>
       </div>

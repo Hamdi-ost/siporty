@@ -38,13 +38,16 @@ export class DonationService {
   }
 
   postDonation(data): Observable<any> {
+    console.log(data);
     return this.http.post(apiUrl + 'donations/auth/', data);
   }
 
   postDonationDetails(data) {
-    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-    return this.http.post(apiUrl + 'donation-details/', data, { headers: this.headers });
+    return this.http.post(apiUrl + 'donation-details/auth/', data);
+  }
+
+  getDonationDetailsByUsername(username) {
+    return this.http.get(apiUrl + 'donation-details/auth/' + username);
   }
 
 

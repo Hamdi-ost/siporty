@@ -108,8 +108,8 @@ public class DonationController {
                 donation.setDonationInfo(donationInfo);
                 donationInfo.getDonations().add(donation);
 
-                //donationRepository.save(donation);
-                //donationInfoRepository.save(donationInfo);
+                donationRepository.save(donation);
+                donationInfoRepository.save(donationInfo);
 
                 return new ResponseEntity<>(new ResponseMessage("Donation created successfully!"), HttpStatus.OK);
             } else {

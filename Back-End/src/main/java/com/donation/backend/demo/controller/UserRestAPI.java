@@ -307,10 +307,10 @@ public class UserRestAPI {
 
             if(passwordChangeForm.getPassword()!= null && !encoder.matches(passwordChangeForm.getPassword(), _user.getPassword()))
             {
-                _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));
-                Optional<DonationInfo> donationInfo = donationInfoRepository.findDonationInfoByUser(_user);
-                donationInfo.get().setSocialLink(passwordChangeForm.getSocialLink());
+                _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));   
             }
+            Optional<DonationInfo> donationInfo = donationInfoRepository.findDonationInfoByUser(_user);
+            donationInfo.get().setSocialLink(passwordChangeForm.getSocialLink());
 
             userRepository.save(_user);
             return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);

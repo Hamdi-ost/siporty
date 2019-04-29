@@ -17,25 +17,30 @@ export class DonationComponent implements OnInit {
   returnUrl: string;
   id;
   username;
-
+  socialLink;
   constructor(private formBuilder: FormBuilder,
     private alertService: AlertService,
     private donationService: DonationService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       // this.id = params['id'];
       this.username = params['username'];
-    });
+      this.donationService.getDonationDetailsByUsername(this.username).subscribe(data => {
+        this.socialLink = data['socialLink'];
+        this.id = data['userInfo'].id;
 
-    this.donationForm = this.formBuilder.group({
-      id: this.id,
-      name: ['', Validators.required],
-      montant: ['', Validators.required],
-      message: ['', Validators.required]
-    });
+        this.donationForm = this.formBuilder.group({
+          id: this.id,
+          name: ['', Validators.required],
+          montant: ['', Validators.required],
+          message: ['', Validators.required]
+        });
 
+      });
+    });
   }
 
   // convenience getter for easy access to form fields
