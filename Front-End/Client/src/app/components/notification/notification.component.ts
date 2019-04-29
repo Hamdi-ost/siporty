@@ -1,4 +1,6 @@
+import { DonationService } from './../../services/donation.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services';
 
 @Component({
   selector: 'app-notification',
@@ -7,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
-  notifications = [
-    { id: 1, username: 'hamdi 1', message: 'sa7a w far7a 1', amount: '10DT' },
-    { id: 2, username: 'hamdi 2', message: 'sa7a w far7a 2', amount: '20DT' },
-    { id: 3, username: 'hamdi 3', message: 'sa7a w far7a 3', amount: '30DT' }
-  ];
+  user;
+
+  constructor(private userAuth: AuthenticationService, private donationService: DonationService) {
+
+  }
+
+  notifications = [];
 
   ngOnInit() {
+    this.user = this.userAuth.currentUser.subscribe(data =>
+      this.donationService.getAllDonationDetails(data['user'].id)
+        .subscribe(donation => {
+          this.notifications = Array.from(donation['donationMessages']);
+        }));
 
   }
 

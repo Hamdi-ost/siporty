@@ -6,22 +6,21 @@
         <th>Username</th>
         <th>Message</th>
         <th>Amount</th>
-
       </tr>
-      <tr *ngFor="let notification of notifications">
-        <td data-th="Supplier Code">
-          {{notification.id}}
-        </td>
-        <td data-th="Supplier Name">
-          {{notification.username}}
-        </td>
-        <td data-th="Invoice Number">
-          {{notification.message}}
-        </td>
-        <td data-th="Invoice Date">
-          {{notification.amount}}
-        </td>
-      </tr>
+      <ng-container *ngIf="notifications.length >= 0">
+        <tr *ngFor="let notification of notifications; let i = index">
+          <td data-th="Supplier Code">
+            {{ i }}
+          </td>
+          <td data-th="Supplier Name">
+            {{ notification.name }}
+          </td>
+          <td data-th="Invoice Number">
+            {{ notification.message }}
+          </td>
+          <td data-th="Invoice Date">{{ notification.montant }} DT</td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertService } from 'src/app/services';
+import { AlertService, UserService } from 'src/app/services';
 import { ContactService } from 'src/app/services/contact.service';
 import { DonationService } from 'src/app/services/donation.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +19,7 @@ export class DonationComponent implements OnInit {
   username;
   socialLink;
   constructor(private formBuilder: FormBuilder,
+    private userService: UserService,
     private alertService: AlertService,
     private donationService: DonationService,
     private route: ActivatedRoute) { }
@@ -28,9 +29,9 @@ export class DonationComponent implements OnInit {
     this.route.params.subscribe(params => {
       // this.id = params['id'];
       this.username = params['username'];
-      this.donationService.getDonationDetailsByUsername(this.username).subscribe(data => {
+      this.userService.getUserByUsername(this.username).subscribe(data => {
         this.socialLink = data['socialLink'];
-        this.id = data['userInfo'].id;
+        this.id = data['id'];
 
         this.donationForm = this.formBuilder.group({
           id: this.id,

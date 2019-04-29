@@ -1,3 +1,4 @@
+import { DonationsService } from './../../services/donations.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformationsComponent implements OnInit {
   title = 'Informations';
-  infos = [
-    { id: 1, 'name account': 'hamdi', bank: 'UIB', agency: 'Tunis', rib: '13121596', amount: '10DT' },
-    { id: 2, 'name account': 'hamza', bank: 'UIB', agency: 'Ariana', rib: '13121596', amount: '5DT' }
-  ];
+  infos = [];
   columnsName = ['name account', 'bank', 'agency', 'rib', 'amount'];
 
-  constructor() { }
+  constructor(private donationService: DonationsService) { }
 
   ngOnInit() {
+    this.donationService.getAllDonations()
+      .subscribe(donations => {
+        const inf = [];
+        inf.push(donations);
+        console.log(inf[0]);
+        inf[0].forEach(el => {
+          const info = {
+            'name account': el['userInfo'].accountName || 'Not Set yet',
+            bank: el['userInfo'].banque || 'Not Set yet',
+            agency: el['userInfo'].agence || 'Not Set yet',
+            rib: el['userInfo'].ccb || 'Not Set yet',
+            amount: el['solde']
+          };
+          this.infos.push(info);
+        });
+      });
   }
 
 }

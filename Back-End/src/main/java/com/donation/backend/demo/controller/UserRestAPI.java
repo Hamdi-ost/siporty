@@ -212,6 +212,41 @@ public class UserRestAPI {
         }
     }
 
+    @GetMapping("/auth/username/{username}")
+    public ResponseEntity<UserInfo> getUserById(@PathVariable("username") String username) {
+
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        if(userOptional.isPresent()) {
+
+            User user = userOptional.get();
+            UserInfo _user = new UserInfo();
+            _user.setId(user.getId());
+            _user.setFirstname(user.getFirstName());
+            _user.setLastname(user.getLastName());
+            _user.setUsername(user.getUsername());
+            _user.setBanque(user.getBanque());
+            _user.setAgence(user.getAgence());
+            _user.setCcb(user.getCcb());
+            _user.setAccountName(user.getAccountName());
+            _user.setSocialLink(user.getSocialLink());
+            _user.setEmail(user.getEmail());
+            _user.setEnabled(user.isEnabled());
+
+            List<String> _roles = new ArrayList<>();
+            Set<Role> roles = user.getRoles();
+            roles.forEach(role -> {
+                _roles.add(role.getName().name());
+            });
+
+            _user.setRoles(_roles);
+
+            return new ResponseEntity<>(_user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> newUser(@RequestBody SignUpForm signUpRequest) {

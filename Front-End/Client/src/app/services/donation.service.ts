@@ -51,5 +51,9 @@ export class DonationService {
   }
 
 
-
+  getAllDonationDetails(id) {
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    return this.http.get(apiUrl + 'donation-details/' + id, { headers: this.headers });
+  }
 }
