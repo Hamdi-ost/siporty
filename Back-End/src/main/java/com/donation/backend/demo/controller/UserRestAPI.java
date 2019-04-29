@@ -59,6 +59,7 @@ public class UserRestAPI {
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
                 _user.setAccountName(user.getAccountName());
+                _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -100,6 +101,7 @@ public class UserRestAPI {
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
                 _user.setAccountName(user.getAccountName());
+                _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -152,6 +154,7 @@ public class UserRestAPI {
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
                 _user.setAccountName(user.getAccountName());
+                _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
 
@@ -191,6 +194,7 @@ public class UserRestAPI {
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
             _user.setAccountName(user.getAccountName());
+            _user.setSocialLink(user.getSocialLink());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
 
@@ -309,8 +313,7 @@ public class UserRestAPI {
             {
                 _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));   
             }
-            Optional<DonationInfo> donationInfo = donationInfoRepository.findDonationInfoByUser(_user);
-            donationInfo.get().setSocialLink(passwordChangeForm.getSocialLink());
+            _user.setSocialLink(passwordChangeForm.getSocialLink());
 
             userRepository.save(_user);
             return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);

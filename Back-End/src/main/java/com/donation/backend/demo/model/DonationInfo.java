@@ -11,7 +11,6 @@ public class DonationInfo {
     private Long id;
 
     private float solde;
-    private String socialLink;
     private String url;
     private boolean enabled;
 
@@ -24,11 +23,10 @@ public class DonationInfo {
     public DonationInfo() {
     }
 
-    public DonationInfo(float solde, String socialLink, String url, boolean enabled,
+    public DonationInfo(float solde, String url, boolean enabled,
                         List<Donation> donations, User user) {
         this.solde = solde;
         this.url = url;
-        this.socialLink = socialLink;
         this.enabled = enabled;
         this.donations = donations;
         this.user = user;
@@ -80,13 +78,5 @@ public class DonationInfo {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getSocialLink() {
-        return socialLink;
-    }
-
-    public void setSocialLink(String socialLink) {
-        this.socialLink = socialLink;
     }
 }

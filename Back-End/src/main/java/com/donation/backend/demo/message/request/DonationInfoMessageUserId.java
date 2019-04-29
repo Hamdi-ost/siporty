@@ -7,19 +7,17 @@ public class DonationInfoMessageUserId {
     private long id;
     private String solde;
     private String url;
-    private String socialLink;
     private UserInfo userInfo;
     private List<DonationMessage> donationMessages;
 
     public DonationInfoMessageUserId() {
     }
 
-    public DonationInfoMessageUserId(long id, String solde, String url, String socialLink,
+    public DonationInfoMessageUserId(long id, String solde, String url,
                                      UserInfo userInfo, List<DonationMessage> donationMessages) {
         this.id = id;
         this.solde = solde;
         this.url = url;
-        this.socialLink = socialLink;
         this.userInfo = userInfo;
         this.donationMessages = donationMessages;
     }
@@ -62,13 +60,5 @@ public class DonationInfoMessageUserId {
 
     public void setDonationMessages(List<DonationMessage> donationMessages) {
         this.donationMessages = donationMessages;
-    }
-
-    public String getSocialLink() {
-        return socialLink;
-    }
-
-    public void setSocialLink(String socialLink) {
-        this.socialLink = socialLink;
     }
 }

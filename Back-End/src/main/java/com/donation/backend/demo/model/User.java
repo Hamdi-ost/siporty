@@ -20,6 +20,7 @@ public class User {
     private String agence;
     private String ccb;
     private String accountName;
+    private String socialLink;
     private String username;
     private String email;
 
@@ -34,13 +35,14 @@ public class User {
     }
 
     public User(String firstName, String lastName, String banque, String agence, String ccb, String accountName,
-            String username, String email, String password, boolean enabled) {
+                String socialLink, String username, String email, String password, boolean enabled) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.banque = banque;
         this.agence = agence;
         this.ccb = ccb;
         this.accountName = accountName;
+        this.socialLink = socialLink;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -141,5 +143,13 @@ public class User {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }

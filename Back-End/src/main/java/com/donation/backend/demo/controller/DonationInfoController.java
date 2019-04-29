@@ -50,7 +50,6 @@ public class DonationInfoController {
                 DonationInfoMessage dim = new DonationInfoMessage();
 
                 dim.setUrl(donationInfo.getUrl());
-                dim.setSocialLink(donationInfo.getSocialLink());
                 dim.setSolde(donationInfo.getSolde());
 
                 List<DonationMessage> donationMessages = new ArrayList<>();
@@ -110,7 +109,6 @@ public class DonationInfoController {
             DonationInfoMessage dim = new DonationInfoMessage();
 
             dim.setUrl(donationInfo.getUrl());
-            dim.setSocialLink(donationInfo.getSocialLink());
             dim.setSolde(donationInfo.getSolde());
 
             List<DonationMessage> donationMessages = new ArrayList<>();
@@ -156,6 +154,7 @@ public class DonationInfoController {
     }
 
     @GetMapping("/auth/{username}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<DonationInfoMessage> getDonationInfoById(@PathVariable("username") String username) {
 
         Optional<User> user_ = userRepository.findByUsername(username);
@@ -166,7 +165,6 @@ public class DonationInfoController {
             DonationInfoMessage dim = new DonationInfoMessage();
 
             dim.setUrl(donationInfo.getUrl());
-            dim.setSocialLink(donationInfo.getSocialLink());
             dim.setSolde(donationInfo.getSolde());
 
             List<DonationMessage> donationMessages = new ArrayList<>();
@@ -319,7 +317,6 @@ public class DonationInfoController {
 
         DonationInfo donationInfo = new DonationInfo();
 
-        donationInfo.setSocialLink(donationInfoMessage.getSocialLink());
         donationInfo.setSolde(0);
         donationInfo.setDonations(new ArrayList<>());
         donationInfo.setEnabled(true);
@@ -363,7 +360,6 @@ public class DonationInfoController {
             if(_donationInfo.isPresent()) {
 
                 DonationInfo donationInfo = _donationInfo.get();
-                donationInfo.setSocialLink(donationInfoMessage.getSocialLink());
                 donationInfoRepository.save(donationInfo);
                 return new ResponseEntity<>(donationInfoMessage, HttpStatus.OK);
             } else {

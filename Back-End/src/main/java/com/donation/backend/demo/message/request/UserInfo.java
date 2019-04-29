@@ -11,6 +11,7 @@ public class UserInfo {
     private String agence;
     private String ccb;
     private String accountName;
+    private String socialLink;
     private String username;
     private String email;
     private List<String> roles;
@@ -19,7 +20,8 @@ public class UserInfo {
     public UserInfo() {};
 
     public UserInfo(Long id, String firstname, String lastname, String banque, String agence,
-                    String ccb, String accountName, String username, String email, List<String> roles, boolean enabled) {
+                    String ccb, String accountName, String socialLink,
+                    String username, String email, List<String> roles, boolean enabled) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -27,6 +29,7 @@ public class UserInfo {
         this.agence = agence;
         this.ccb = ccb;
         this.accountName = accountName;
+        this.socialLink = socialLink;
         this.username = username;
         this.email = email;
         this.roles = roles;
@@ -119,5 +122,13 @@ public class UserInfo {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    public String getSocialLink() {
+        return socialLink;
+    }
+
+    public void setSocialLink(String socialLink) {
+        this.socialLink = socialLink;
     }
 }

@@ -63,7 +63,7 @@ public class AuthRestAPIs {
             roles.add(role.getName().name());
         });
         UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getBanque(),
-                userDb.getAgence(), userDb.getCcb(), userDb.getAccountName(), userDb.getUsername(), userDb.getEmail(),
+                userDb.getAgence(), userDb.getCcb(), userDb.getAccountName(), userDb.getSocialLink(), userDb.getUsername(), userDb.getEmail(),
                 roles, userDb.isEnabled());
 
         if(user.isEnabled()) {
@@ -115,7 +115,7 @@ public class AuthRestAPIs {
             _roles.add(role.getName().name());
         });
         UserInfo userInfo = new UserInfo(user.getId(), user.getFirstName(), user.getLastName(), user.getBanque(),
-                user.getAgence(), user.getCcb(), user.getAccountName(), user.getUsername(), user.getEmail()
+                user.getAgence(), user.getCcb(), user.getAccountName(), user.getSocialLink(), user.getUsername(), user.getEmail()
         ,_roles, user.isEnabled());
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);

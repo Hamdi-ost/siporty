@@ -6,17 +6,15 @@ public class DonationInfoMessage {
 
     private float solde;
     private String url;
-    private String socialLink;
     private UserInfo userInfo;
     private List<DonationMessage> donationMessages;
 
     public DonationInfoMessage() {
     }
 
-    public DonationInfoMessage(float solde, String url, String socialLink, UserInfo userInfo, List<DonationMessage> donationMessages) {
+    public DonationInfoMessage(float solde, String url, UserInfo userInfo, List<DonationMessage> donationMessages) {
         this.solde = solde;
         this.url = url;
-        this.socialLink = socialLink;
         this.userInfo = userInfo;
         this.donationMessages = donationMessages;
     }
@@ -51,13 +49,5 @@ public class DonationInfoMessage {
 
     public void setDonationMessages(List<DonationMessage> donationMessages) {
         this.donationMessages = donationMessages;
-    }
-
-    public String getSocialLink() {
-        return socialLink;
-    }
-
-    public void setSocialLink(String socialLink) {
-        this.socialLink = socialLink;
     }
 }
