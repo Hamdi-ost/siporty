@@ -1,7 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+@import "https://fonts.googleapis.com/css?family=Open+Sans:600,700";
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .rwd-table {
@@ -44,7 +44,7 @@
 }
 
 .rwd-table td:before {
-  content: attr(data-th) ': ';
+  content: attr(data-th) ": ";
   font-weight: bold;
   width: 120px;
   display: inline-block;
@@ -126,14 +126,14 @@ h3 {
   color: #cecece;
 }
 h3:before {
-  content: '\25C0';
+  content: "\25C0";
   position: absolute;
   left: -50px;
   -webkit-animation: leftRight 2s linear infinite;
   animation: leftRight 2s linear infinite;
 }
 h3:after {
-  content: '\25b6';
+  content: "\25b6";
   position: absolute;
   right: -50px;
   -webkit-animation: leftRight 2s linear infinite reverse;
@@ -188,3 +188,9 @@ h3:after {
     background-image: linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
   }
 }*/
+.container_ {
+  margin: auto 2rem;
+  padding: 2rem 1rem;
+  width: 90%;
+  background-color: black;
+}

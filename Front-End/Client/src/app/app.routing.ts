@@ -1,3 +1,4 @@
+import { LoginGuard } from './guards/login.guard';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './components/profile/profile.component';
@@ -14,11 +15,11 @@ import { AuthGuard } from './guards';
 const appRoutes: Routes = [
 
   { path: '', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'income', component: IncomeComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'notifications', component: NotificationComponent },
+  { path: 'income', component: IncomeComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'donation/:username', component: DonationComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },

@@ -44,10 +44,6 @@ export class LoginComponent implements OnInit {
         $('.hide-show').parent().find('input[name="login[password]"]').attr('type', 'password');
       });
     });
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
   }
 
   ngOnInit() {

@@ -1,3 +1,11 @@
 h2 {
-  text-align: center; color: white
+  text-align: center;
+  color: white;
+}
+
+.container_ {
+  margin: auto 2rem;
+  padding: 2rem 1rem;
+  width: 90%;
+  background-color: black;
 }
