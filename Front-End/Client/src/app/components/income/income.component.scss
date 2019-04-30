@@ -3,7 +3,7 @@ dl {
   background-color: black;
   flex-direction: column;
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
   position: relative;
   padding: 20px;
 }
@@ -49,7 +49,7 @@ dt {
   );
 
   &:after {
-    content: '';
+    content: "";
     display: block;
     background-color: #1fd100;
     width: 50px;
@@ -76,4 +76,12 @@ dt {
       width: $value;
     }
   }
+}
+
+.container_ {
+  border-radius: 1rem;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  width: 90%;
+  background-color: black;
 }
