@@ -66,25 +66,12 @@ export class DonationComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Your Donation sent');
-
+          this.donationForm.reset();
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         }
       );
-    //   .postContact(this.donationForm.value)
-    //   .subscribe(
-    //     data => {
-    //       this.alertService.success('Your message sent');
-    //       this.donationForm.value.name = '';
-    //       this.donationForm.value.amount = '';
-    //       this.donationForm.value.message = '';
-    //     },
-    //     error => {
-    //       this.alertService.error(error);
-    //       this.loading = false;
-    //     }
-    //   );
   }
 }

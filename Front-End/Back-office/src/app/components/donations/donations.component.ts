@@ -29,11 +29,13 @@ export class DonationsComponent implements OnInit {
                 Date: element.date
               };
               this.donations.push(donation);
+              this.donations.reverse();
             });
           }
         });
 
       });
+
   }
 
 }

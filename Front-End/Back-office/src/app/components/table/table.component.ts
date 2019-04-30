@@ -32,4 +32,10 @@ export class TableComponent implements OnInit {
     this.excelService.exportAsExcelFile(this.data, 'sample');
   }
 
+  payed(username) {
+    const info = this.data.filter(el => el.username === username);
+    confirm('sur 5alastou ?');
+    console.log('ok');
+  }
+
 }

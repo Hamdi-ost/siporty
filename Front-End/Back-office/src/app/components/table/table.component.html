@@ -1,49 +1,145 @@
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title">{{title}} Data Table</h3>
+    <h3 class="box-title">{{ title }} Data Table</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+    <div
+      id="example1_wrapper"
+      class="dataTables_wrapper form-inline dt-bootstrap"
+    >
       <div class="row">
         <div class="col-sm-6" *ngIf="title != 'Donations'">
-          <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                [(ngModel)]="searchText" class="form-control input-sm" placeholder="" aria-controls="example1"></label>
+          <div id="example1_filter" class="dataTables_filter">
+            <label
+              >Search:<input
+                type="search"
+                [(ngModel)]="searchText"
+                class="form-control input-sm"
+                placeholder=""
+                aria-controls="example1"
+            /></label>
           </div>
         </div>
         <div *ngIf="title == 'Admin'" class="col-sm-6">
-          <a type="button" style="float:right" routerLink='/register' class="btn btn-success">Add New</a>
+          <a
+            type="button"
+            style="float:right"
+            routerLink="/register"
+            class="btn btn-success"
+            >Add New</a
+          >
         </div>
-        <div *ngIf="title == 'Informations'" class="col-sm-3" style="float: right">
-          <button type="button" (click)="exportAsXLSX()" class="btn btn-block btn-success"><i
-              class="fa fa-download"></i> Download</button>
+        <div
+          *ngIf="title == 'Informations'"
+          class="col-sm-3"
+          style="float: right"
+        >
+          <button
+            type="button"
+            (click)="exportAsXLSX()"
+            class="btn btn-block btn-success"
+          >
+            <i class="fa fa-download"></i> Download
+          </button>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-            aria-describedby="example1_info">
+          <table
+            id="example1"
+            class="table table-bordered table-striped dataTable"
+            role="grid"
+            aria-describedby="example1_info"
+          >
             <thead>
               <tr role="row">
-                <th *ngFor="let columnName of columnsName" class="sorting_asc" tabindex="0" aria-controls="example1"
-                  rowspan="1" colspan="1" aria-sort="ascending"
-                  aria-label="columnName: activate to sort column descending" style="width: 182px;">
-                  {{columnName | uppercase}}</th>
+                <th
+                  *ngFor="let columnName of columnsName"
+                  class="sorting_asc"
+                  tabindex="0"
+                  aria-controls="example1"
+                  rowspan="1"
+                  colspan="1"
+                  aria-sort="ascending"
+                  aria-label="columnName: activate to sort column descending"
+                  style="width: 182px;"
+                >
+                  {{ columnName | uppercase }}
+                </th>
 
-                <th *ngIf="title == 'Users'" class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                  colspan="1" aria-sort="ascending" aria-label="columnName: activate to sort column descending"
-                  style="width: 182px;">ACTION</th>
-
+                <th
+                  *ngIf="title == 'Users'"
+                  class="sorting_asc"
+                  tabindex="0"
+                  aria-controls="example1"
+                  rowspan="1"
+                  colspan="1"
+                  aria-sort="ascending"
+                  aria-label="columnName: activate to sort column descending"
+                  style="width: 182px;"
+                >
+                  ACTION
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let row of data | filter : searchText | paginate: { itemsPerPage: 5, currentPage: p }"
-                role="row" class="odd">
-                <td *ngFor="let col of columnsName" class="sorting_1">{{row[col]}}</td>
-                <td *ngIf="title == 'Users' && row['enabled']" class="sorting_1"><button type="button"
-                    class="btn btn-danger" (click)="banUser(row.id)">BAN</button></td>
-                <td *ngIf="title == 'Users' && !row['enabled']" class="sorting_1"><button type="button"
-                    class="btn btn-success" (click)="unbanUser(row.id)">UNBAN</button></td>
+              <tr
+                *ngFor="
+                  let row of data
+                    | filter: searchText
+                    | paginate: { itemsPerPage: 5, currentPage: p }
+                "
+                role="row"
+                class="odd"
+              >
+                <td *ngFor="let col of columnsName" class="sorting_1">
+                  {{ row[col] }}
+                </td>
+                <td
+                  *ngIf="title == 'Users' && row['enabled']"
+                  class="sorting_1"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="banUser(row.id)"
+                  >
+                    BAN
+                  </button>
+                </td>
+                <td
+                  *ngIf="title == 'Users' && !row['enabled']"
+                  class="sorting_1"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="unbanUser(row.id)"
+                  >
+                    UNBAN
+                  </button>
+                </td>
+                <td
+                  *ngIf="title == 'Informations' && row['amount'] == 0"
+                  class="sorting_1"
+                >
+                  <button type="button" class="btn btn-success">
+                    <i class="fa fa-check"></i>
+                  </button>
+                </td>
+                <td
+                  *ngIf="title == 'Informations' && row['amount'] > 0"
+                  class="sorting_1"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="payed(row['username'])"
+                  >
+                    <i class="fa fa-bars"></i>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -51,13 +147,21 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-          </div>
+          <div
+            class="dataTables_info"
+            id="example1_info"
+            role="status"
+            aria-live="polite"
+          ></div>
         </div>
         <div class="col-sm-7">
-          <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
+          <div
+            class="dataTables_paginate paging_simple_numbers"
+            id="example1_paginate"
+          >
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
           </div>
         </div>
       </div>

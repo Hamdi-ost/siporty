@@ -28,12 +28,14 @@ export class UserComponent implements OnInit {
   }
 
   banUser(id) {
+    confirm('Are you sure ?');
     this.userService.ban(id).subscribe(data => {
       this.fetchData();
     });
   }
 
   unbanUser(id) {
+    confirm('Are you sure ?');
     this.userService.unban(id).subscribe(data => {
       this.fetchData();
     });

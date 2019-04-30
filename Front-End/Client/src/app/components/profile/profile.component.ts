@@ -65,8 +65,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       return;
     }
 
-
-
     const updatedUser = {
       id: this.currentUser.id,
       firstname: this.currentUser['firstname'],
@@ -82,12 +80,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
         'ROLE_USER'
       ]
     };
-    console.log(updatedUser);
 
     this.loading = true;
     this.userService.update(updatedUser).subscribe(data => {
       this.alertService.success('Payout Method successful', true);
-      // window.location.reload();
+      //        window.location.reload();
+      // this.loginForm.reset();
     });
 
   }

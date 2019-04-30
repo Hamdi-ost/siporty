@@ -36,9 +36,9 @@ export class SettingsComponent implements OnInit {
 
     this.settingsForm = this.formBuilder.group({
       email: [this.currentUser.user.email, Validators.required],
-      password: ['', Validators.required, Validators.minLength(6)],
-      repassword: ['', Validators.required],
-      socialLink: ['']
+      password: ['', Validators.minLength(6)],
+      repassword: [''],
+      socialLink: [this.currentUser.user.socialLink]
     });
 
 
@@ -78,7 +78,7 @@ export class SettingsComponent implements OnInit {
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);
-            window.location.reload();
+            //            window.location.reload();
           },
           error => {
             this.alertService.error(error.message);
