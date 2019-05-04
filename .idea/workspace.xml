@@ -1,70 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd432b53-f0c4-4e41-b82c-057ef3f80731" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/e2e/protractor.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/e2e/src/app.e2e-spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/e2e/src/app.po.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/e2e/tsconfig.e2e.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/app/app.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/browserslist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/environments/environment.prod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/karma.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/polyfills.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/tsconfig.spec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/src/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Back-office/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/e2e/protractor.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/e2e/src/app.e2e-spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/e2e/src/app.po.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/e2e/tsconfig.e2e.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/app/app.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/browserslist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/environments/environment.prod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/karma.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/polyfills.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/tsconfig.spec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/src/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Front-End/Client/tslint.json" afterDir="false" />
-    </list>
+    <list default="true" id="dd432b53-f0c4-4e41-b82c-057ef3f80731" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -76,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/app.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -88,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Front-End/Client/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+            <state relative-caret-position="153">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -97,17 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/components/login/login.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
+            <state relative-caret-position="238">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/components/login/login.component.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -115,11 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="323">
               <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -127,7 +52,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Front-End/Client" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -140,10 +65,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1366" />
-    <option name="y" value="-2" />
-    <option name="width" value="960" />
-    <option name="height" value="1082" />
+    <option name="x" value="170" />
+    <option name="y" value="91" />
+    <option name="width" value="1026" />
+    <option name="height" value="546" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -152,49 +77,16 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="siporty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="siporty" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="siporty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="siporty" type="462c0819:PsiDirectoryNode" />
-              <item name="Front-End" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="siporty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="siporty" type="462c0819:PsiDirectoryNode" />
-              <item name="Front-End" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="siporty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="siporty" type="462c0819:PsiDirectoryNode" />
-              <item name="Front-End" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="siporty" type="b2602c69:ProjectViewProjectNode" />
-              <item name="siporty" type="462c0819:PsiDirectoryNode" />
-              <item name="Front-End" type="462c0819:PsiDirectoryNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Back-End" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -226,18 +118,24 @@
       <updated>1554307764413</updated>
       <workItem from="1554307766544" duration="1821000" />
       <workItem from="1554309709693" duration="1213000" />
+      <workItem from="1556920416248" duration="89000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3034000" />
+    <option name="totallyTimeSpent" value="3123000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.113864" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.115733735" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.25878593" />
@@ -248,8 +146,14 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20447284" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20294599" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -271,15 +175,7 @@
     <entry file="file://$PROJECT_DIR$/Front-End/Back-office/src/app/components/login/login.component.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Front-End/Back-office/src/app/components/login/login.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/Back-office/src/app/components/login/login.component.spec.ts" />
     <entry file="file://$PROJECT_DIR$/Front-End/Back-office/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -287,13 +183,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/components/login/login.component.css" />
     <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -301,27 +191,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/app.module.ts">
+    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/components/login/login.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
+        <state relative-caret-position="238">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/components/login/login.component.css">
+    <entry file="file://$PROJECT_DIR$/Front-End/Client/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        <state relative-caret-position="323">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
         </state>
       </provider>
     </entry>

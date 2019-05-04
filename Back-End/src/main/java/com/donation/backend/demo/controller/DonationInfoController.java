@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -211,9 +212,34 @@ public class DonationInfoController {
 
     @GetMapping("/stats/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<StatAdmin> getStats() {
+    public ResponseEntity<StatAdmin> getStats(@RequestBody StatInfo statInfo) {
 
         try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String date = statInfo.getDate();
+
+            Calendar cal = Calendar.getInstance();
+            Date date1 = dateFormat.parse(date);
+            cal.setTime(date1);
+            String currentDate = dateFormat.format(cal.getTime());
+            //System.out.println(dateFormat.format(cal.getTime()));
+
+            cal.add(Calendar.DATE, +7);
+            String nextWeekDate = dateFormat.format(cal.getTime());
+            statInfo.setDate2(nextWeekDate);
+            //System.out.println(dateFormat.format(cal.getTime()));
+
+            String[] dates = currentDate.split("/");
+            String[] dates1 = nextWeekDate.split("/");
+
+            statInfo.setDay1(dates[0]);
+            statInfo.setDay2(dates1[0]);
+
+            statInfo.setMonth(dates[1]);
+            statInfo.setYear(dates[2]);
+            //System.out.println(statInfo.getDay1()+" | "+statInfo.getDay2()+" | "+statInfo.getMonth()+" | "+statInfo.getYear());
+
             StatAdmin statAdmin = new StatAdmin();
 
             List<DonationInfo> donationInfos = new ArrayList<>(donationInfoRepository.findAll());
@@ -221,18 +247,43 @@ public class DonationInfoController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            //List<DonationInfoMessage> donationInfoMessages = new ArrayList<>();
             donationInfos.forEach(donationInfo -> {
-                float newTotal = statAdmin.getTotalMoney() + donationInfo.getSolde();
-                statAdmin.setTotalMoney(newTotal);
+                float newTotal = statAdmin.getAmountStillNotPayed() + donationInfo.getSolde();
+                statAdmin.setAmountStillNotPayed(newTotal);
 
+                long totalDonors = donationRepository.countAllByDonationInfoId(donationInfo.getId());
+                statAdmin.setTotalDonors(totalDonors);
+
+                List<Donation> donations = donationRepository.getDonationsPerMonthAndDonationInfoId(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+                donations.forEach(donation -> {
+                    float oldIncome = statAdmin.getIncomeThisMonth();
+                    statAdmin.setIncomeThisMonth(donation.getMontant() + oldIncome);
+                });
+
+                List<Donation> donations1 = donationRepository.getDonationsPerWeek(statInfo.getDate(), statInfo.getDate2(), donationInfo.getId());
+                donations1.forEach(donation -> {
+                    //System.out.println(donation.getName());
+                    float oldIncome = statAdmin.getIncomeThisWeek();
+                    statAdmin.setIncomeThisWeek(donation.getMontant() + oldIncome);
+                });
+
+                List<Donation> donations2 = donationRepository.getTopDonors(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+                List<DonationMessage> donationMessages1 = new ArrayList<>();
+                donations2.forEach(donation -> {
+                    DonationMessage dm = new DonationMessage();
+                    dm.setMontant(donation.getMontant());
+                    dm.setName(donation.getName());
+                    dm.setMessage(donation.getMessage());
+                    dm.setDate(donation.getDate());
+                    donationMessages1.add(dm);
+                });
+                statAdmin.setTopTenDonors(donationMessages1);
             });
 
             long totalUsers = userRepository.countByRoles("ROLE_USER");
             statAdmin.setTotalUsers(totalUsers);
 
-            //List<Donation> donations = donationRepository.getDonationsPerMonth(4,2019);
-            List<Donation> donations = new ArrayList<>(donationRepository.findAll());
+            /*List<Donation> donations = new ArrayList<>(donationRepository.findAll());
             List<DonationMessage> donationMessages = new ArrayList<>();
             donations.forEach(donation -> {
                 DonationMessage dm = new DonationMessage();
@@ -242,30 +293,19 @@ public class DonationInfoController {
                 dm.setDate(donation.getDate());
                 donationMessages.add(dm);
             });
-            statAdmin.setDonations(donationMessages);
-
-            List<Donation> donations1 = donationRepository.getTopDonors();
-            List<DonationMessage> donationMessages1 = new ArrayList<>();
-            donations1.forEach(donation -> {
-                DonationMessage dm = new DonationMessage();
-                dm.setMontant(donation.getMontant());
-                dm.setName(donation.getName());
-                dm.setMessage(donation.getMessage());
-                dm.setDate(donation.getDate());
-                donationMessages1.add(dm);
-            });
-            statAdmin.setTopTenDonors(donationMessages1);
+            statAdmin.setDonations(donationMessages);*/
 
             return new ResponseEntity<>(statAdmin, HttpStatus.OK);
 
         } catch(Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/stats/{id}/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<StatAdmin> getStatsById(@PathVariable("id") long id) {
+    public ResponseEntity<StatAdmin> getStatsById(@PathVariable("id") long id, @RequestBody StatInfo statInfo) {
 
         try {
             StatAdmin statAdmin = new StatAdmin();
@@ -275,13 +315,67 @@ public class DonationInfoController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            //List<DonationInfoMessage> donationInfoMessages = new ArrayList<>();
             DonationInfo donationInfo = _donationInfo.get();
-            float newTotal = statAdmin.getTotalMoney() + donationInfo.getSolde();
-            statAdmin.setTotalMoney(newTotal);
 
-            //List<Donation> donations = donationRepository.getDonationsPerMonth(4,2019);
-            List<Donation> donations = donationInfo.getDonations();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String date = statInfo.getDate();
+
+            Calendar cal = Calendar.getInstance();
+            Date date1 = dateFormat.parse(date);
+            cal.setTime(date1);
+            String currentDate = dateFormat.format(cal.getTime());
+            //System.out.println(dateFormat.format(cal.getTime()));
+
+            cal.add(Calendar.DATE, +7);
+            String nextWeekDate = dateFormat.format(cal.getTime());
+            statInfo.setDate2(nextWeekDate);
+            //System.out.println(dateFormat.format(cal.getTime()));
+
+            String[] dates = currentDate.split("/");
+            String[] dates1 = nextWeekDate.split("/");
+
+            statInfo.setDay1(dates[0]);
+            statInfo.setDay2(dates1[0]);
+
+            statInfo.setMonth(dates[1]);
+            statInfo.setYear(dates[2]);
+            //System.out.println(statInfo.getDay1()+" | "+statInfo.getDay2()+" | "+statInfo.getMonth()+" | "+statInfo.getYear());
+
+            float newTotal = statAdmin.getAmountStillNotPayed() + donationInfo.getSolde();
+            statAdmin.setAmountStillNotPayed(newTotal);
+
+            long totalDonors = donationRepository.countAllByDonationInfoId(donationInfo.getId());
+            statAdmin.setTotalDonors(totalDonors);
+
+            List<Donation> donations = donationRepository.getDonationsPerMonthAndDonationInfoId(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+            donations.forEach(donation -> {
+                float oldIncome = statAdmin.getIncomeThisMonth();
+                statAdmin.setIncomeThisMonth(donation.getMontant() + oldIncome);
+            });
+
+            List<Donation> donations1 = donationRepository.getDonationsPerWeek(statInfo.getDate(), statInfo.getDate2(), donationInfo.getId());
+            donations1.forEach(donation -> {
+                //System.out.println(donation.getName());
+                float oldIncome = statAdmin.getIncomeThisWeek();
+                statAdmin.setIncomeThisWeek(donation.getMontant() + oldIncome);
+            });
+
+            List<Donation> donations2 = donationRepository.getTopDonors(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+            List<DonationMessage> donationMessages1 = new ArrayList<>();
+            donations2.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages1.add(dm);
+            });
+            statAdmin.setTopTenDonors(donationMessages1);
+
+            long totalUsers = userRepository.countByRoles("ROLE_USER");
+            statAdmin.setTotalUsers(totalUsers);
+
+            /*List<Donation> donations = new ArrayList<>(donationRepository.findAll());
             List<DonationMessage> donationMessages = new ArrayList<>();
             donations.forEach(donation -> {
                 DonationMessage dm = new DonationMessage();
@@ -291,19 +385,7 @@ public class DonationInfoController {
                 dm.setDate(donation.getDate());
                 donationMessages.add(dm);
             });
-            statAdmin.setDonations(donationMessages);
-
-            List<Donation> donations1 = donationRepository.getTopDonors();
-            List<DonationMessage> donationMessages1 = new ArrayList<>();
-            donations1.forEach(donation -> {
-                DonationMessage dm = new DonationMessage();
-                dm.setMontant(donation.getMontant());
-                dm.setName(donation.getName());
-                dm.setMessage(donation.getMessage());
-                dm.setDate(donation.getDate());
-                donationMessages1.add(dm);
-            });
-            statAdmin.setTopTenDonors(donationMessages1);
+            statAdmin.setDonations(donationMessages);*/
 
             return new ResponseEntity<>(statAdmin, HttpStatus.OK);
 

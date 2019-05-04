@@ -91,7 +91,7 @@ public class DonationController {
         donation.setMessage(donationMessage.getMessage());
         donation.setEnabled(true);
 
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         donation.setDate(dateFormat.format(date));
 
