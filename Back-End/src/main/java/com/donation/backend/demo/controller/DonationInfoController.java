@@ -115,14 +115,14 @@ public class DonationInfoController {
             List<DonationMessage> donationMessages = new ArrayList<>();
             List<Donation> donations = donationInfo.getDonations();
             donations.forEach(donation -> {
-                if(donation.isEnabled()) {
+                //if(donation.isEnabled()) {
                     DonationMessage dm = new DonationMessage();
                     dm.setMontant(donation.getMontant());
                     dm.setDate(donation.getDate());
                     dm.setName(donation.getName());
                     dm.setMessage(donation.getMessage());
                     donationMessages.add(dm);
-                }
+                //}
             });
             dim.setDonationMessages(donationMessages);
 
@@ -171,14 +171,14 @@ public class DonationInfoController {
             List<DonationMessage> donationMessages = new ArrayList<>();
             List<Donation> donations = donationInfo.getDonations();
             donations.forEach(donation -> {
-                if(donation.isEnabled()) {
+                //if(donation.isEnabled()) {
                     DonationMessage dm = new DonationMessage();
                     dm.setMontant(donation.getMontant());
                     dm.setDate(donation.getDate());
                     dm.setName(donation.getName());
                     dm.setMessage(donation.getMessage());
                     donationMessages.add(dm);
-                }
+                //}
             });
             dim.setDonationMessages(donationMessages);
 
@@ -210,7 +210,7 @@ public class DonationInfoController {
         }
     }
 
-    @GetMapping("/stats/")
+    @PostMapping("/stats/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StatAdmin> getStats(@RequestBody StatInfo statInfo) {
 
@@ -303,7 +303,7 @@ public class DonationInfoController {
         }
     }
 
-    @GetMapping("/stats/{id}/")
+    @PostMapping("/stats/{id}/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StatAdmin> getStatsById(@PathVariable("id") long id, @RequestBody StatInfo statInfo) {
 
