@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  latestMembers = [];
+  top10Donors = [];
+  donationRate;
+  visitRate;
+  totalUsers;
+  totalDonations;
+
   constructor(private statsService: StatsService) { }
 
   ngOnInit() {

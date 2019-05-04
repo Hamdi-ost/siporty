@@ -195,3 +195,24 @@ h3:after {
   width: 90%;
   background-color: black;
 }
+
+@media only screen and (min-width: 768px) {
+  .container_ {
+    min-height: 480px;
+  }
+  .container_ {
+    padding: 2em 2em 2em 7em;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .cd-tabs__content {
+    min-height: 0;
+  }
+  .container_ {
+    padding: 3em;
+  }
+  .container_ p {
+    font-size: 1.6rem;
+  }
+}

@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
   @Input() columnsName;
   @Output() ban = new EventEmitter();
   @Output() unban = new EventEmitter();
+  @Output() reset = new EventEmitter();
   p = 1;
 
   constructor(private excelService: ExcelService) { }
@@ -34,8 +35,7 @@ export class TableComponent implements OnInit {
 
   payed(username) {
     const info = this.data.filter(el => el.username === username);
-    confirm('sur 5alastou ?');
-    console.log('ok');
+    this.reset.emit(info);
   }
 
 }

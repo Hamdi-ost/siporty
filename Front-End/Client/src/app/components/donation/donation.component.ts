@@ -18,6 +18,7 @@ export class DonationComponent implements OnInit {
   id;
   username;
   socialLink;
+
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private alertService: AlertService,
@@ -51,14 +52,11 @@ export class DonationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log();
 
     // stop here if form is invalid
     if (this.donationForm.invalid) {
       return;
     }
-
-    console.log(this.donationForm.value);
 
     this.loading = true;
     this.donationService
@@ -66,7 +64,7 @@ export class DonationComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Your Donation sent');
-          this.donationForm.reset();
+          location.reload();
         },
         error => {
           this.alertService.error(error);

@@ -78,7 +78,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log(this.registerForm.value);
 
     this.loading = true;
     this.userService
@@ -87,12 +86,10 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
-          this.donationDetails.postDonationDetails({ id: data['id'], socialLink: null }).subscribe(dataa => console.log(dataa));
+          this.donationDetails.postDonationDetails({ id: data['id'], socialLink: null }).subscribe();
           this.router.navigate(['/login']);
         },
         error => {
-          console.log(error);
-
           this.alertService.error(error);
           this.loading = false;
         }

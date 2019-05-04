@@ -38,7 +38,6 @@ export class DonationService {
   }
 
   postDonation(data): Observable<any> {
-    console.log(data);
     return this.http.post(apiUrl + 'donations/auth/', data);
   }
 

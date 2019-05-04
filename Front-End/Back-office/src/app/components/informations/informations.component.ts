@@ -1,5 +1,6 @@
 import { DonationsService } from './../../services/donations.service';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services';
 
 @Component({
   selector: 'app-informations',
@@ -8,17 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformationsComponent implements OnInit {
   title = 'Informations';
-  infos = [];
+  infos;
   columnsName = ['username', 'name account', 'bank', 'agency', 'rib', 'amount'];
 
-  constructor(private donationService: DonationsService) { }
+  constructor(private donationService: DonationsService, private userService: UserService) { }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.infos = [];
     this.donationService.getAllDonations()
       .subscribe(donations => {
         const inf = [];
         inf.push(donations);
-        console.log(inf[0]);
         inf[0].forEach(el => {
           const info = {
             username: el['userInfo'].username,
@@ -30,9 +35,17 @@ export class InformationsComponent implements OnInit {
           };
           this.infos.push(info);
           this.infos.reverse();
-          console.log(this.infos);
         });
       });
+  }
+
+  resetSolde(user) {
+    confirm('Are You Sure ?')
+    this.userService.getAllUsers().subscribe(users => {
+      const userToReset = users.filter(el => el.username == user[0].username);
+      this.donationService.resetSolde(userToReset[0].id)
+        .subscribe(data => this.fetchData());
+    })
   }
 
 }

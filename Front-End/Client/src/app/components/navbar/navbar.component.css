@@ -259,7 +259,7 @@ textarea {
   }
 }
 
-.cd-tabs__content {
+/* .cd-tabs__content {
   background: #000000;
 }
 
@@ -279,7 +279,7 @@ textarea {
   line-height: 1.6;
   color: #ffffff;
   margin-bottom: 2em;
-}
+} */
 
 @media only screen and (min-width: 768px) {
   .cd-tabs__content {

@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   loading = false;
   submitted = false;
   returnUrl: string;
+  datePerMonth = "";
+  datePerWeek = "";
 
   constructor(
     private userService: UserService,
@@ -30,9 +32,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
       if (user) {
         this.currentUser = user['user'];
       }
-      console.log(this.currentUser);
-      console.log(user);
     });
+  }
+
+  topFanPerMonth() {
+    document.getElementById('perMonth').addEventListener('click', this.fetchTopFans);
+  }
+
+  fetchTopFans() {
+    console.log('ok');
   }
 
   ngOnDestroy() {

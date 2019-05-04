@@ -11,11 +11,6 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const url = window.location.toString().slice(window.location.toString().indexOf('%2') + 3);
-    console.log(url);
-    if (url === 'aboutUs' || url === 'contact' || url === 'donation%2Fsiporty' || url === 'tp://localhost:4200/contact' || url === 'tp://localhost:4200/donation/siporty' || url === 'tp://localhost:4200/aboutUs') {
-      return true;
-    }
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
       // authorised so return true
