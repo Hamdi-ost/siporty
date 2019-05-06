@@ -348,8 +348,9 @@ public class UserRestAPI {
             {
                 _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));   
             }
-            _user.setSocialLink(passwordChangeForm.getSocialLink());
-
+            if(passwordChangeForm.getSocialLink() != null) {
+                _user.setSocialLink(passwordChangeForm.getSocialLink());
+            }
             userRepository.save(_user);
             return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);
         } else {

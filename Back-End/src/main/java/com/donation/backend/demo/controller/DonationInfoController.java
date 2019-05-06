@@ -304,7 +304,7 @@ public class DonationInfoController {
     }
 
     @PostMapping("/stats/{id}/")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<StatAdmin> getStatsById(@PathVariable("id") long id, @RequestBody StatInfo statInfo) {
 
         try {
