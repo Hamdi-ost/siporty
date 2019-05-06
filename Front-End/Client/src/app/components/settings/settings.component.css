@@ -18,3 +18,25 @@
   width: 90%;
   background-color: black;
 }
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .link a {
+    font-size: 20px;
+    text-align: center
+  }
+
+
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .link a {
+    font-size: 20px;
+    text-align: center
+  }
+
+
+}

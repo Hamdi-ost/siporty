@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.statsService.getAllStats().subscribe(stats => {
       console.log(stats);
+      this.totalUsers = stats['totalUsers'];
+      this.top10Donors = stats['topTenDonors'];
+      this.totalDonations = stats['toptalDonors'];
     })
   }
 

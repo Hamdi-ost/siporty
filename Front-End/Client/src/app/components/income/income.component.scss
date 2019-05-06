@@ -1,6 +1,5 @@
 dl {
   display: flex;
-  background-color: black;
   flex-direction: column;
   width: 100%;
   max-width: 800px;
@@ -26,7 +25,6 @@ dt {
   align-items: center;
   height: 40px;
   width: 130px;
-  background-color: black;
   position: absolute;
   left: 0;
   justify-content: flex-end;
@@ -82,6 +80,35 @@ dt {
   border-radius: 1rem;
   margin: 2rem auto;
   padding: 2rem 1rem;
-  width: 90%;
+  width: 100%;
   background-color: black;
+}
+
+
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  dl {
+    display: flex;
+    background-color: black;
+    flex-direction: column;
+    width: 50%;
+    max-width: 800px;
+    position: relative;
+  }
+
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    position: relative;
+    margin-left: -3rem;
+  }
+
 }

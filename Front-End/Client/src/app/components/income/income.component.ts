@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./income.component.scss']
 })
 export class IncomeComponent implements OnInit {
+  incomes = [
+    { month: 'juin', amount: 11 },
+    { month: 'may', amount: 50 },
+    { month: 'july', amount: 30 }
+  ];
 
   constructor() {
 

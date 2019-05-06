@@ -27,6 +27,7 @@ import { InformationsComponent } from './components/informations/informations.co
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'messages/:id', component: MessageDetailComponent },

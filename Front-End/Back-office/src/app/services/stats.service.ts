@@ -17,11 +17,8 @@ export class StatsService {
   }
 
   getAllStats() {
-    let httpParams = new HttpParams()
-      .set('date', "01/05/2019");
-    console.log(httpParams.toString());
     this.token = JSON.parse(localStorage.getItem('currentUser')).token;
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-    return this.http.get(`${this.apiUrl}`, { headers: this.headers, params: httpParams });
+    return this.http.post(`${this.apiUrl}`, { date: '02/05/2018' }, { headers: this.headers });
   }
 }

@@ -18,11 +18,15 @@ export class NotificationComponent implements OnInit {
   notifications = [];
 
   ngOnInit() {
-    this.user = this.userAuth.currentUser.subscribe(data =>
-      this.donationService.getAllDonationDetails(data['user'].id)
-        .subscribe(donation => {
-          this.notifications = Array.from(donation['donationMessages']);
-        }));
+    this.user = this.userAuth.currentUser.subscribe(data => {
+      if (data) {
+        this.donationService.getAllDonationDetails(data['user'].id)
+          .subscribe(donation => {
+            this.notifications = Array.from(donation['donationMessages']);
+          })
+      }
+    }
+    );
 
   }
 

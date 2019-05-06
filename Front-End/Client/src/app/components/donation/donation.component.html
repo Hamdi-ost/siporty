@@ -5,7 +5,7 @@
         <img src="../../../assets/images/donation.png" alt="" /></a>
     </div>
 
-    <form id="login" [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+    <form id="login" *ngIf="donationForm" [formGroup]="donationForm" (ngSubmit)="onSubmit()">
       <!-- Name -->
       <div class="row">
         <div class="col-md-7">
@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-md-8">
           <label for="name">Your Name</label>
-          <input required name="login[name]" type="text" [(ngModel)]="name" autocapitalize="off" autocorrect="off"
+          <input required name="login[name]" type="text" autocapitalize="off" autocorrect="off"
             placeholder="Your nickname..." formControlName="name" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
           <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -33,9 +33,8 @@
         <div class="col-md-4">
           <!-- Donation montant -->
           <label for="montant">Amount</label>
-          <input [(ngModel)]="amount" class="montant" required name="login[montant]" type="number"
-            formControlName="montant" placeholder="5.00 DT" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" />
+          <input class="montant" required name="login[montant]" type="number" formControlName="montant"
+            placeholder="5.00 DT" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" />
           <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.montant.errors"
             class="invalid-feedback">
             <div *ngIf="f.montant.errors.required">
@@ -48,8 +47,8 @@
       <!-- content -->
       <label for="message">Message</label>
 
-      <textarea class="message" required [(ngModel)]="message" name="login[message]" type="text"
-        formControlName="message" placeholder="Your message here ..." class="form-control"
+      <textarea class="message" required name="login[message]" type="text" formControlName="message"
+        placeholder="Your message here ..." class="form-control"
         [ngClass]="{ 'is-invalid': submitted && f.message.errors }" cols="30" rows="5"></textarea>
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.message.errors" class="invalid-feedback">
         <div *ngIf="f.message.errors.required">Message is required</div>

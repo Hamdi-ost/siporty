@@ -9,16 +9,16 @@
       </tr>
       <ng-container *ngIf="notifications.length >= 0">
         <tr *ngFor="let notification of notifications; let i = index">
-          <td data-th="Supplier Code">
+          <td data-th="ID">
             {{ i }}
           </td>
-          <td data-th="Supplier Name">
+          <td data-th="Name">
             {{ notification.name }}
           </td>
-          <td data-th="Invoice Number">
+          <td data-th="Message">
             {{ notification.message }}
           </td>
-          <td data-th="Invoice Date">{{ notification.montant }} DT</td>
+          <td data-th="Amount">{{ notification.montant }} DT</td>
         </tr>
       </ng-container>
     </tbody>

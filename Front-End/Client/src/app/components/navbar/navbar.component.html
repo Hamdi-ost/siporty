@@ -2,26 +2,13 @@
   <nav>
     <ul style="margin-left: 6rem" class="cd-tabs__navigation js-cd-navigation">
       <li>
-        <a data-content="inbox" class="cd-selected" routerLink="/">Home</a>
+        <a data-content="inbox" routerLinkActive="cd-selected" routerLink="/home">Home</a>
       </li>
-      <li><a data-content="new" routerLink="/settings">Settings</a></li>
-      <li><a data-content="gallery" routerLink="/income">Income</a></li>
+      <li><a data-content="new" routerLinkActive="cd-selected" routerLink="/settings">Settings</a></li>
+      <li><a data-content="gallery" routerLinkActive="cd-selected" routerLink="/income">Income</a></li>
       <li>
-        <a data-content="store" routerLink="/notifications">Notifications</a>
+        <a data-content="store" routerLinkActive="cd-selected" routerLink="/notifications">Notifications</a>
       </li>
     </ul>
-    <!-- cd-tabs__navigation -->
   </nav>
-
-  <ul class="cd-tabs__content js-cd-content">
-    <li data-content="inbox" class="cd-selected"></li>
-
-    <li data-content="new"></li>
-
-    <li data-content="gallery"></li>
-
-    <li data-content="store"></li>
-  </ul>
-  <!-- cd-tabs__content -->
 </div>
-<!-- cd-tabs -->

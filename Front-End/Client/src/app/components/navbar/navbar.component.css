@@ -24,6 +24,27 @@ textarea {
   Responsive Tabbed Navigation - by CodyHouse.co
 
   -------------------------------- */
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    dl {
+      display: flex;
+      background-color: black;
+      flex-direction: column;
+      width: 50%;
+      max-width: 800px;
+      position: relative;
+    }
+
+  }
+
+
+  @media (min-width: 320px) and (max-width: 480px) {
+
+   ul li{
+     float: left;
+   }
+
+  }
 
 @media only screen and (min-width: 768px) {
   header {
@@ -259,48 +280,7 @@ textarea {
   }
 }
 
-/* .cd-tabs__content {
-  background: #000000;
-}
 
-.cd-tabs__content li {
-  display: none;
-  padding: 1.4em;
-}
-
-.cd-tabs__content li.cd-selected {
-  display: block;
-  -webkit-animation: cd-fade-in 0.5s;
-  animation: cd-fade-in 0.5s;
-}
-
-.cd-tabs__content li p {
-  font-size: 1.4rem;
-  line-height: 1.6;
-  color: #ffffff;
-  margin-bottom: 2em;
-} */
-
-@media only screen and (min-width: 768px) {
-  .cd-tabs__content {
-    min-height: 480px;
-  }
-  .cd-tabs__content li {
-    padding: 2em 2em 2em 7em;
-  }
-}
-
-@media only screen and (min-width: 960px) {
-  .cd-tabs__content {
-    min-height: 0;
-  }
-  .cd-tabs__content li {
-    padding: 3em;
-  }
-  .cd-tabs__content li p {
-    font-size: 1.6rem;
-  }
-}
 
 @-webkit-keyframes cd-fade-in {
   0% {
