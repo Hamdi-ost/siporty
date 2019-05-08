@@ -5,5 +5,16 @@
     <dd *ngFor="let income of incomes" class="percentage percentage-{{income.amount}}">
       <span class="text">{{income.month}}: {{income.amount}}%</span>
     </dd>
+    <br><br>
   </dl>
+  <div class="row">
+    <div class="col col-md-6">
+      <h1 style="color: white">From</h1>
+      <input class="form-control" type="date" id="example-datetime-local-input">
+    </div>
+    <div class="col col-md-6">
+      <h1 style="color: white">To</h1>
+      <input class="form-control" type="date" id="example-datetime-local-input">
+    </div>
+  </div>
 </div>

@@ -7,6 +7,7 @@ import { UserService, AuthenticationService, AlertService } from '../../services
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
+import { DonationService } from 'src/app/services/donation.service';
 
 @Component({ selector: 'app-profile', styleUrls: ['./profile.component.css'], templateUrl: 'profile.component.html' })
 export class ProfileComponent implements OnInit, OnDestroy {
@@ -17,8 +18,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   loading = false;
   submitted = false;
   returnUrl: string;
-  datePerMonth = "";
-  datePerWeek = "";
+  datePerMonth = '';
+  datePerWeek = '';
+  date = '07/05/2019';
+  TopDonors;
 
   constructor(
     private userService: UserService,
@@ -26,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private donationService: DonationService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       if (user) {
@@ -35,14 +39,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  topFanPerMonth() {
-    document.getElementById('perMonth').addEventListener('click', this.fetchTopFans);
-  }
 
   fetchTopFans() {
-    console.log('ok');
+    this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(this.datePerMonth) }).subscribe(data => {
+      this.TopDonors = data['topTenDonors'];
+    });
   }
 
+  reformatDate(dateStr) {
+    const dArr = dateStr.split('-');  // ex input "2010-01-18"
+    return dArr[2] + '/' + dArr[1] + '/' + dArr[0].substring(); // ex out: "18/01/10"
+  }
+
+  onSearchChange(newValue) {
+    this.datePerMonth = newValue;
+    this.fetchTopFans();
+  }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();

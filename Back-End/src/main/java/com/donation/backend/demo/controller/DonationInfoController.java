@@ -56,14 +56,14 @@ public class DonationInfoController {
                 List<DonationMessage> donationMessages = new ArrayList<>();
                 List<Donation> donations = donationInfo.getDonations();
                 donations.forEach(donation -> {
-                    if(donation.isEnabled()) {
+                    // if(donation.isEnabled()) {
                         DonationMessage dm = new DonationMessage();
                         dm.setMontant(donation.getMontant());
                         dm.setDate(donation.getDate());
                         dm.setName(donation.getName());
                         dm.setMessage(donation.getMessage());
                         donationMessages.add(dm);
-                    }
+                   // }
                 });
                 dim.setDonationMessages(donationMessages);
 

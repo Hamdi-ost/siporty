@@ -20,6 +20,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ContactComponent
   ],
   imports: [
+    NgxPaginationModule,
     AngularFontAwesomeModule,
     BrowserModule,
     FormsModule,

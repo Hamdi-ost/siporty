@@ -79,7 +79,8 @@ export class LoginComponent implements OnInit {
           window.location.reload();
         },
         error => {
-          this.alertService.error(error);
+          console.log(error);
+          this.alertService.error('Username or password is incorrect');
           this.loading = false;
         }
       );

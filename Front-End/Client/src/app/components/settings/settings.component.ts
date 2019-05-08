@@ -64,11 +64,19 @@ export class SettingsComponent implements OnInit {
     }
 
     if (this.currentUser) {
-      this.userUpdated = {
-        id: this.currentUser.user.id,
-        password: this.f.password.value,
-        socialLink: this.f.socialLink.value
-      };
+      if (!this.f.password.value) {
+        this.userUpdated = {
+          id: this.currentUser.user.id,
+          socialLink: this.f.socialLink.value
+        };
+        console.log(this.userUpdated);
+      } else {
+        this.userUpdated = {
+          id: this.currentUser.user.id,
+          password: this.f.password.value,
+          socialLink: this.f.socialLink.value
+        };
+      }
     }
 
     if (this.userUpdated) {

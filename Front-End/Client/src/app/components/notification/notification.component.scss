@@ -1,5 +1,9 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:600,700";
 
+.pagination /deep/ .ngx-pagination .current {
+  background: #1fd100;
+}
+
 * {
   font-family: "Open Sans", sans-serif;
 }

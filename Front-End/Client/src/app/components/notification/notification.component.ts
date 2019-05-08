@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/services';
 export class NotificationComponent implements OnInit {
 
   user;
+  p: number = 1;
 
   constructor(private userAuth: AuthenticationService, private donationService: DonationService) {
 
@@ -22,7 +23,7 @@ export class NotificationComponent implements OnInit {
       if (data) {
         this.donationService.getAllDonationDetails(data['user'].id)
           .subscribe(donation => {
-            this.notifications = Array.from(donation['donationMessages']);
+            this.notifications = Array.from(donation['donationMessages']).reverse();
           })
       }
     }

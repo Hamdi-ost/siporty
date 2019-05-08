@@ -55,4 +55,11 @@ export class DonationService {
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
     return this.http.get(apiUrl + 'donation-details/' + id, { headers: this.headers });
   }
+
+  getStatsById(id, date) {
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    return this.http.post(apiUrl + 'donation-details/stats/' + id + '/', date, { headers: this.headers });
+  }
+
 }

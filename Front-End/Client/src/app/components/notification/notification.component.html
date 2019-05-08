@@ -8,9 +8,9 @@
         <th>Amount</th>
       </tr>
       <ng-container *ngIf="notifications.length >= 0">
-        <tr *ngFor="let notification of notifications; let i = index">
+        <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
           <td data-th="ID">
-            {{ i }}
+            {{ i+1 }}
           </td>
           <td data-th="Name">
             {{ notification.name }}
@@ -23,4 +23,6 @@
       </ng-container>
     </tbody>
   </table>
+  <pagination-controls class="" (pageChange)="p = $event"></pagination-controls>
+
 </div>
