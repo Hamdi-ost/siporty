@@ -14,7 +14,8 @@ public class StatAdmin {
     private long totalUsers;
     private long totalDonors;
 
-    private List<DonationMessage> topTenDonors;
+    private List<DonationMessage> topTenDonorsMonth;
+    private List<DonationMessage> topTenDonorsWeek;
 
     public StatAdmin() {
         this.amountStillNotPayed = 0;
@@ -34,14 +35,6 @@ public class StatAdmin {
 
     public void setTotalUsers(long totalUsers) {
         this.totalUsers = totalUsers;
-    }
-
-    public List<DonationMessage> getTopTenDonors() {
-        return topTenDonors;
-    }
-
-    public void setTopTenDonors(List<DonationMessage> topTenDonors) {
-        this.topTenDonors = topTenDonors;
     }
 
     public float getIncomeThisWeek() {
@@ -66,5 +59,21 @@ public class StatAdmin {
 
     public void setTotalDonors(long totalDonors) {
         this.totalDonors = totalDonors;
+    }
+
+    public List<DonationMessage> getTopTenDonorsMonth() {
+        return topTenDonorsMonth;
+    }
+
+    public void setTopTenDonorsMonth(List<DonationMessage> topTenDonorsMonth) {
+        this.topTenDonorsMonth = topTenDonorsMonth;
+    }
+
+    public List<DonationMessage> getTopTenDonorsWeek() {
+        return topTenDonorsWeek;
+    }
+
+    public void setTopTenDonorsWeek(List<DonationMessage> topTenDonorsWeek) {
+        this.topTenDonorsWeek = topTenDonorsWeek;
     }
 }

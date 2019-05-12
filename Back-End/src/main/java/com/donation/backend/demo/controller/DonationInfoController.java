@@ -1,6 +1,7 @@
 package com.donation.backend.demo.controller;
 
 import com.donation.backend.demo.message.request.*;
+import com.donation.backend.demo.message.response.IncomeBetweenDates;
 import com.donation.backend.demo.message.response.ResponseMessage;
 import com.donation.backend.demo.message.response.StatAdmin;
 import com.donation.backend.demo.model.Donation;
@@ -210,6 +211,43 @@ public class DonationInfoController {
         }
     }
 
+    @PostMapping("/income/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public ResponseEntity<IncomeBetweenDates> getIncomePerWeek(@PathVariable("id") long id, @RequestBody IncomeDate incomeDate) {
+
+        try {
+            IncomeBetweenDates incomeBetweenDates = new IncomeBetweenDates();
+            Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(id);
+            if(!_donationInfo.isPresent()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            DonationInfo donationInfo = _donationInfo.get();
+            incomeBetweenDates.setIncome(0);
+
+            List<Donation> donations = donationRepository.getDonationsPerWeek(incomeDate.getDate(), incomeDate.getDate2(), donationInfo.getId());
+            List<DonationMessage> donationMessages = new ArrayList<>();
+            donations.forEach(donation -> {
+
+                float income = incomeBetweenDates.getIncome() + donation.getMontant();
+                incomeBetweenDates.setIncome(income);
+
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages.add(dm);
+            });
+            incomeBetweenDates.setDonationMessages(donationMessages);
+
+            return new ResponseEntity<>(incomeBetweenDates, HttpStatus.OK);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/stats/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<StatAdmin> getStats(@RequestBody StatInfo statInfo) {
@@ -267,7 +305,7 @@ public class DonationInfoController {
                     statAdmin.setIncomeThisWeek(donation.getMontant() + oldIncome);
                 });
 
-                List<Donation> donations2 = donationRepository.getTopDonors(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+                List<Donation> donations2 = donationRepository.getTopDonorsPerMonth(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
                 List<DonationMessage> donationMessages1 = new ArrayList<>();
                 donations2.forEach(donation -> {
                     DonationMessage dm = new DonationMessage();
@@ -277,7 +315,19 @@ public class DonationInfoController {
                     dm.setDate(donation.getDate());
                     donationMessages1.add(dm);
                 });
-                statAdmin.setTopTenDonors(donationMessages1);
+                statAdmin.setTopTenDonorsMonth(donationMessages1);
+
+                List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(statInfo.getDate(), statInfo.getDate2(), donationInfo.getId());
+                List<DonationMessage> donationMessages2 = new ArrayList<>();
+                donations3.forEach(donation -> {
+                    DonationMessage dm = new DonationMessage();
+                    dm.setMontant(donation.getMontant());
+                    dm.setName(donation.getName());
+                    dm.setMessage(donation.getMessage());
+                    dm.setDate(donation.getDate());
+                    donationMessages2.add(dm);
+                });
+                statAdmin.setTopTenDonorsWeek(donationMessages2);
             });
 
             long totalUsers = userRepository.countByRoles("ROLE_USER");
@@ -360,7 +410,7 @@ public class DonationInfoController {
                 statAdmin.setIncomeThisWeek(donation.getMontant() + oldIncome);
             });
 
-            List<Donation> donations2 = donationRepository.getTopDonors(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+            List<Donation> donations2 = donationRepository.getTopDonorsPerMonth(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
             List<DonationMessage> donationMessages1 = new ArrayList<>();
             donations2.forEach(donation -> {
                 DonationMessage dm = new DonationMessage();
@@ -370,7 +420,19 @@ public class DonationInfoController {
                 dm.setDate(donation.getDate());
                 donationMessages1.add(dm);
             });
-            statAdmin.setTopTenDonors(donationMessages1);
+            statAdmin.setTopTenDonorsMonth(donationMessages1);
+
+            List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(statInfo.getDate(), statInfo.getDate2(), donationInfo.getId());
+            List<DonationMessage> donationMessages2 = new ArrayList<>();
+            donations3.forEach(donation -> {
+                DonationMessage dm = new DonationMessage();
+                dm.setMontant(donation.getMontant());
+                dm.setName(donation.getName());
+                dm.setMessage(donation.getMessage());
+                dm.setDate(donation.getDate());
+                donationMessages2.add(dm);
+            });
+            statAdmin.setTopTenDonorsWeek(donationMessages2);
 
             long totalUsers = userRepository.countByRoles("ROLE_USER");
             statAdmin.setTotalUsers(totalUsers);
