@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'home', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'income', component: IncomeComponent, canActivate: [AuthGuard] },
+  { path: 'income', component: IncomeComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'notifications', component: NotificationComponent, canActivate: [AuthGuard] },
   { path: 'donation/:username', component: DonationComponent },

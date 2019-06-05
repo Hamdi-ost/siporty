@@ -6,6 +6,7 @@
         <th>Username</th>
         <th>Message</th>
         <th>Amount</th>
+        <th>Date</th>
       </tr>
       <ng-container *ngIf="notifications.length >= 0">
         <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
@@ -19,6 +20,8 @@
             {{ notification.message }}
           </td>
           <td data-th="Amount">{{ notification.montant }} DT</td>
+          <td data-th="Date">{{ notification.date }}</td>
+
         </tr>
       </ng-container>
     </tbody>

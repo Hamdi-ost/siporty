@@ -42,7 +42,9 @@ export class InformationsComponent implements OnInit {
   resetSolde(user) {
     confirm('Are You Sure ?')
     this.userService.getAllUsers().subscribe(users => {
+      console.log(user)
       const userToReset = users.filter(el => el.username == user[0].username);
+      console.log(userToReset)
       this.donationService.resetSolde(userToReset[0].id)
         .subscribe(data => this.fetchData());
     })
