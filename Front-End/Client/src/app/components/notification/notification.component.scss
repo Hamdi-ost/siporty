@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:600,700";
 
 .pagination /deep/ .ngx-pagination .current {
-  background: #1fd100;
+  background: #32C3A2;
 }
 
 * {
@@ -17,7 +17,7 @@
 
 .rwd-table tr:first-child {
   border-top: none;
-  background: #1fd100;
+  background: #32C3A2;
   color: #fff;
 }
 
@@ -109,9 +109,8 @@
 
 /* Basic Styling */
 body {
-  background: #4b79a1;
-  background: -webkit-linear-gradient(to left, #4b79a1, #283e51);
-  background: linear-gradient(to left, #4b79a1, #283e51);
+  background-color: #09161D;
+
 }
 h1 {
   text-align: center;
@@ -172,26 +171,7 @@ h3:after {
   }
 }
 
-/*
-    Don't look at this last part. It's unnecessary. I was just playing with pixel gradients... Don't judge.
-*/
-/*
-@media screen and (max-width: 601px) {
-  .rwd-table tr {
-    background-image: -webkit-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
-    background-image: -moz-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
-    background-image: -o-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
-    background-image: -ms-linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
-    background-image: linear-gradient(left, #428bca 137px, #f5f9fc 1px, #f5f9fc 100%);
-  }
-  .rwd-table tr:nth-child(odd) {
-    background-image: -webkit-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
-    background-image: -moz-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
-    background-image: -o-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
-    background-image: -ms-linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
-    background-image: linear-gradient(left, #428bca 137px, #ebf3f9 1px, #ebf3f9 100%);
-  }
-}*/
+
 .container_ {
   border-radius: 1rem;
   margin: 2rem auto;

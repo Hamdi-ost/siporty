@@ -2,33 +2,33 @@
   <section class="login-wrapper">
     <div class="logo">
       <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
-        <img src="../../../assets/images/contact.png" alt="" /></a>
+        <img style="margin-left: 40px" src="../../../assets/images/contact.png" alt="" /></a>
     </div>
 
     <form id="login" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <!-- Name -->
-      <label for="name">Name</label>
+      <label for="name" class="smaller">&nbsp;&nbsp;&nbsp;Name</label>
       <input required name="login[name]" type="text" autocapitalize="off" autocorrect="off" formControlName="name"
-        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.name.errors" class="invalid-feedback">
-        <div *ngIf="f.name.errors.required">Name is required</div>
+      class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+      <div  *ngIf="submitted && f.name.errors" class="invalid-feedback smaller">
+        <div *ngIf="f.name.errors.required">&nbsp;&nbsp;&nbsp;Name is required</div>
       </div>
       <!-- E-mail -->
-      <label for="email">E-mail</label>
-      <input class="email" required name="login[email]" type="email" formControlName="email" class="form-control"
+      <label for="email" class="smaller">&nbsp;&nbsp;&nbsp;E-mail</label>
+      <input class="email" required name="login[email]" type="email" formControlName="email" class="form-control smaller transparent-cla border-box"
         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">email is required</div>
+      <div  *ngIf="submitted && f.email.errors" class="invalid-feedback smaller">
+        <div *ngIf="f.email.errors.required">&nbsp;&nbsp;&nbsp;Email is required</div>
       </div>
       <!-- content -->
-      <label for="content">Message</label>
+      <label for="content" class="smaller">&nbsp;&nbsp;&nbsp;Message</label>
 
       <textarea class="message" required name="login[content]" type="text" formControlName="content"
-        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.content.errors }" cols="30" rows="5"></textarea>
-      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.content.errors" class="invalid-feedback">
-        <div *ngIf="f.content.errors.required">Message is required</div>
+      class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.content.errors }" cols="30" rows="5"></textarea>
+      <div  *ngIf="submitted && f.content.errors" class="invalid-feedback smaller">
+        <div *ngIf="f.content.errors.required">&nbsp;&nbsp;&nbsp;Message is required</div>
       </div>
-      <button [disabled]="loading" type="submit">Send</button>
+      <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">Send</button>
     </form>
   </section>
 </div>

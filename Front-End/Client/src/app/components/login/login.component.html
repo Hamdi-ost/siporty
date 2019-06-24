@@ -7,23 +7,23 @@
     </div>
 
     <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label for="username">Username</label>
+      <label for="username" class="smaller">&nbsp;&nbsp;&nbsp;Username</label>
       <input required name="login[username]" type="text" autocapitalize="off" autocorrect="off" placeholder="username"
-        formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        formControlName="username" class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.username.errors" class="invalid-feedback">
         <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
-      <label for="password">Password</label>
+      <label for="password" class="smaller">&nbsp;&nbsp;&nbsp;Password</label>
       <input class="password" required name="login[password]" type="password" formControlName="password"
-        placeholder="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        placeholder="password" class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>
-      <div class="hide-show">
-        <span>Show</span>
+      <div class="hide-show fix-it">
+        <span style="border-radius: 17px; ">Show</span>
       </div>
-      <button [disabled]="loading" type="submit">Log In</button>
-      <button routerLink="/register">Register</button>
+      <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">Log In</button>
+      <button routerLink="/register" class="btn btn-outline-primary border-box" style="color:aliceblue">Register</button>
     </form>
   </section>
 </div>

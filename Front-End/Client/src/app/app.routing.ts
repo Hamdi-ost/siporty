@@ -1,6 +1,6 @@
 import { LoginGuard } from './guards/login.guard';
 import { Routes, RouterModule } from '@angular/router';
-
+import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
   { path: 'donation/:username', component: DonationComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
-
+  { path: 'donationsucceeded', component: ThanksfordonComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

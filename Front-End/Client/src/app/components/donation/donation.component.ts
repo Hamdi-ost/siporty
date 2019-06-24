@@ -52,7 +52,6 @@ export class DonationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.donationForm.invalid) {
       return;
@@ -64,7 +63,7 @@ export class DonationComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Your Donation sent');
-          location.reload();
+          window.location.href = '/donationsucceeded';
         },
         error => {
           this.alertService.error(error);

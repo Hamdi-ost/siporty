@@ -1,7 +1,9 @@
-<div class="container_">
+<div class="container">
+  <div class="col sm-4"></div>
+  <div class="col sm-8">
   <form id="login" [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
     <!-- Email-->
-    <label for="email">E-mail</label>
+    <label for="email" class="smaller">&nbsp;&nbsp;&nbsp;E-mail</label>
     <input
       required
       name="update[email]"
@@ -9,7 +11,7 @@
       autocapitalize="off"
       autocorrect="off"
       formControlName="email"
-      class="form-control"
+      class="form-control smaller transparent-cla border-box"
       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
     />
     <div
@@ -20,15 +22,14 @@
       <div *ngIf="f.email.errors.required">E-mail is required</div>
     </div>
     <!-- New password-->
-    <label for="password">New Password</label>
+    <label for="password" class="smaller">&nbsp;&nbsp;&nbsp;New Password</label>
     <input
       minlength="6"
-      class="password"
+      class="form-control password smaller transparent-cla border-box"
       name="update[password]"
       type="password"
       formControlName="password"
       placeholder="Enter your new password"
-      class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
     />
     <div
@@ -36,20 +37,19 @@
       *ngIf="submitted && f.password.errors"
       class="invalid-feedback"
     >
-      <div *ngIf="f.password.errors.required">Password is required</div>
-      <div *ngIf="f.password.errors.minlength">
+      <div *ngIf="f.password.errors.required" class="smaller">Password is required</div>
+      <div *ngIf="f.password.errors.minlength" class="smaller">
         Password must be at least 6 characters long.
       </div>
     </div>
     <!-- Re-Type password-->
-    <label for="repassword">Re-Type Password</label>
+    <label for="repassword" class="smaller">&nbsp;&nbsp;&nbsp;Re-Type Password</label>
     <input
-      class="repassword"
+      class="form-control repassword smaller transparent-cla border-box"
       name="update[repassword]"
       type="password"
       formControlName="repassword"
       placeholder="Re-Type your new password"
-      class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }"
     />
     <div
@@ -60,23 +60,34 @@
       <div *ngIf="f.repassword.errors.required">Re-Type your new Password</div>
     </div>
     <!-- Social Link-->
-    <label for="socialLink">Social Media Link</label>
+    <label for="socialLink" class="smaller">&nbsp;&nbsp;&nbsp;Social Media Link</label>
     <input
-      class="repassword"
+      class="form-control repassword smaller transparent-cla border-box"
       name="update[socialLink]"
       type="text"
       formControlName="socialLink"
       placeholder="Enter your Social Media Link"
-      class="form-control"
       [ngClass]="{ 'is-invalid': submitted && f.socialLink.errors }"
     />
-    <label class="link">
+
+      <label style="color: white" class="smaller">&nbsp;&nbsp;&nbsp;Upload Logo<br><br></label>
+      <div class="input-group smaller" style="margin-top: -20px">
+          <span class="input-group-btn">
+              <span class="btn btn-file btn-outline-primary border-box" style="color: white">
+                  Browse… <input formControlName="socialLink" type="file" id="imgInp" class="smaller">
+              </span>
+          </span>
+          <input type="text" class="form-control smaller transparent-cla border-box" style="margin-top: 0px;" readonly>
+      </div>
+      <img id='img-upload'/>
+     <label class="link">
       This is the URL to your tip page where views can send you donations.
       <br />
       <a routerLink="/donation/{{ currentUser.user.username }}"
         >https://siporty.com/{{ currentUser.user.username }}</a
       >
     </label>
-    <button style="width: 25%;" [disabled]="loading" type="submit">Save</button>
+    <button  [disabled]="loading" type="submit" class="button-save btn btn-outline-primary border-box">Save</button>
   </form>
+</div>
 </div>

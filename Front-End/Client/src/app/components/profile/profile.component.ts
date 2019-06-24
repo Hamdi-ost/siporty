@@ -41,9 +41,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   fetchTopFans() {
+    console.log(this.reformatDate(this.datePerMonth));
     this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(this.datePerMonth) }).subscribe(data => {
       this.TopDonors = data['topTenDonorsMonth'];
-    });
+
+      });
   }
 
   reformatDate(dateStr) {

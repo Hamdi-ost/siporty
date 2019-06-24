@@ -11,11 +11,7 @@ import { Subscription } from 'rxjs';
 export class IncomeComponent implements OnInit {
   currentUserSubscription: Subscription;
   currentUser;
-  incomes = [
-    { month: 'juin', amount: 11 },
-    { month: 'may', amount: 50 },
-    { month: 'july', amount: 30 }
-  ];
+  incomes = [];
 
   constructor(private donationService: DonationService, private authenticationService: AuthenticationService) {
 
@@ -25,17 +21,43 @@ export class IncomeComponent implements OnInit {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       if (user) {
         this.currentUser = user['user'];
+
       }
-      console.log(new Date());
-      this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(new Date()) }).subscribe(data => {
-        console.log(data);
-      });
+
+        this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
+            this.incomes = data["incomethisMonth"]; //does not work because we need an array of object
+
+
+        });
     });
+
+  }
+
+
+
+  fetchTopFans() {
+    console.log(this.todaysDate());
+    this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(this.todaysDate()) }).subscribe(data => {
+    this.incomes = data['incomeThisMonth'];
+    console.log(data);
+    });
+  }
+
+
+  todaysDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+      return dd + '/' + mm + '/' + yyyy;
   }
 
   reformatDate(dateStr) {
     const dArr = dateStr.split('-');  // ex input "2010-01-18"
     return dArr[2] + '/' + dArr[1] + '/' + dArr[0].substring(); // ex out: "18/01/10"
   }
+
+
+
 
 }

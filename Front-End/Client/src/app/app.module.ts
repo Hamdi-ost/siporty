@@ -20,7 +20,8 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
     NotFoundComponent,
     AlertComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    ThanksfordonComponent
   ],
   imports: [
     NgxPaginationModule,

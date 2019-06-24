@@ -7,7 +7,7 @@
 }
 
 .cnl:hover {
-  color: #1fd100;
+  color: #32C3A2;
 }
 
 a {
@@ -21,7 +21,7 @@ a {
 }
 
 a:hover {
-  color: #1fd100;
+  color: #32C3A2;
 }
 
 /*
@@ -40,20 +40,20 @@ body {
   padding: 0;
 
   /* make it look decent enough */
-  background: #232323;
-  color: #cdcdcd;
+  background: #09161D;
+  color: #09161D;
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #232323;
+  color: #32C3A2;
 
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #1fd100;
+  color: white;
 }
 
 #menuToggle {
@@ -149,7 +149,7 @@ a:hover {
   padding: 50px;
   padding-top: 125px;
 
-  background: #ededed;
+  background: #09161D;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */

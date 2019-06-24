@@ -1,31 +1,27 @@
-<div class="container container_">
-  <table class="rwd-table">
+<div class="container">
+
+  <table class="rwd-table col-sm-12">
     <tbody>
       <tr>
-        <th>#</th>
-        <th>Username</th>
-        <th>Message</th>
-        <th>Amount</th>
-        <th>Date</th>
+        <th style="text-align: center" >Username</th>
+        <th style="text-align: center" >Message</th>
+        <th style="text-align: center" >Amount</th>
+        <th style="text-align: center" >Date</th>
       </tr>
       <ng-container *ngIf="notifications.length >= 0">
-        <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
-          <td data-th="ID">
-            {{ i+1 }}
+        <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td data-th="Name" style="text-align: center">
+           <b>{{ notification.name }}</b>
           </td>
-          <td data-th="Name">
-            {{ notification.name }}
+          <td data-th="Message" style="text-align: center">
+           <b>{{ notification.message }}</b>
           </td>
-          <td data-th="Message">
-            {{ notification.message }}
-          </td>
-          <td data-th="Amount">{{ notification.montant }} DT</td>
-          <td data-th="Date">{{ notification.date }}</td>
-
+          <td data-th="Amount" style="text-align: center" ><b>{{ notification.montant }} DT</b></td>
+          <td data-th="Date" style="text-align: center"><b>{{ notification.date }}</b></td>
         </tr>
       </ng-container>
     </tbody>
   </table>
   <pagination-controls class="" (pageChange)="p = $event"></pagination-controls>
-
 </div>
+
