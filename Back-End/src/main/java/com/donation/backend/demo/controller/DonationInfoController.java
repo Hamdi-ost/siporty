@@ -2,6 +2,7 @@ package com.donation.backend.demo.controller;
 
 import com.donation.backend.demo.message.request.*;
 import com.donation.backend.demo.message.response.IncomeBetweenDates;
+import com.donation.backend.demo.message.response.MonthIncome;
 import com.donation.backend.demo.message.response.ResponseMessage;
 import com.donation.backend.demo.message.response.StatAdmin;
 import com.donation.backend.demo.model.Donation;
@@ -17,8 +18,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -246,6 +250,73 @@ public class DonationInfoController {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/income-year/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public ResponseEntity<IncomeYear> getIncomePerYear(@PathVariable("id") long id) {
+
+        try {
+            IncomeYear incomeYear = new IncomeYear();
+            Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(id);
+            if(!_donationInfo.isPresent()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            DonationInfo donationInfo = _donationInfo.get();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MONTH, 0);
+            calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+            String nextMonthFirstDay = dateFormat.format(calendar.getTime());
+            calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            String nextMonthLastDay = dateFormat.format(calendar.getTime());
+            //System.out.println(nextMonthLastDay);
+
+            MonthIncome monthIncome = new MonthIncome();
+            String month = new SimpleDateFormat("MMMM").format(calendar.getTime());
+            monthIncome.setMonth(month);
+            monthIncome.setIncome(0);
+            List<Donation> donations = donationRepository.getDonationsPerWeek(nextMonthFirstDay, nextMonthLastDay, donationInfo.getId());
+            donations.forEach(donation -> {
+                float income = monthIncome.getIncome() + donation.getMontant();
+                monthIncome.setIncome(income);
+            });
+            incomeYear.addMonthIncome(monthIncome);
+
+            for(int i=0; i<10; i++) {
+                calendar.add(Calendar.MONTH, 1);
+                incomeYear.addMonthIncome(setData(calendar, dateFormat, donationInfo));
+            }
+
+            return new ResponseEntity<>(incomeYear, HttpStatus.OK);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public MonthIncome setData(Calendar calendar, SimpleDateFormat dateFormat, DonationInfo donationInfo) {
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        String nextMonthFirstDay = dateFormat.format(calendar.getTime());
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        String nextMonthLastDay = dateFormat.format(calendar.getTime());
+        //System.out.println(nextMonthFirstDay);
+
+        MonthIncome monthIncome = new MonthIncome();
+        String month = new SimpleDateFormat("MMMM").format(calendar.getTime());
+        monthIncome.setMonth(month);
+        monthIncome.setIncome(0);
+        List<Donation> donations = donationRepository.getDonationsPerWeek(nextMonthFirstDay, nextMonthLastDay, donationInfo.getId());
+        donations.forEach(donation -> {
+            float income = monthIncome.getIncome() + donation.getMontant();
+            monthIncome.setIncome(income);
+        });
+
+        return monthIncome;
     }
 
     @PostMapping("/stats/")

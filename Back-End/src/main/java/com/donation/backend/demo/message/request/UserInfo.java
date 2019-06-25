@@ -16,12 +16,13 @@ public class UserInfo {
     private String email;
     private List<String> roles;
     private boolean enabled;
+    private String image;
 
     public UserInfo() {};
 
     public UserInfo(Long id, String firstname, String lastname, String banque, String agence,
                     String ccb, String accountName, String socialLink,
-                    String username, String email, List<String> roles, boolean enabled) {
+                    String username, String email, List<String> roles, boolean enabled, String image) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -34,6 +35,7 @@ public class UserInfo {
         this.email = email;
         this.roles = roles;
         this.enabled = enabled;
+        this.image = image;
     }
 
     public Long getId() {
@@ -130,5 +132,13 @@ public class UserInfo {
 
     public void setSocialLink(String socialLink) {
         this.socialLink = socialLink;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
