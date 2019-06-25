@@ -24,6 +24,7 @@ public class UserPrinciple implements UserDetails {
     private String agence;
     private String ccb;
     private String accountName;
+    private String image;
 
     private String username;
 
@@ -37,7 +38,7 @@ public class UserPrinciple implements UserDetails {
     public UserPrinciple(Long id, String firstName, String lastName,
                          String banque, String agence, String ccb, String accountName,
                          String username, String email, String password,
-                         Collection<? extends GrantedAuthority> authorities) {
+                         Collection<? extends GrantedAuthority> authorities, String image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,6 +50,7 @@ public class UserPrinciple implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.image = image;
     }
 
     public static UserPrinciple build(User user) {
@@ -67,7 +69,8 @@ public class UserPrinciple implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                user.getImage()
         );
     }
 
@@ -136,6 +139,14 @@ public class UserPrinciple implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

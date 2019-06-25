@@ -23,6 +23,7 @@ public class User {
     private String socialLink;
     private String username;
     private String email;
+    private String image;
 
     private String password;
     private boolean enabled;
@@ -35,7 +36,7 @@ public class User {
     }
 
     public User(String firstName, String lastName, String banque, String agence, String ccb, String accountName,
-                String socialLink, String username, String email, String password, boolean enabled) {
+                String socialLink, String username, String email, String password, boolean enabled, String image) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.banque = banque;
@@ -47,6 +48,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.enabled = enabled;
+        this.image = image;
     }
 
     public Long getId() {
@@ -151,5 +153,13 @@ public class User {
 
     public void setSocialLink(String socialLink) {
         this.socialLink = socialLink;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
