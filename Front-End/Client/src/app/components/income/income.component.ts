@@ -25,8 +25,8 @@ export class IncomeComponent implements OnInit {
       }
 
         this.donationService.getDonationsByYear(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
-          console.log(data);
-          //this.incomes = data["incomethisMonth"]; //does not work because we need an array of object
+          this.incomes = data['monthIncomes'];
+           console.log(this.incomes);
 
         });
     });
@@ -39,7 +39,6 @@ export class IncomeComponent implements OnInit {
     console.log(this.todaysDate());
     this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(this.todaysDate()) }).subscribe(data => {
     this.incomes = data['incomeThisMonth'];
-    console.log(data);
     });
   }
 

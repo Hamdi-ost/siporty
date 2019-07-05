@@ -44,9 +44,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   fetchTopFans() {
     this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
-
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
-      console.log(this.TopDonorsPerWeek )
+      console.log(this.TopDonorsPerWeek)
       });
   }
 
@@ -68,7 +67,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       agency: ['', Validators.required]
     });
     this.datePerMonth = this.todaysDate();
-    console.log(this.datePerMonth);
     this.fetchTopFans();
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

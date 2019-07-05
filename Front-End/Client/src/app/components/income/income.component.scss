@@ -62,7 +62,7 @@ dt {
   &:hover,
   &:focus {
     &:after {
-      background-color: #aaa;
+      background-color: white;
     }
   }
 }
@@ -91,7 +91,7 @@ dt {
 
   dl {
     display: flex;
-    background-color: black;
+    background-color: #09161D;
     flex-direction: column;
     width: 50%;
     max-width: 800px;
@@ -120,4 +120,192 @@ dt {
     margin-left: -3rem;
   }
 
+}
+
+
+html {
+  box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 2em;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.chart, .chart caption {
+  background: #09161D;
+}
+
+.chart {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 2em 0 5em 2em;
+  border-right: 2em solid #09161D;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart caption {
+  width: 100%;
+  margin-bottom: 2rem;
+  height: 2rem;
+}
+
+.chart h1 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.chart thead, .chart .scale, .chart .body {
+  height: calc(100% - 4rem);
+}
+
+.chart thead {
+  display: flex;
+  align-items: center;
+}
+
+.chart thead tr {
+  width: 1em;
+}
+
+.chart .yLabel {
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left center;
+  font-weight: bold;
+  color: white;
+
+}
+
+.chart .yLabel::after {
+  content: "(" attr(data-unit) ")";
+  margin-left: 10px;
+}
+
+.chart .xLabel {
+  position: absolute;
+  width: 100%;
+  bottom: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.chart .scale {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.chart .scale tr {
+  flex-grow: 1;
+  color: #fff;
+}
+
+.chart .scale td {
+  text-align: center;
+  display: block;
+  margin-right: 0.5em;
+  line-height: 0em;
+  color: #fff;
+}
+
+.chart .scale td::after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background: #fff;
+  color: #fff;
+  position: absolute;
+}
+
+.chart .body {
+  display: flex;
+  flex-grow: 1;
+  background: #09161D;
+}
+
+.chart .body tr {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 0 2% 0 0;
+  position: relative;
+  max-width: 100px;
+}
+
+.chart .body tr:first-child {
+  margin-left: 2%;
+}
+
+.record {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: -2em;
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+}
+
+.sales {
+  background: #32C3A2;
+  display: block;
+  width: 80%;
+}
+
+.chart .sales span {
+  display: block;
+  background: #09161D;
+  color: #32C3A2;
+  padding: 3.5px;
+  text-align: center;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  margin: 2%;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chart .sales:hover span {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .chart .sales span, .record {
+    display: none;
+  }
+
+  .chart h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 290px) {
+  .chart caption, .chart .scale, .chart thead {
+    display: none;
+  }
+
+  .chart {
+    border: 0;
+    height: 30px;
+    padding: 0;
+    background: transparent;
+  }
+
+  .chart .body {
+    height: 100%;
+    background: transparent;
+  }
 }

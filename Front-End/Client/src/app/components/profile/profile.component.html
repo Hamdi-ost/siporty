@@ -2,47 +2,67 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-sm-4">
-      <h2>TOP FANS (MONTH)</h2>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let donor of TopDonorsPerMonth">
-            <td>{{donor.name}}</td>
-            <td>{{donor.montant}} DT</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-6 col-sm-4">
-      <h2>TOP FANS (WEEK)</h2>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let donor of TopDonorsPerWeek">
-            <td>{{donor.name}}</td>
-            <td>{{donor.montant}} DT</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="col-sm-12">
+
+      <div id="menu-tab"><!----------------tableau-01---------------------------------->
+        <div id="page-wrap">
+        <div class="tabs"><!----------------onglet-01-accueil-------------------------->
+        <div class="tab"><input id="tab-1" checked="checked" name="tab-group-1" type="radio" />
+          <label for="tab-1" style="color: white">Top Fans Per Month</label>
+        <div class="content">
+            <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let donor of TopDonorsPerMonth">
+                    <td>{{donor.name}}</td>
+                    <td>{{donor.montant}} DT</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        </div>
+        <!----------------onglet-02-articles-------------------------->
+        <div class="tab"><input id="tab-2" name="tab-group-1" type="radio" />
+          <label for="tab-2" style="color: white">Top Fans Per Week</label>
+        <div class="content">
+            <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let donor of TopDonorsPerWeek">
+                    <td>{{donor.name}}</td>
+                    <td>{{donor.montant}} DT</td>
+                  </tr>
+                </tbody>
+              </table>
+
+        </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+        <br /><br /><br />
+        <!-- the end of the menu -->
+</div>
   </div>
 
   <div class="row">
-    <div class="col-md-6 col-sm-6">
+    <div class="col-sm-3"></div>
+    <div class="col-md-6">
       <form id="login">
         <button onclick="document.getElementById('id01').style.display='block'"
-          [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">
+          [disabled]="loading"
+          type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue; margin-top: -120px;" >
           Payout Method
         </button>
       </form>
