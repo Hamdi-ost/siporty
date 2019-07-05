@@ -62,4 +62,11 @@ export class DonationService {
     return this.http.post(apiUrl + 'donation-details/stats/' + id + '/', date, { headers: this.headers });
   }
 
+  getDonationsByYear(id, date) {
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
+    return this.http.get(apiUrl + 'donation-details/income-year/' + id + '/', { headers: this.headers });
+  }
+
+
 }

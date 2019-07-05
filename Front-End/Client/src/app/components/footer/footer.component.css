@@ -1,0 +1,15 @@
+.foot{
+
+  color: white;
+  margin-bottom: 20px;
+  margin-left: 54%;
+}
+
+.footer1{
+    position: absolute;
+    left: 0;
+    top : 155%;
+    width: 100%;
+    color: white;
+
+}

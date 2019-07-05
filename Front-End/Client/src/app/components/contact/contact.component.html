@@ -1,4 +1,7 @@
+<button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box fix-it" style="color:aliceblue">Support SiportY!</button>
+
 <div class="login_form">
+
   <section class="login-wrapper">
     <div class="logo">
       <a target="_blank" rel="noopener" href="https://unrealnavigation.com">
@@ -29,6 +32,9 @@
         <div *ngIf="f.content.errors.required">&nbsp;&nbsp;&nbsp;Message is required</div>
       </div>
       <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">Send</button>
+
     </form>
+
   </section>
+
 </div>

@@ -21,7 +21,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component'; // <-- import the module
+import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component';
+import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.co
     AlertComponent,
     AboutUsComponent,
     ContactComponent,
-    ThanksfordonComponent
+    ThanksfordonComponent,
+    TermsandconditionsComponent
   ],
   imports: [
     NgxPaginationModule,

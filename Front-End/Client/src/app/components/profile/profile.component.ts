@@ -21,7 +21,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   datePerMonth = '';
   datePerWeek = '';
   date = '07/05/2019';
-  TopDonors;
+  TopDonorsPerMonth;
+  TopDonorsPerWeek;
 
   constructor(
     private userService: UserService,
@@ -41,10 +42,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   fetchTopFans() {
-    console.log(this.reformatDate(this.datePerMonth));
-    this.donationService.getStatsById(this.currentUser.id, { date: this.reformatDate(this.datePerMonth) }).subscribe(data => {
-      this.TopDonors = data['topTenDonorsMonth'];
+    this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
+      this.TopDonorsPerMonth = data['topTenDonorsMonth'];
 
+      this.TopDonorsPerWeek = data['topTenDonorsWeek'];
+      console.log(this.TopDonorsPerWeek )
       });
   }
 
@@ -53,10 +55,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return dArr[2] + '/' + dArr[1] + '/' + dArr[0].substring(); // ex out: "18/01/10"
   }
 
-  onSearchChange(newValue) {
-    this.datePerMonth = newValue;
-    this.fetchTopFans();
-  }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
@@ -69,7 +67,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       bankName: ['', Validators.required],
       agency: ['', Validators.required]
     });
-
+    this.datePerMonth = this.todaysDate();
+    console.log(this.datePerMonth);
+    this.fetchTopFans();
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -111,4 +111,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
 
   }
+
+
+  todaysDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+      return dd + '/' + mm + '/' + yyyy;
+  }
+
+
+
 }

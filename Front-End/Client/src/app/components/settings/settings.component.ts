@@ -18,6 +18,8 @@ export class SettingsComponent implements OnInit {
   returnUrl: string;
   loading = false;
   userUpdated;
+  selectedFile: File;
+  image;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +50,11 @@ export class SettingsComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() {
     return this.settingsForm.controls;
+  }
+
+  onFileUpload(event){
+    this.selectedFile = event.target.files[0];
+    console.log(event);
   }
 
   onSubmit() {

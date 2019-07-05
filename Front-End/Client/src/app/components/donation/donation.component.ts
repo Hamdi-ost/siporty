@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertService, UserService } from 'src/app/services';
+import { AlertService, UserService, AuthenticationService } from 'src/app/services';
 import { ContactService } from 'src/app/services/contact.service';
 import { DonationService } from 'src/app/services/donation.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models';
 
 @Component({
   selector: 'app-donation',
@@ -18,12 +20,24 @@ export class DonationComponent implements OnInit {
   id;
   username;
   socialLink;
+  currentUserSubscription: Subscription;
+  TopDonorsPerMonth;
+  TopDonorsPerWeek;
+  currentUser: User;
+  datePerMonth: string;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private alertService: AlertService,
     private donationService: DonationService,
-    private route: ActivatedRoute) { }
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute) {
+      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+        if (user) {
+          this.currentUser = user['user'];
+        }
+      });
+    }
 
   ngOnInit() {
 
@@ -40,14 +54,24 @@ export class DonationComponent implements OnInit {
           montant: ['', Validators.required],
           message: ['', Validators.required]
         });
-
       });
     });
+
+    this.fetchTopFans();
   }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.donationForm.controls;
+  }
+
+  fetchTopFans() {
+    this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
+      this.TopDonorsPerMonth = data['topTenDonorsMonth'];
+
+      this.TopDonorsPerWeek = data['topTenDonorsWeek'];
+      console.log(this.TopDonorsPerWeek )
+      });
   }
 
   onSubmit() {
@@ -70,5 +94,13 @@ export class DonationComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  todaysDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+      return dd + '/' + mm + '/' + yyyy;
   }
 }

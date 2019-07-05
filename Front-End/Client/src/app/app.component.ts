@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked, OnInit } from '@angular/core';
 import { AuthenticationService } from './services';
 import { Router } from '@angular/router';
 
@@ -7,9 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
 export class AppComponent implements AfterViewChecked {
   title = 'JEISITE';
   logIn = false;
+  url='';
+  chaine='';
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -27,5 +32,11 @@ export class AppComponent implements AfterViewChecked {
 
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit() {
+
+    this.url = window.location.pathname;
+
   }
 }

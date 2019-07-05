@@ -24,9 +24,9 @@ export class IncomeComponent implements OnInit {
 
       }
 
-        this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
-            this.incomes = data["incomethisMonth"]; //does not work because we need an array of object
-
+        this.donationService.getDonationsByYear(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
+          console.log(data);
+          //this.incomes = data["incomethisMonth"]; //does not work because we need an array of object
 
         });
     });

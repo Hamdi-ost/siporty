@@ -10,6 +10,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { DonationComponent } from './components/donation/donation.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { AuthGuard } from './guards';
 
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'donationsucceeded', component: ThanksfordonComponent },
+  { path: 'termsandconditions', component: TermsandconditionsComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

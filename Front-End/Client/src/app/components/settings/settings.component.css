@@ -30,6 +30,13 @@
   border-radius: 30px;
 
 }
+.fix-it{
+
+  position: relative;
+   top: -150px;
+   right: -1070px;
+
+}
 
 .button-save{
   width: 19%;

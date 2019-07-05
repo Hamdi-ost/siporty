@@ -7,4 +7,6 @@ export class User {
     role: string[];
     enable: boolean;
     token: string;
+    image: string;
+
 }
