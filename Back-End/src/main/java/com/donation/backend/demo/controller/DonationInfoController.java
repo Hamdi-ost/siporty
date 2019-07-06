@@ -286,7 +286,7 @@ public class DonationInfoController {
             });
             incomeYear.addMonthIncome(monthIncome);
 
-            for(int i=0; i<10; i++) {
+            for(int i=0; i<11; i++) {
                 calendar.add(Calendar.MONTH, 1);
                 incomeYear.addMonthIncome(setData(calendar, dateFormat, donationInfo));
             }
@@ -447,7 +447,7 @@ public class DonationInfoController {
             String currentDate = dateFormat.format(cal.getTime());
             //System.out.println(dateFormat.format(cal.getTime()));
 
-            cal.add(Calendar.DATE, +7);
+            cal.add(Calendar.DATE, +8);
             String nextWeekDate = dateFormat.format(cal.getTime());
             statInfo.setDate2(nextWeekDate);
             //System.out.println(dateFormat.format(cal.getTime()));
