@@ -12,6 +12,7 @@ export class IncomeComponent implements OnInit {
   currentUserSubscription: Subscription;
   currentUser;
   incomes = [];
+  june;
 
   constructor(private donationService: DonationService, private authenticationService: AuthenticationService) {
 
@@ -21,12 +22,12 @@ export class IncomeComponent implements OnInit {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       if (user) {
         this.currentUser = user['user'];
-
       }
 
         this.donationService.getDonationsByYear(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
           this.incomes = data['monthIncomes'];
            console.log(this.incomes);
+           this.june = this.incomes[5].income ;
 
         });
     });

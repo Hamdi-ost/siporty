@@ -12,6 +12,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { AuthGuard } from './guards';
+import { GiffyComponent } from './components/giffy/giffy.component';
 
 const appRoutes: Routes = [
 
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'donation/:username', component: DonationComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'myGiphy', component: GiffyComponent },
   { path: 'donationsucceeded', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   // otherwise redirect to home

@@ -13,14 +13,14 @@ style="color:aliceblue; font-family: -apple-system, BlinkMacSystemFont, 'Segoe U
       </tr>
       <ng-container *ngIf="notifications.length >= 0">
         <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p }">
-          <td data-th="Name" style="text-align: center">
-           <b>{{ notification.name }}</b>
+          <td data-th="Name" style="text-align: center; color: white;">
+           {{ notification.name }}
           </td>
-          <td data-th="Message" style="text-align: center">
-           <b>{{ notification.message }}</b>
+          <td data-th="Message" style="text-align: center; color: white;">
+           {{ notification.message }}
           </td>
-          <td data-th="Amount" style="text-align: center" ><b>{{ notification.montant }} DT</b></td>
-          <td data-th="Date" style="text-align: center"><b>{{ notification.date }}</b></td>
+          <td data-th="Amount" style="text-align: center; color: white;" >{{ notification.montant }} DT</td>
+          <td data-th="Date" style="text-align: center; color: white;">{{ notification.date }}</td>
         </tr>
       </ng-container>
     </tbody>

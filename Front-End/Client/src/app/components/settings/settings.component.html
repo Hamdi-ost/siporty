@@ -76,13 +76,19 @@
       <div class="input-group smaller" style="margin-top: -20px">
           <span class="input-group-btn">
               <span class="btn btn-file btn-outline-primary border-box" style="color: white">
-                  Browse…<input formControlName="socialLink" type="file"
-                  id="imgInp" class="smaller" (change)="onFileUpload($event)" [(ngModel)]="image">
+                <button class="smaller" type="button" (click)="filePicker.click()">Browse…</button>
+                <input formControlName="socialLink" type="file"
+                  id="imgInp" class="smaller" #filePicker (change)="onImagePicked($event)" [(ngModel)]="image">
 
                 </span>
           </span>
           <input type="text" class="form-control smaller transparent-cla border-box" style="margin-top: 0px;" readonly>
       </div>
+
+      <!-- <div>
+        <input type="file" #filePicker (change)="onImagePicked($event)">
+      </div> -->
+
       <img id='img-upload'/>
      <label class="link">
       This is the URL to your tip page where views can send you donations.

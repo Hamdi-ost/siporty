@@ -1,5 +1,6 @@
 import { StatsService } from './../../services/stats.service';
 import { Component, OnInit } from '@angular/core';
+import { DonationsService } from 'src/app/services/donations.service';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,23 @@ export class HomeComponent implements OnInit {
   totalUsers;
   totalDonations;
 
-  constructor(private statsService: StatsService) { }
+  constructor(private statsService: StatsService, private donationService: DonationsService) { }
 
   ngOnInit() {
     this.statsService.getAllStats().subscribe(stats => {
       console.log(stats);
       this.totalUsers = stats['totalUsers'];
       this.top10Donors = stats['topTenDonors'];
-      this.totalDonations = stats['toptalDonors'];
+      this.totalDonations = stats['totalDonors'];
     })
+
+    this.donationService.getAllDonations()
+      .subscribe(donations => {
+        console.log(donations);
+
+      });
+
+
   }
 
 }

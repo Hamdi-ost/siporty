@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
+import { GiffyComponent } from './components/giffy/giffy.component';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -42,7 +43,9 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
     AboutUsComponent,
     ContactComponent,
     ThanksfordonComponent,
-    TermsandconditionsComponent
+    TermsandconditionsComponent,
+    GiffyComponent
+
   ],
   imports: [
     NgxPaginationModule,
