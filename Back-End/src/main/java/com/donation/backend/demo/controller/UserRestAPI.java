@@ -19,6 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -338,7 +341,7 @@ public class UserRestAPI {
 
     @PutMapping("/change-password")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<?> updateUser(@RequestBody PasswordChangeForm passwordChangeForm) {
+    public ResponseEntity<?> updateUser(@RequestParam("image") MultipartFile file, @RequestBody PasswordChangeForm passwordChangeForm) {
 
         Optional<User> userOptional = userRepository.findById(passwordChangeForm.getId());
         if(userOptional.isPresent()) {
@@ -350,6 +353,15 @@ public class UserRestAPI {
             }
             if(passwordChangeForm.getSocialLink() != null) {
                 _user.setSocialLink(passwordChangeForm.getSocialLink());
+            }
+
+            if(passwordChangeForm.getImage() != null) {
+                try {
+                    _user.setImage(file.getBytes());
+                    _user.setFileName(file.getOriginalFilename());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             userRepository.save(_user);
             return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);

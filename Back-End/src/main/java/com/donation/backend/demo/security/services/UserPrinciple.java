@@ -70,7 +70,7 @@ public class UserPrinciple implements UserDetails {
                 user.getEmail(),
                 user.getPassword(),
                 authorities,
-                user.getImage()
+                user.getFileName()
         );
     }
 
