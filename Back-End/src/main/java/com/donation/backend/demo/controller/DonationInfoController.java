@@ -371,7 +371,7 @@ public class DonationInfoController {
                     statAdmin.setIncomeThisMonth(donation.getMontant() + oldIncome);
                 });
 
-                List<Donation> donations1 = donationRepository.getDonationsPerWeek(statInfo.getDay1(), statInfo.getDay2(), donationInfo.getId());
+                List<Donation> donations1 = donationRepository.getDonationsPerWeek(currentDate, nextWeekDate, donationInfo.getId());
                 donations1.forEach(donation -> {
                     //System.out.println(donation.getName());
                     float oldIncome = statAdmin.getIncomeThisWeek();
@@ -390,7 +390,7 @@ public class DonationInfoController {
                 });
                 statAdmin.setTopTenDonorsMonth(donationMessages1);
 
-                List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(statInfo.getDay1(), statInfo.getDay2(), donationInfo.getId());
+                List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(currentDate, nextWeekDate, donationInfo.getId());
                 List<DonationMessage> donationMessages2 = new ArrayList<>();
                 donations3.forEach(donation -> {
                     DonationMessage dm = new DonationMessage();
@@ -478,7 +478,7 @@ public class DonationInfoController {
                 statAdmin.setIncomeThisMonth(donation.getMontant() + oldIncome);
             });
 
-            List<Donation> donations1 = donationRepository.getDonationsPerWeek(statInfo.getDay1(), statInfo.getDay2(), donationInfo.getId());
+            List<Donation> donations1 = donationRepository.getDonationsPerWeek(currentDate, nextWeekDate, donationInfo.getId());
             donations1.forEach(donation -> {
                 //System.out.println(donation.getName());
                 float oldIncome = statAdmin.getIncomeThisWeek();
@@ -497,7 +497,7 @@ public class DonationInfoController {
             });
             statAdmin.setTopTenDonorsMonth(donationMessages1);
 
-            List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(statInfo.getDay1(), statInfo.getDay2(), donationInfo.getId());
+            List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(currentDate, nextWeekDate, donationInfo.getId());
             List<DonationMessage> donationMessages2 = new ArrayList<>();
             donations3.forEach(donation -> {
                 DonationMessage dm = new DonationMessage();
@@ -508,6 +508,8 @@ public class DonationInfoController {
                 donationMessages2.add(dm);
             });
             statAdmin.setTopTenDonorsWeek(donationMessages2);
+
+            System.out.println(donations3.size());
 
             long totalUsers = userRepository.countByRoles("ROLE_USER");
             statAdmin.setTotalUsers(totalUsers);

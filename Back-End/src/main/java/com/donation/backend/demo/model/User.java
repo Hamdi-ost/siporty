@@ -23,7 +23,9 @@ public class User {
     private String socialLink;
     private String username;
     private String email;
-    private String image;
+
+    private byte[] image;
+    private String fileName;
 
     private String password;
     private boolean enabled;
@@ -48,7 +50,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.image = image;
+        this.fileName = image;
     }
 
     public Long getId() {
@@ -155,11 +157,19 @@ public class User {
         this.socialLink = socialLink;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

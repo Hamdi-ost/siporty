@@ -5,6 +5,7 @@ public class PasswordChangeForm {
     private Long id;
     private String password;
     private String socialLink;
+    private String image;
 
     public PasswordChangeForm() {
     }
@@ -37,5 +38,13 @@ public class PasswordChangeForm {
 
     public void setSocialLink(String socialLink) {
         this.socialLink = socialLink;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
