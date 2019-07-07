@@ -362,7 +362,7 @@ public class DonationInfoController {
                 float newTotal = statAdmin.getAmountStillNotPayed() + donationInfo.getSolde();
                 statAdmin.setAmountStillNotPayed(newTotal);
 
-                long totalDonors = donationRepository.countAllByDonationInfoId(donationInfo.getId());
+                long totalDonors = statAdmin.getTotalDonors() + donationRepository.countAllByDonationInfoId(donationInfo.getId());
                 statAdmin.setTotalDonors(totalDonors);
 
                 List<Donation> donations = donationRepository.getDonationsPerMonthAndDonationInfoId(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
@@ -378,7 +378,7 @@ public class DonationInfoController {
                     statAdmin.setIncomeThisWeek(donation.getMontant() + oldIncome);
                 });
 
-                List<Donation> donations2 = donationRepository.getTopDonorsPerMonth(statInfo.getMonth(),statInfo.getYear(), donationInfo.getId());
+                List<Donation> donations2 = donationRepository.getTopDonorsPerMonthAll(statInfo.getMonth(),statInfo.getYear());
                 List<DonationMessage> donationMessages1 = new ArrayList<>();
                 donations2.forEach(donation -> {
                     DonationMessage dm = new DonationMessage();
@@ -390,7 +390,7 @@ public class DonationInfoController {
                 });
                 statAdmin.setTopTenDonorsMonth(donationMessages1);
 
-                List<Donation> donations3 = donationRepository.getTopDonorsPerWeek(currentDate, nextWeekDate, donationInfo.getId());
+                List<Donation> donations3 = donationRepository.getTopDonorsPerWeekAll(currentDate, nextWeekDate);
                 List<DonationMessage> donationMessages2 = new ArrayList<>();
                 donations3.forEach(donation -> {
                     DonationMessage dm = new DonationMessage();
