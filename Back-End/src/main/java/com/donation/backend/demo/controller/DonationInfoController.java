@@ -326,18 +326,20 @@ public class DonationInfoController {
         try {
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String date = statInfo.getDate();
 
-            Calendar cal = Calendar.getInstance();
-            Date date1 = dateFormat.parse(date);
-            cal.setTime(date1);
-            String currentDate = dateFormat.format(cal.getTime());
-            //System.out.println(dateFormat.format(cal.getTime()));
+            Calendar cal1 = Calendar.getInstance();
+            cal1.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal1.clear(Calendar.MINUTE);
+            cal1.clear(Calendar.SECOND);
+            cal1.clear(Calendar.MILLISECOND);
+            cal1.set(Calendar.DAY_OF_WEEK, cal1.getFirstDayOfWeek());
+            String currentDate = dateFormat.format(cal1.getTime());
+            System.out.println(dateFormat.format(cal1.getTime()));
 
-            cal.add(Calendar.DATE, +7);
-            String nextWeekDate = dateFormat.format(cal.getTime());
+            cal1.add(Calendar.DATE, +7);
+            String nextWeekDate = dateFormat.format(cal1.getTime());
             statInfo.setDate2(nextWeekDate);
-            //System.out.println(dateFormat.format(cal.getTime()));
+            System.out.println(dateFormat.format(cal1.getTime()));
 
             String[] dates = currentDate.split("/");
             String[] dates1 = nextWeekDate.split("/");
@@ -347,7 +349,7 @@ public class DonationInfoController {
 
             statInfo.setMonth(dates[1]);
             statInfo.setYear(dates[2]);
-            //System.out.println(statInfo.getDay1()+" | "+statInfo.getDay2()+" | "+statInfo.getMonth()+" | "+statInfo.getYear());
+            System.out.println(statInfo.getDay1()+" | "+statInfo.getDay2()+" | "+statInfo.getMonth()+" | "+statInfo.getYear());
 
             StatAdmin statAdmin = new StatAdmin();
 
@@ -439,18 +441,20 @@ public class DonationInfoController {
             DonationInfo donationInfo = _donationInfo.get();
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String date = statInfo.getDate();
 
-            Calendar cal = Calendar.getInstance();
-            Date date1 = dateFormat.parse(date);
-            cal.setTime(date1);
-            String currentDate = dateFormat.format(cal.getTime());
-            //System.out.println(dateFormat.format(cal.getTime()));
+            Calendar cal1 = Calendar.getInstance();
+            cal1.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal1.clear(Calendar.MINUTE);
+            cal1.clear(Calendar.SECOND);
+            cal1.clear(Calendar.MILLISECOND);
+            cal1.set(Calendar.DAY_OF_WEEK, cal1.getFirstDayOfWeek());
+            String currentDate = dateFormat.format(cal1.getTime());
+            System.out.println(dateFormat.format(cal1.getTime()));
 
-            cal.add(Calendar.DATE, +8);
-            String nextWeekDate = dateFormat.format(cal.getTime());
+            cal1.add(Calendar.DATE, +7);
+            String nextWeekDate = dateFormat.format(cal1.getTime());
             statInfo.setDate2(nextWeekDate);
-            //System.out.println(dateFormat.format(cal.getTime()));
+            System.out.println(dateFormat.format(cal1.getTime()));
 
             String[] dates = currentDate.split("/");
             String[] dates1 = nextWeekDate.split("/");
