@@ -1,5 +1,8 @@
-<button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box fix-it" style="color:aliceblue">Support SiportY!</button>
-
+<button [disabled]="loading" type="submit"
+class="btn btn-outline-primary border-box fix-it" style="color:aliceblue"
+routerLink="/donation/SiportY!"
+>
+  Support SiportY!</button>
 <!-- < -- Starts Here -->
 <div class="row">
   <div class="col-md-12">
@@ -35,52 +38,52 @@
         <tbody class="body">
           <tr>
             <td class="record" title="January">January</td>
-            <td class="sales" [ngStyle]="{'height': incomes[0].income+1 + '%'}"
+            <td class="sales" [ngStyle]="{'height': (incomes[0].income+4)/4 + '%'}"
             title="{{ incomes[0].income }}"><span *ngIf="incomes[0].income">{{incomes[0].income}}</span></td>
           </tr>
           <tr>
               <td class="record" title="February">February</td>
-              <td class="sales" [ngStyle]="{'height': incomes[1].income+1 + '%'}" title="{{ incomes[1].income }}"><span>{{ incomes[1].income }}</span></td>
+              <td class="sales" [ngStyle]="{'height': (incomes[1].income+4)/4 + '%'}" title="{{ incomes[1].income }}"><span>{{ incomes[1].income }}</span></td>
             </tr>
             <tr>
                 <td class="record" title="March">March</td>
-                <td class="sales" [ngStyle]="{'height': incomes[2].income +1+ '%'}" title="{{ incomes[2].income }}"><span>{{ incomes[2].income }}</span></td>
+                <td class="sales" [ngStyle]="{'height': (incomes[2].income +4)/4+ '%'}" title="{{ incomes[2].income }}"><span>{{ incomes[2].income }}</span></td>
               </tr>
               <tr>
                   <td class="record" title="April">April</td>
-                  <td class="sales" [ngStyle]="{'height': incomes[3].income +1+ '%'}" title="{{ incomes[3].income }}"><span>{{ incomes[3].income }}</span></td>
+                  <td class="sales" [ngStyle]="{'height': (incomes[3].income +4)/4+ '%'}" title="{{ incomes[3].income }}"><span>{{ incomes[3].income }}</span></td>
                 </tr>
                 <tr>
                     <td class="record" title="May">May</td>
-                    <td class="sales" [ngStyle]="{'height': incomes[4].income+1 + '%'}" title="{{ incomes[4].income }}"><span>{{ incomes[4].income }}</span></td>
+                    <td class="sales" [ngStyle]="{'height': (incomes[4].income+4)/4 + '%'}" title="{{ incomes[4].income }}"><span>{{ incomes[4].income }}</span></td>
                   </tr>
                   <tr>
                       <td class="record" title="June" >June</td>
-                      <td class="sales" [ngStyle]="{'height': (incomes[5].income+1)*0.1  + '%'}" title="{{ incomes[5].income }}"><span>{{ incomes[5].income }}</span></td>
+                      <td class="sales" [ngStyle]="{'height': (incomes[5].income+4)/4  + '%'}" title="{{ incomes[5].income }}"><span>{{ incomes[5].income }}</span></td>
                     </tr>
                     <tr>
                         <td class="record" title="July">July</td>
-                        <td class="sales" [ngStyle]="{'height': (incomes[6].income+1)*0.1  + '%'}" title="{{ incomes[6].income }}"><span>{{ incomes[6].income }}</span></td>
+                        <td class="sales" [ngStyle]="{'height': (incomes[6].income+4)/4  + '%'}" title="{{ incomes[6].income }}"><span>{{ incomes[6].income }}</span></td>
                       </tr>
                       <tr>
                           <td class="record" title="August">August</td>
-                          <td class="sales" [ngStyle]="{'height': incomes[7].income +1 + '%'}" title="{{ incomes[7].income }}"><span>{{ incomes[7].income }}</span></td>
+                          <td class="sales" [ngStyle]="{'height': (incomes[7].income +4)/4 + '%'}" title="{{ incomes[7].income }}"><span>{{ incomes[7].income }}</span></td>
                         </tr>
                         <tr>
             <td class="record" title="September">September</td>
-            <td class="sales" [ngStyle]="{'height': incomes[8].income+1 + '%'}" title="{{ incomes[8].income }}"><span>{{ incomes[8].income }}</span></td>
+            <td class="sales" [ngStyle]="{'height': (incomes[8].income+4)/4 + '%'}" title="{{ incomes[8].income }}"><span>{{ incomes[8].income }}</span></td>
           </tr>
           <tr>
             <td class="record" title="October">October</td>
-            <td class="sales" [ngStyle]="{'height': incomes[9].income+1 + '%'}" title="{{ incomes[9].income }}"><span>{{ incomes[9].income }}</span></td>
+            <td class="sales" [ngStyle]="{'height': (incomes[9].income+4)/4 + '%'}" title="{{ incomes[9].income }}"><span>{{ incomes[9].income }}</span></td>
           </tr>
           <tr>
             <td class="record" title="November">November</td>
-            <td class="sales" [ngStyle]="{'height': incomes[10].income+1 + '%'}" title="{{ incomes[10].income }}"><span>{{ incomes[10].income }}</span></td>
+            <td class="sales" [ngStyle]="{'height': (incomes[10].income+4)/4 + '%'}" title="{{ incomes[10].income }}"><span>{{ incomes[10].income }}</span></td>
           </tr>
           <tr>
             <td class="record" title="December">December</td>
-            <td class="sales" [ngStyle]="{'height': incomes[11].income+1 + '%'}" title="{{ incomes[11].income }}"><span>{{ incomes[11].income }}</span></td>
+            <td class="sales" [ngStyle]="{'height': (incomes[11].income+4)/4 + '%'}" title="{{ incomes[11].income }}"><span>{{ incomes[11].income }}</span></td>
           </tr>
         </tbody>
       </table>
