@@ -5,9 +5,9 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>{{donationRate}}<sup style="font-size: 20px">%</sup></h3>
+                    <h3>{{donationRate}}</h3>
 
-                    <p>Donation Rate</p>
+                    <p>Total income</p>
                 </div>
 
                 <div class="icon">
@@ -15,8 +15,10 @@
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <button type="button" class="btn btn-info">info</button>
-                <button type="button" class="btn btn-dark">Dark</button>
+            <div style="margin-left: 57px">
+            <button type="button" class="btn btn-info" (click)="changeMonth()">Month</button>
+                <button type="button" class="btn btn-info" (click)="changeWeek()">Week</button>
+              </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -33,8 +35,7 @@
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <button type="button" class="btn btn-info">info</button>
-                <button type="button" class="btn btn-dark">Dark</button>
+
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -69,8 +70,6 @@
                 <a [routerLink]="['/donations']" routerLinkActive="router-link-active" class="small-box-footer">More
                     info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <button type="button" class="btn btn-info">info</button>
-                <button type="button" class="btn btn-dark">Dark</button>
         </div>
         <!-- ./col -->
     </div>
@@ -102,8 +101,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                    <td>Call of Duty IV</td>
+
                                     <td>
                                         <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34"
                                                 height="20"

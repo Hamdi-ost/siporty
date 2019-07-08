@@ -12,26 +12,34 @@ export class HomeComponent implements OnInit {
   latestMembers = [];
   top10Donors = [];
   donationRate;
-  visitRate;
+  visitRate = 100;
   totalUsers;
   totalDonations;
+  incomethisweek;
+  incomethimonth;
+
 
   constructor(private statsService: StatsService, private donationService: DonationsService) { }
 
   ngOnInit() {
     this.statsService.getAllStats().subscribe(stats => {
-      console.log(stats);
       this.totalUsers = stats['totalUsers'];
       this.top10Donors = stats['topTenDonors'];
       this.totalDonations = stats['totalDonors'];
+      this.incomethisweek = stats['incomeThisWeek'];
+      this.incomethimonth = stats['incomeThisMonth'];
+      this.donationRate = this.incomethimonth;
     })
 
-    this.donationService.getAllDonations()
-      .subscribe(donations => {
-        console.log(donations);
 
-      });
+  }
 
+  changeMonth(){
+      this.donationRate = this.incomethimonth;
+  }
+
+  changeWeek(){
+    this.donationRate = this.incomethisweek;
 
   }
 

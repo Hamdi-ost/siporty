@@ -17,8 +17,18 @@ export class StatsService {
   }
 
   getAllStats() {
+    console.log(this.todaysDate());
     this.token = JSON.parse(localStorage.getItem('currentUser')).token;
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-    return this.http.post(`${this.apiUrl}`, { date: '02/05/2018' }, { headers: this.headers });
+    return this.http.post(`${this.apiUrl}`, { date: this.todaysDate() }, { headers: this.headers });
+
+  }
+
+  todaysDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+      return dd + '/' + mm + '/' + yyyy;
   }
 }

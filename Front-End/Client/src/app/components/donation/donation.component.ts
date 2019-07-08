@@ -70,7 +70,7 @@ export class DonationComponent implements OnInit {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
 
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
-      console.log(this.TopDonorsPerWeek )
+      console.log(data);
       });
   }
 
