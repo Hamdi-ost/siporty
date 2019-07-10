@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   { path: 'donation/:username', component: DonationComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'myGiphy', component: GiffyComponent },
+  { path: 'myGiffy', component: GiffyComponent },
   { path: 'donationsucceeded', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   // otherwise redirect to home

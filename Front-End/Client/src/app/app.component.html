@@ -1,4 +1,4 @@
-<nav role="navigation">
+<nav role="navigation" *ngIf="url !== '/myGiffy'">
   <div id="menuToggle" style="z-index: 99;">
     <input type="checkbox" />
 
@@ -25,11 +25,11 @@
     </ul>
   </div>
 </nav>
-<app-navbar></app-navbar>
+<app-navbar *ngIf="url !== '/myGiffy'"></app-navbar>
 <!-- main app container -->
 <div class="container">
   <alert></alert>
   <router-outlet></router-outlet>
-  <app-footer *ngIf="url !== '/login'"></app-footer>
+  <app-footer *ngIf="url !== '/login' && url !== '/myGiffy'"></app-footer>
 </div>
 

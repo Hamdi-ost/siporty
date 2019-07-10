@@ -18,9 +18,7 @@
       <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>
-      <div class="hide-show fix-it">
-        <span style="border-radius: 17px; ">Show</span>
-      </div>
+
       <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">Log In</button>
       <button routerLink="/register" class="btn btn-outline-primary border-box" style="color:aliceblue">Register</button>
     </form>
