@@ -13,17 +13,20 @@ export class PaymeeService {
   constructor(private http: HttpClient) { }
 
   initiate(input) {
-    this.headers = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'eca19723415deb2806c333eb34b2b082768874e3');
     return this.http.post(this.apiUrl + '/api/OPRequest/', input, { headers: this.headers })
   }
 
   startPayment(value) {
-    this.headers = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'eca19723415deb2806c333eb34b2b082768874e3');
     return this.http.post(this.apiUrl + '/gateway/', value, { headers: this.headers })
   }
 
   verifyPayment(token) {
-    this.headers = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
+    this.token = JSON.parse(localStorage.getItem('currentUser')).token;
+    this.headers = new HttpHeaders().set('Authorization', 'eca19723415deb2806c333eb34b2b082768874e3');
     return this.http.post(this.apiUrl + '/api/OPCheck/', token, { headers: this.headers });
   }
 }

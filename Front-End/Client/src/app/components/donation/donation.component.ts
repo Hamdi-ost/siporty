@@ -64,8 +64,10 @@ export class DonationComponent implements OnInit {
 
     this.fetchTopFans();
 
-    this.initPaymee();
   }
+
+
+
 
   initPaymee() {
     this.paymeeConfig = {
@@ -73,6 +75,7 @@ export class DonationComponent implements OnInit {
       "amount": 10.0,
       "note" : "string"
     }
+
     this.paymeeService.initiate(this.paymeeConfig).subscribe(
       data => {
         if(data) {
