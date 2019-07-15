@@ -6,6 +6,7 @@ import { DonationService } from 'src/app/services/donation.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models';
+import { PaymeeService } from 'src/app/services/paymee.service';
 
 @Component({
   selector: 'app-donation',
@@ -26,12 +27,16 @@ export class DonationComponent implements OnInit {
   currentUser: User;
   datePerMonth: string;
 
+  paymeeConfig = {};
+  init_token;
+
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
     private alertService: AlertService,
     private donationService: DonationService,
     private authenticationService: AuthenticationService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private paymeeService: PaymeeService) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
         if (user) {
           this.currentUser = user['user'];
@@ -58,6 +63,49 @@ export class DonationComponent implements OnInit {
     });
 
     this.fetchTopFans();
+
+    this.initPaymee();
+  }
+
+  initPaymee() {
+    this.paymeeConfig = {
+      "vendor": 1381,
+      "amount": 10.0,
+      "note" : "string"
+    }
+    this.paymeeService.initiate(this.paymeeConfig).subscribe(
+      data => {
+        if(data) {
+          console.log(data);
+          this.init_token = data;
+
+          let value = {
+            "payment_token": this.init_token,
+            "url_ok": 'localhost:8080/donationsucceeded',
+            "url_ko" : 'localhost:8080/donationsucceeded'
+          };
+
+          this.paymeeService.startPayment(value).subscribe(
+            data => {
+              if(data) {
+                console.log(data);
+
+                this.paymeeService.verifyPayment(this.init_token).subscribe(
+                  data => {
+                    if(data) {
+                      console.log(data);
+                    }
+                  }
+                )
+              }
+            }
+          );
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   // convenience getter for easy access to form fields
