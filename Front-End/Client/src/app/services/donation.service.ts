@@ -1,4 +1,4 @@
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject ,Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -15,7 +15,8 @@ const apiUrl = 'http://localhost:8080/';
 export class DonationService {
   token;
   headers;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
