@@ -113,6 +113,8 @@ export class DonationComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
+    console.log(this.donationForm.controls);
+
     return this.donationForm.controls;
   }
 
