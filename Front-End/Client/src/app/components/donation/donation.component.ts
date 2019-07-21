@@ -70,14 +70,21 @@ export class DonationComponent implements OnInit {
 
 
   initPaymee() {
+
     this.paymeeConfig = {
-      "vendor": 1381,
-      "amount": 10.0,
-      "note" : "string"
+      vendor: 1381,
+      amount : 10.0,
+      note : "string"
     }
+
+        this.paymeeConfig['amount'] = this.donationForm.value.montant;
+        this.paymeeConfig['note'] = this.donationForm.value.message;
+        console.log(this.paymeeConfig);
+
 
     this.paymeeService.initiate(this.paymeeConfig).subscribe(
       data => {
+        console.log(data);
         if(data) {
           console.log(data);
           this.init_token = data;
@@ -113,7 +120,6 @@ export class DonationComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-    console.log(this.donationForm.controls);
 
     return this.donationForm.controls;
   }
@@ -139,7 +145,7 @@ export class DonationComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Your Donation sent');
-          window.location.href = '/donationsucceeded';
+          window.location.href = '/donationsucceeded/' + this.username ;
         },
         error => {
           this.alertService.error(error);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-thanksfordon',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThanksfordonComponent implements OnInit {
 
-  constructor() { }
+  username;
+  constructor(private route: ActivatedRoute ) {
+   }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      this.username = params['username'];
+ });
   }
 
 }

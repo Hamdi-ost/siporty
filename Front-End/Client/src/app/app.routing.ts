@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'myGiffy', component: GiffyComponent },
-  { path: 'donationsucceeded', component: ThanksfordonComponent },
+  { path: 'donationsucceeded/:username', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
