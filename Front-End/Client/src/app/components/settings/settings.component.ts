@@ -137,7 +137,8 @@ export class SettingsComponent implements OnInit {
       this.imagePreview = reader.result;
     };
     reader.readAsDataURL(file);
-    console.log(file);
+    console.log(file);     console.log("here");
+
 
   }
 

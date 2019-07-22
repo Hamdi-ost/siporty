@@ -16,9 +16,7 @@ export class PaymeeService {
 
 
   initiate(input) {
-    console.log(input);
-    // tslint:disable-next-line: max-line-length
-    const requestHeaders = new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
+    const requestHeaders = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
     return this.http.post( 'http://sandbox.paymee.tn/api/OPRequest/', input, { headers: requestHeaders } );
 
   }
@@ -26,7 +24,7 @@ export class PaymeeService {
   startPayment(value) {
 
     this.headers = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
-    return this.http.post(this.apiUrl + '/gateway/', value, { headers: this.headers })
+    return this.http.post(this.apiUrl + '/gateway/', value, { headers: this.headers });
   }
 
   verifyPayment(token) {
