@@ -28,7 +28,7 @@ export class DonationComponent implements OnInit {
   datePerMonth: string;
 
   paymeeConfig = {};
-  init_token = {token: ""};
+  init_token: any = {token: ""};
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
