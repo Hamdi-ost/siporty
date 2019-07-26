@@ -78,35 +78,19 @@ export class DonationComponent implements OnInit {
       note : "string"
     }
     this.paymeeConfig['amount'] = this.donationForm.value.montant;
-    console.log(this.paymeeConfig);
 
     this.paymeeService.initiate(this.paymeeConfig).subscribe(
       data => {
-        console.log(data);
         if (data) {
-          console.log(data);
           this.init_token = data;
-
-          /*let value = {
-            payment_token: this.init_token,
-            url_ok: 'localhost:8080/donationsucceeded',
-            url_ko : 'localhost:8080/donationsucceeded'
-          };
-
-          this.paymeeService.startPayment(value).subscribe(
-              data => {
-              if(data) {
-                console.log(data);
-                this.paymeeService.verifyPayment(this.init_token).subscribe(
-                    data => {
-                    if (data) {
-                      console.log(data);
-                    }
-                  }
-                )
-              }
-            }
-          );*/
+          console.log(this.init_token);
+                //   this.paymeeService.verifyPayment(this.init_token).subscribe(
+                //     data => {
+                //     if (data) {
+                //       console.log(data);
+                //     }
+                //   }
+                // )
         }
       },
       error => {
@@ -128,6 +112,11 @@ export class DonationComponent implements OnInit {
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
       });
   }
+
+
+
+
+
 
   onSubmit() {
     this.submitted = true;
