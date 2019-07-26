@@ -28,7 +28,7 @@ export class DonationComponent implements OnInit {
   datePerMonth: string;
 
   paymeeConfig = {};
-  init_token;
+  init_token = {token: ""};
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -66,8 +66,9 @@ export class DonationComponent implements OnInit {
 
   }
 
-
-
+  changeMsg() {
+    this.paymeeConfig['note'] = this.donationForm.value.message;
+  }
 
   initPaymee() {
 
@@ -76,12 +77,8 @@ export class DonationComponent implements OnInit {
       amount : 10.0,
       note : "string"
     }
-
-        this.paymeeConfig['amount'] = this.donationForm.value.montant;
-        this.paymeeConfig['note'] = this.donationForm.value.message;
-        console.log(this.paymeeConfig);
-
-
+    this.paymeeConfig['amount'] = this.donationForm.value.montant;
+    console.log(this.paymeeConfig);
 
     this.paymeeService.initiate(this.paymeeConfig).subscribe(
       data => {
@@ -90,7 +87,7 @@ export class DonationComponent implements OnInit {
           console.log(data);
           this.init_token = data;
 
-          let value = {
+          /*let value = {
             payment_token: this.init_token,
             url_ok: 'localhost:8080/donationsucceeded',
             url_ko : 'localhost:8080/donationsucceeded'
@@ -109,7 +106,7 @@ export class DonationComponent implements OnInit {
                 )
               }
             }
-          );
+          );*/
         }
       },
       error => {
