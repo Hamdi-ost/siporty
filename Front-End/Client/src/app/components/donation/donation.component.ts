@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService, UserService, AuthenticationService } from 'src/app/services';
-import { ContactService } from 'src/app/services/contact.service';
 import { DonationService } from 'src/app/services/donation.service';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { User } from 'src/app/models';
 import { PaymeeService } from 'src/app/services/paymee.service';
+
+
 
 @Component({
   selector: 'app-donation',
@@ -26,9 +27,10 @@ export class DonationComponent implements OnInit {
   TopDonorsPerWeek;
   currentUser: User;
   datePerMonth: string;
+  token = '';
 
   paymeeConfig = {};
-  init_token: any = {token: ""};
+   init_token: any = {token: '' };
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -43,6 +45,11 @@ export class DonationComponent implements OnInit {
         }
       });
     }
+
+
+
+
+
 
   ngOnInit() {
 
@@ -63,12 +70,14 @@ export class DonationComponent implements OnInit {
     });
 
     this.fetchTopFans();
-
   }
 
   changeMsg() {
     this.paymeeConfig['note'] = this.donationForm.value.message;
   }
+
+
+
 
   initPaymee() {
 
@@ -77,20 +86,14 @@ export class DonationComponent implements OnInit {
       amount : 10.0,
       note : "string"
     }
+
     this.paymeeConfig['amount'] = this.donationForm.value.montant;
 
     this.paymeeService.initiate(this.paymeeConfig).subscribe(
       data => {
         if (data) {
           this.init_token = data;
-          console.log(this.init_token);
-                //   this.paymeeService.verifyPayment(this.init_token).subscribe(
-                //     data => {
-                //     if (data) {
-                //       console.log(data);
-                //     }
-                //   }
-                // )
+
         }
       },
       error => {
@@ -106,32 +109,30 @@ export class DonationComponent implements OnInit {
   }
 
   fetchTopFans() {
-    this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
+      this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
-
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
       });
   }
 
 
 
-
-
-
   onSubmit() {
     this.submitted = true;
+
     // stop here if form is invalid
     if (this.donationForm.invalid) {
       return;
     }
-
+      console.log(this.donationForm.value);
     this.loading = true;
     this.donationService
       .postDonation(this.donationForm.value)
       .subscribe(
         data => {
           this.alertService.success('Your Donation sent');
-          window.location.href = '/donationsucceeded/' + this.username ;
+         // window.location.href = '/donationsucceeded/' + this.username ;
+
         },
         error => {
           this.alertService.error(error);
@@ -140,6 +141,10 @@ export class DonationComponent implements OnInit {
       );
   }
 
+
+
+
+
   todaysDate() {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -147,4 +152,9 @@ export class DonationComponent implements OnInit {
     const yyyy = today.getFullYear();
       return dd + '/' + mm + '/' + yyyy;
   }
+
+
 }
+
+
+

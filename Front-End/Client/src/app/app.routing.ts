@@ -13,6 +13,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { AuthGuard } from './guards';
 import { GiffyComponent } from './components/giffy/giffy.component';
+import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 
 const appRoutes: Routes = [
 
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'myGiffy', component: GiffyComponent },
   { path: 'donationsucceeded/:username', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
+  { path : 'donationfailed' , component: DonationfailedComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

@@ -24,6 +24,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component';
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
+import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
     ContactComponent,
     ThanksfordonComponent,
     TermsandconditionsComponent,
-    GiffyComponent
+    GiffyComponent,
+    DonationfailedComponent
 
   ],
   imports: [
