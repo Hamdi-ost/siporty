@@ -61,6 +61,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
+                _user.setPhone(user.getPhone());
                 _user.setAccountName(user.getAccountName());
                 _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
@@ -103,6 +104,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
+                _user.setPhone(user.getPhone());
                 _user.setAccountName(user.getAccountName());
                 _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
@@ -156,6 +158,7 @@ public class UserRestAPI {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
+                _user.setPhone(user.getPhone());
                 _user.setAccountName(user.getAccountName());
                 _user.setSocialLink(user.getSocialLink());
                 _user.setEmail(user.getEmail());
@@ -196,6 +199,7 @@ public class UserRestAPI {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
             _user.setAccountName(user.getAccountName());
             _user.setSocialLink(user.getSocialLink());
             _user.setEmail(user.getEmail());
@@ -231,6 +235,7 @@ public class UserRestAPI {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
             _user.setAccountName(user.getAccountName());
             _user.setSocialLink(user.getSocialLink());
             _user.setEmail(user.getEmail());
@@ -321,6 +326,7 @@ public class UserRestAPI {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
             _user.setAccountName(user.getAccountName());
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
@@ -353,15 +359,6 @@ public class UserRestAPI {
             }
             if(passwordChangeForm.getSocialLink() != null) {
                 _user.setSocialLink(passwordChangeForm.getSocialLink());
-            }
-
-            if(passwordChangeForm.getImage() != null) {
-                try {
-                    _user.setImage(file.getBytes());
-                    _user.setFileName(file.getOriginalFilename());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             userRepository.save(_user);
             return new ResponseEntity<>(passwordChangeForm, HttpStatus.OK);

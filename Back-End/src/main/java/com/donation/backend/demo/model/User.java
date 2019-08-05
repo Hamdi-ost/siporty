@@ -19,13 +19,11 @@ public class User {
     private String banque;
     private String agence;
     private String ccb;
+    private String phone;
     private String accountName;
     private String socialLink;
     private String username;
     private String email;
-
-    private byte[] image;
-    private String fileName;
 
     private String password;
     private boolean enabled;
@@ -38,7 +36,7 @@ public class User {
     }
 
     public User(String firstName, String lastName, String banque, String agence, String ccb, String accountName,
-                String socialLink, String username, String email, String password, boolean enabled, String image) {
+                String socialLink, String username, String email, String password, boolean enabled, String phone) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.banque = banque;
@@ -50,7 +48,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.fileName = image;
+        this.phone = phone;
     }
 
     public Long getId() {
@@ -157,19 +155,11 @@ public class User {
         this.socialLink = socialLink;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
