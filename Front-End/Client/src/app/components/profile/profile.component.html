@@ -126,6 +126,14 @@
                 class="invalid-feedback smaller">
                 <div *ngIf="f.agency.errors.required" class="smaller">&nbsp;&nbsp;&nbsp;Agency is required</div>
               </div>
+              <label for="phone" class="smaller">&nbsp;&nbsp;&nbsp;Phone number</label>
+              <input class="phone" required name="login[phone]" type="text" formControlName="phone"
+              placeholder="Phone number" class="form-control smaller transparent-cla border-box"
+                [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.phone.errors"
+                class="invalid-feedback smaller">
+                <div *ngIf="f.phone.errors.required" class="smaller">&nbsp;&nbsp;&nbsp;Phone number is required</div>
+              </div>
               <br/>
               <p style="color:aliceblue; text-align: center"><strong>P.S. Paymee transfer can take up to 3-4 business days. (Minimum transfer is 50DT with 15% fee.) </strong></p>
               <br/>
