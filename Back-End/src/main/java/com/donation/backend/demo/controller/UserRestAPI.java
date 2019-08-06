@@ -347,7 +347,7 @@ public class UserRestAPI {
 
     @PutMapping("/change-password")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<?> updateUser(@RequestParam("image") MultipartFile file, @RequestBody PasswordChangeForm passwordChangeForm) {
+    public ResponseEntity<?> updateUser(@RequestBody PasswordChangeForm passwordChangeForm) {
 
         Optional<User> userOptional = userRepository.findById(passwordChangeForm.getId());
         if(userOptional.isPresent()) {
