@@ -41,9 +41,9 @@ public class UserRestAPI {
     @Autowired
     PasswordEncoder encoder;
 
-    @GetMapping(value = "/", params = { "page", "size" })
+    @GetMapping(value = "/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<UserInfo>> allUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseEntity<List<UserInfo>> allUsers() {
 
         try {
             List<UserInfo> _users = new ArrayList<>();

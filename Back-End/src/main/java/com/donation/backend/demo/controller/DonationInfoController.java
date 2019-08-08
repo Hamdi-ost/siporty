@@ -81,6 +81,7 @@ public class DonationInfoController {
                 _user.setBanque(user.getBanque());
                 _user.setAgence(user.getAgence());
                 _user.setCcb(user.getCcb());
+                _user.setPhone(user.getPhone());
                 _user.setAccountName(user.getAccountName());
                 _user.setEmail(user.getEmail());
                 _user.setEnabled(user.isEnabled());
@@ -140,6 +141,7 @@ public class DonationInfoController {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
             _user.setAccountName(user.getAccountName());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
@@ -196,6 +198,7 @@ public class DonationInfoController {
             _user.setBanque(user.getBanque());
             _user.setAgence(user.getAgence());
             _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
             _user.setAccountName(user.getAccountName());
             _user.setEmail(user.getEmail());
             _user.setEnabled(user.isEnabled());
