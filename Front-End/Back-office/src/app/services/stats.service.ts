@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class StatsService {
 
-  apiUrl = 'http://localhost:8080/donation-details/stats/';
+  apiUrl = 'http://54.36.182.216:8080/donation-details/stats/';
   token;
   headers;
 

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class DonationsService {
   token;
   headers;
-  apiUrl = 'http://localhost:8080/donation-details/';
+  apiUrl = 'http://54.36.182.216:8080/donation-details/';
 
   constructor(private http: HttpClient) { }
 
