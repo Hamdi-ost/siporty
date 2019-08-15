@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services';
 export class InformationsComponent implements OnInit {
   title = 'Informations';
   infos;
-  columnsName = ['username', 'name account', 'bank', 'agency', 'rib', 'amount'];
+  columnsName = ['username', 'name account', 'bank', 'agency', 'rib', 'amount','phone'];
 
   constructor(private donationService: DonationsService, private userService: UserService) { }
 
@@ -25,14 +25,17 @@ export class InformationsComponent implements OnInit {
         const inf = [];
         inf.push(donations);
         inf[0].forEach(el => {
+          console.log(el['userInfo'].phone);
           const info = {
             username: el['userInfo'].username,
             'name account': el['userInfo'].accountName || 'Not Set yet',
             bank: el['userInfo'].banque || 'Not Set yet',
             agency: el['userInfo'].agence || 'Not Set yet',
+            phone : el['userInfo'].phone || 'Not Set yet',
             rib: el['userInfo'].ccb || 'Not Set yet',
             amount: el['solde']
           };
+
           this.infos.push(info);
           this.infos.reverse();
         });

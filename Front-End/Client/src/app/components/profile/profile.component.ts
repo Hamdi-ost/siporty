@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
 
 import { User } from '../../models';
 import { UserService, AuthenticationService, AlertService } from '../../services';
@@ -8,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 import { DonationService } from 'src/app/services/donation.service';
+import { GiffyComponent } from '../giffy/giffy.component';
+import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 @Component({ selector: 'app-profile', styleUrls: ['./profile.component.css'], templateUrl: 'profile.component.html' })
 export class ProfileComponent implements OnInit, OnDestroy {
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
+    private eventEmitterService: EventEmitterService,
     private donationService: DonationService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
@@ -64,7 +66,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       accountName: ['', Validators.required],
       rib: ['', Validators.required],
       bankName: ['', Validators.required],
-      agency: ['', Validators.required]
+      agency: ['', Validators.required],
+      phone: ['', Validators.required]
     });
     this.datePerMonth = this.todaysDate();
     this.fetchTopFans();
@@ -93,6 +96,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       enabled: this.currentUser['enabled'],
       banque: this.loginForm.value.bankName,
       agence: this.loginForm.value.agency,
+      phone: this.loginForm.value.phone,
       ccb: this.loginForm.value.rib,
       username: this.currentUser.username,
       accountName: this.loginForm.value.accountName,
@@ -102,6 +106,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     };
 
     this.loading = true;
+    console.log(updatedUser);
     this.userService.update(updatedUser).subscribe(data => {
       this.alertService.success('Payout Method successful', true);
       //        window.location.reload();
@@ -117,6 +122,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
       return dd + '/' + mm + '/' + yyyy;
+  }
+
+
+  firstComponentFunction() {
+    this.eventEmitterService.onFirstComponentButtonClick();
+
   }
 
 

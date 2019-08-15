@@ -25,6 +25,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.component';
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
+import { EventEmitterService } from './services/event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { DonationfailedComponent } from './components/donationfailed/donationfai
     HttpClientModule,
     routing
   ],
-  providers: [],
+  providers: [EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

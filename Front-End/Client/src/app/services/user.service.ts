@@ -6,7 +6,7 @@ import { User } from '../models';
 @Injectable({ providedIn: 'root' })
 export class UserService implements OnInit {
 
-  apiUrl = 'http://localhost:8080';
+  apiUrl = 'http://54.36.182.216:8080';
   token;
   headers;
 
