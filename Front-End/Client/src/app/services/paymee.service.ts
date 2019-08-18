@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PaymeeService {
 
-  apiUrl = 'http://sandbox.paymee.tn';
+  apiUrl = 'http://app.paymee.tn';
   headers;
 
 
@@ -18,7 +18,7 @@ export class PaymeeService {
 
   initiate(input) {
     const requestHeaders = new HttpHeaders().set('Authorization', 'Token eca19723415deb2806c333eb34b2b082768874e3');
-    return this.http.post( 'http://sandbox.paymee.tn/api/OPRequest/', input, { headers: requestHeaders } );
+    return this.http.post( 'http://app.paymee.tn/api/OPRequest/', input, { headers: requestHeaders } );
 
   }
 

@@ -126,19 +126,9 @@ export class DonationComponent implements OnInit {
     }
       console.log(this.donationForm.value);
     this.loading = true;
-    this.donationService
-      .postDonation(this.donationForm.value)
-      .subscribe(
-        data => {
-          this.alertService.success('Your Donation sent');
-         // window.location.href = '/donationsucceeded/' + this.username ;
+    localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
 
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      );
+
   }
 
 

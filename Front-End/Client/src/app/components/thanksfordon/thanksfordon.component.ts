@@ -1,6 +1,8 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymeeService } from 'src/app/services/paymee.service';
+import { DonationService } from 'src/app/services/donation.service';
+import { AlertService } from 'src/app/services';
 
 
 
@@ -17,7 +19,10 @@ export class ThanksfordonComponent implements OnInit {
  url = '';
  i;
 
-  constructor(private route: ActivatedRoute, private paymeeService: PaymeeService, public activatedRoute: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+    private donationService: DonationService,
+    private alertService: AlertService,
+    private paymeeService: PaymeeService, public activatedRoute: ActivatedRoute) {
    }
 
   ngOnInit() {
@@ -32,7 +37,29 @@ export class ThanksfordonComponent implements OnInit {
                this.paymeeService.verifyPayment(this.getToken()).subscribe(
                     data => {
                     if (data) {
-                      console.log(data['result']);
+                      if (data['result'] === 1 ) {}
+                      //console.log(JSON.parse(localStorage.getItem('formSource')));
+                      this.donationService
+                      .postDonation(JSON.parse(localStorage.getItem('formSource')))
+                      .subscribe(
+                        data => {
+                          localStorage.removeItem('formSource');
+
+                          //this.alertService.success('Your Donation sent');
+                         // window.location.href = '/donationsucceeded/' + this.username ;
+
+                        },
+                        error => {
+                         // this.alertService.error('Your donation has already been sent');
+
+                        }
+                      );
+
+
+
+
+
+
                         if (data['result'] === 0) {
                           window.location.href = 'http://localhost:4200/donationfailed/';
                         }

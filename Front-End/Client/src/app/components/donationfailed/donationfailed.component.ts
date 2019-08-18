@@ -11,6 +11,8 @@ export class DonationfailedComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    localStorage.removeItem('formSource');
+
   }
 
 }
