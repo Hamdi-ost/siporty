@@ -82,7 +82,7 @@ export class DonationComponent implements OnInit {
   initPaymee() {
 
     this.paymeeConfig = {
-      vendor: 3942,
+      vendor: 1381,
       amount : 10.0,
       note : "string"
     }

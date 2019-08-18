@@ -7,7 +7,7 @@ import { Donation } from '../models/donation';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'http://54.36.182.216:8080/';
+const apiUrl = 'http://localhost:8080/';
 
 @Injectable({
   providedIn: 'root'

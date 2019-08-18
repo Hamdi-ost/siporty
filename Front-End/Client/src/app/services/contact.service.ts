@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'http://54.36.182.216:8080/messages/auth/';
+const apiUrl = 'http://localhost:8080/messages/auth/';
 
 @Injectable({
   providedIn: 'root'

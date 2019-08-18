@@ -34,7 +34,7 @@ export class ThanksfordonComponent implements OnInit {
                     if (data) {
                       console.log(data['result']);
                         if (data['result'] === 0) {
-                          window.location.href = 'http://54.36.182.216:4200/donationfailed/';
+                          window.location.href = 'http://localhost:4200/donationfailed/';
                         }
 
                     }
