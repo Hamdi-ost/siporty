@@ -1,4 +1,5 @@
-<button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box fix-it" style="color:aliceblue">Support SiportY!</button>
+<button [disabled]="loading" type="submit"
+class="btn btn-outline-primary border-box fix-it" routerLink="/donation/SiportY" style="color:aliceblue">Support SiportY!</button>
 
   <div class="row">
   <div class="col-sm-6">
@@ -65,7 +66,7 @@
       type="submit" class="btn btn-outline-primary border-box"
       style="color:aliceblue">Send</button> -->
 
-      <form ngNoForm method="post" action="http://app.paymee.tn/gateway/">
+      <form ngNoForm method="post" action="https://app.paymee.tn/gateway/">
         <input type="hidden" name="payment_token" value="{{init_token.token}}">
         <input type="hidden" name="url_ok" value="https://siporty.tn/donationsucceeded/{{username}}/">
         <input type="hidden" name="url_ko" value="https://siporty.tn/donationfailed/">

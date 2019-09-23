@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter } from '@angular/core';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 @Component({
@@ -36,7 +36,6 @@ export class GiffyComponent implements OnInit {
 
    playSound() {
     this.soundfile = '../../../assets/images/sound.ogg';
-    console.log(this.soundfile);
     document.getElementById('dummy').innerHTML
     = '<audio autoplay="true" style="display:none;" src="../../../assets/images/sound.ogg">' ;
 

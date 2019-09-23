@@ -55,13 +55,8 @@ export class ThanksfordonComponent implements OnInit {
                         }
                       );
 
-
-
-
-
-
                         if (data['result'] === 0) {
-                          window.location.href = 'http://localhost:4200/donationfailed/';
+                          window.location.href = 'http://siporty.tn/donationfailed/';
                         }
 
                     }
