@@ -26,6 +26,7 @@ import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.co
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 import { EventEmitterService } from './services/event-emitter.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,10 @@ import { EventEmitterService } from './services/event-emitter.service';
     HttpClientModule,
     routing
   ],
-  providers: [EventEmitterService],
+  providers: [
+    EventEmitterService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,6 +24,7 @@ import { MessageDetailComponent } from './components/message-detail/message-deta
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogueComponent } from './components/confirmation-dialogue/confirmation-dialogue.component';
 import { InformationsComponent } from './components/informations/informations.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -70,7 +71,9 @@ const routes: Routes = [
     FormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
