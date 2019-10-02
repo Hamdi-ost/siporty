@@ -15,7 +15,7 @@ import { AuthGuard } from './guards';
 import { GiffyComponent } from './components/giffy/giffy.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 
-const appRoutes: Routes = [
+export const  appRoutes: Routes = [
 
   { path: '', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: ProfileComponent, canActivate: [AuthGuard] },
@@ -36,4 +36,4 @@ const appRoutes: Routes = [
 ];
 
 export const routing = RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'enabled' });
-export const routingHash = RouterModule.forRoot(appRoutes, { useHash: true }) ;
+export const routingHash = RouterModule.forRoot(appRoutes) ;
