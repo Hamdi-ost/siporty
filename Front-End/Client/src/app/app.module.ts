@@ -27,6 +27,8 @@ import { DonationfailedComponent } from './components/donationfailed/donationfai
 import { EventEmitterService } from './services/event-emitter.service';
 import { RouterModule } from '@angular/router';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,10 @@ import { RouterModule } from '@angular/router';
     routingHash
 
   ],
-  providers: [EventEmitterService],
+  providers: [
+    EventEmitterService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
