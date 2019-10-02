@@ -36,3 +36,4 @@ const appRoutes: Routes = [
 ];
 
 export const routing = RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'enabled' });
+export const routingHash = RouterModule.forRoot(appRoutes, { useHash: true }) ;

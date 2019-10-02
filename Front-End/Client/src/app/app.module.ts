@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { routing } from './app.routing';
+import { routing, routingHash } from './app.routing';
 import { GiffyComponent } from './components/giffy/giffy.component';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -16,7 +15,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { DonationComponent } from './components/donation/donation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './components/alert/alert.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -26,6 +25,7 @@ import { ThanksfordonComponent } from './components/thanksfordon/thanksfordon.co
 import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 import { EventEmitterService } from './services/event-emitter.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,9 @@ import { EventEmitterService } from './services/event-emitter.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    routing
+    routing,
+    routingHash
+
   ],
   providers: [EventEmitterService],
   bootstrap: [AppComponent]
