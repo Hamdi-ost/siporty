@@ -26,7 +26,7 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { RouterModule } from '@angular/router';
-
+import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -64,7 +64,9 @@ import { RouterModule } from '@angular/router';
 
   ],
   providers: [
-    EventEmitterService
+    EventEmitterService,
+    Location,
+    {provide: LocationStrategy, useClass: PathLocationStrategy}
 
   ],
   bootstrap: [AppComponent]
