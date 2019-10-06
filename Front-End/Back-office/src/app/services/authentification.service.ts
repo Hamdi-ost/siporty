@@ -7,7 +7,7 @@ import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    apiUrl = 'http://54.36.182.216:8080';
+    apiUrl = 'https://siporty.tn:8080';
 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
