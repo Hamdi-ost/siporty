@@ -8,7 +8,7 @@ import { EventEmitterService } from 'src/app/services/event-emitter.service';
 })
 export class GiffyComponent implements OnInit {
 
-
+  buttonHide = true;
   counter;
   soundfile;
   intervalId;
@@ -19,19 +19,18 @@ export class GiffyComponent implements OnInit {
    }
 
   ngOnInit() {
-
-    if (this.eventEmitterService.subsVar === undefined) {
-      this.eventEmitterService.subsVar = this.eventEmitterService.
-      invokeFirstComponentFunction.subscribe(() => {
-        $('body').css('background-color', 'rgb(255, 255, 255)');
-      this.myfnct();
-      this.counter = 5 ;
-       this.intervalId = null;
-        this.startGif();
-
-
-      });
-    }
+      $('body').css('background-color', 'rgb(255, 255, 255)');
+      document.getElementById('photo_equipe').style.display = 'none';
+    // if (this.eventEmitterService.subsVar === undefined) {
+    //   this.eventEmitterService.subsVar = this.eventEmitterService.
+    //   invokeFirstComponentFunction.subscribe(() => {
+    //     $('body').css('background-color', 'rgb(255, 255, 255)');
+    //   this.myfnct();
+    //   this.counter = 5 ;
+    //    this.intervalId = null;
+    //     this.startGif();
+    //   });
+    // }
   }
 
    playSound() {
@@ -43,14 +42,15 @@ export class GiffyComponent implements OnInit {
 
   myfnct() {
     document.getElementById('photo_equipe').style.display = 'none';
+    document.getElementById('btnGif').style.display = 'block';
   }
 
   startGif() {
     this.ngOnInit();
     this.playSound();
     document.getElementById('photo_equipe').style.display = 'block';
-    setTimeout( this.myfnct
-      , 5000);
+    document.getElementById('btnGif').style.display = 'none';
+    setTimeout( this.myfnct, 5000);
 
   }
 
