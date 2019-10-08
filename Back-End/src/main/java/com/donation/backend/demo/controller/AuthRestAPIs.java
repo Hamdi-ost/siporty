@@ -45,7 +45,7 @@ public class AuthRestAPIs {
     @Autowired
     JwtProvider jwtProvider;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/authenticate/admin")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -66,7 +66,7 @@ public class AuthRestAPIs {
                 userDb.getAgence(), userDb.getCcb(), userDb.getAccountName(), userDb.getSocialLink(), userDb.getUsername(), userDb.getEmail(),
                 roles, userDb.isEnabled(), userDb.getPhone());
 
-        if(user.isEnabled()) {
+        if(user.isEnabled() && user.getRoles().contains("ROLE_ADMIN")) {
             return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
         }
         return new ResponseEntity<>(new ResponseMessage("Fail -> User is banned!"), HttpStatus.FORBIDDEN);
