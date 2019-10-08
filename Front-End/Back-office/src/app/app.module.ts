@@ -72,7 +72,7 @@ const routes: Routes = [
     NgxPaginationModule
   ],
   providers: [
-    {provide: LocationStrategy, useClass: PathLocationStrategy}
+
   ],
   bootstrap: [AppComponent]
 })
