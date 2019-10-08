@@ -45,8 +45,35 @@ public class AuthRestAPIs {
     @Autowired
     JwtProvider jwtProvider;
 
-    @PostMapping("/authenticate/admin")
+    @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = jwtProvider.generateJwtToken(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        User userDb = userRepository.findByUsername(loginRequest.getUsername()).get();
+        List<String> roles = new ArrayList<>();
+        Set<Role> _roles = userDb.getRoles();
+        _roles.forEach(role -> {
+            roles.add(role.getName().name());
+        });
+        UserInfo user = new UserInfo(userDb.getId(), userDb.getFirstName(), userDb.getLastName(), userDb.getBanque(),
+                userDb.getAgence(), userDb.getCcb(), userDb.getAccountName(), userDb.getSocialLink(), userDb.getUsername(), userDb.getEmail(),
+                roles, userDb.isEnabled(), userDb.getPhone());
+
+        if(user.isEnabled()) {
+            return ResponseEntity.ok(new JwtResponse(jwt, user, userDetails.getAuthorities()));
+        }
+        return new ResponseEntity<>(new ResponseMessage("Fail -> User is banned!"), HttpStatus.FORBIDDEN);
+    }
+
+    @PostMapping("/authenticate/admin")
+    public ResponseEntity<?> authenticateAdmin(@RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
