@@ -19,10 +19,11 @@
 }
 
 .rwd-table {
-  margin: auto;
-  min-width: 300px;
+  //margin: auto;
+  min-width: 100%;
   max-width: 100%;
   border-collapse: collapse;
+  overflow-y: scroll;
 }
 
 .rwd-table tr:first-child {
@@ -209,3 +210,28 @@ h3:after {
     font-size: 1.6rem;
   }
 }
+
+h1 {
+  font-size: 5.9vw;
+ }
+ h2 {
+  font-size: 3.0vh;
+ }
+ p {
+  font-size: 2vmin;
+ }
+ label {
+  font-size: 2.5vmin;
+ }
+ button {
+  font-size: 2.5vmin;
+ }
+ th {
+  font-size: 2.5vmin;
+ }
+ td {
+  font-size: 2.5vmin;
+ }
+
+
+

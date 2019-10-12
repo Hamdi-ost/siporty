@@ -5,7 +5,7 @@ h2 {
 
 .container_ {
   border-radius: 1rem;
-  margin: 2rem auto;
+
   padding: 2rem 1rem;
   width: 90%;
   background-color: black;
@@ -13,7 +13,7 @@ h2 {
 
 .smaller{
   width: 70%;
-  margin-left: 75px;
+
 }
 
 .transparent-cla {
@@ -36,7 +36,7 @@ h2 {
 
 
 .circular {
-  margin: auto;
+
   width: 100px;
   height: 100px;
   border-radius: 150px;
@@ -69,7 +69,7 @@ color: green;
 
 #page-wrap {
     width: 70%;
-    margin: 10px auto;
+
 
   }
 
@@ -79,7 +79,7 @@ color: green;
     position: relative;
     min-height: 480px; /* This part sucks */
     clear: both;
-    margin: 25px 0;
+
   }
   .tab {
     float: left;
@@ -87,7 +87,7 @@ color: green;
   .tab label {
     background: #09161D;
     padding: 10px;
-    margin-left: -1px;
+
     position: relative;
     left: 1px;
     border-radius: 10px 10px 0px 0px;
@@ -109,7 +109,7 @@ color: green;
     box-shadow:6px 6px 10px rgba(0, 0, 0, 1);
     overflow: hidden;
     overflow-y: auto;
-    margin-bottom: -20px;
+
   }
   .content > * {
     opacity: 0;
@@ -167,3 +167,26 @@ color: green;
     -ms-transition:     all 0.6s ease;
     -o-transition:      all 0.6s ease;
     }
+
+
+    h1 {
+      font-size: 5.9vw;
+     }
+     h2 {
+      font-size: 3.0vh;
+     }
+     p {
+      font-size: 2vmin;
+     }
+     label {
+      font-size: 2.5vmin;
+     }
+     button {
+      font-size: 2.5vmin;
+     }
+     th {
+      font-size: 2.5vmin;
+     }
+     td {
+      font-size: 2.5vmin;
+     }

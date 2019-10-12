@@ -101,7 +101,7 @@ textarea {
 .cd-tabs nav {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  background: #f8f7ee;
+  /* background: #f8f7ee; */
   -webkit-box-shadow: inset 0 -2px 3px rgba(203, 196, 130, 0.06);
   box-shadow: inset 0 -2px 3px rgba(203, 196, 130, 0.06);
 }
@@ -299,3 +299,35 @@ textarea {
     opacity: 1;
   }
 }
+
+h1 {
+  font-size: 5.9vw;
+ }
+ h2 {
+  font-size: 3.0vh;
+ }
+ p {
+  font-size: 2vmin;
+ }
+ label {
+  font-size: 2.5vmin;
+ }
+ button {
+  font-size: 2.5vmin;
+ }
+ th {
+  font-size: 2.5vmin;
+ }
+ td {
+  font-size: 2.5vmin;
+ }li {
+  font-size: 2.5vmin;
+ }
+ a {
+  font-size: 2.5vmin;
+ }ul {
+  font-size: 2.5vmin;
+ }
+
+
+

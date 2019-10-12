@@ -1,26 +1,41 @@
+<div class="container-fluid  clearfix">
 <div class="login_form">
+
   <section class="login-wrapper">
+    <div class="row">
+        <div class="col-lg-10 col-xs-12 col-md-10 col-sm-12 ">
     <div class="logo">
 
         <img src="../../../assets/images/logo.png" />
-    </div>
+    </div></div>
+  </div>
+  <div class="row">
+      <div class="col-lg-10 col-xs-12 col-md-10 col-sm-12" >
+    <form  id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
       <label for="username" class="smaller">&nbsp;&nbsp;&nbsp;Username</label>
       <input required name="login[username]" type="text" autocapitalize="off" autocorrect="off" placeholder="username"
         formControlName="username" class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div  *ngIf="submitted && f.username.errors" class="invalid-feedback">
         <div *ngIf="f.username.errors.required">Username is required</div>
       </div>
+
+
       <label for="password" class="smaller">&nbsp;&nbsp;&nbsp;Password</label>
       <input class="password" required name="login[password]" type="password" formControlName="password"
         placeholder="password" class="form-control smaller transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-      <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div  *ngIf="submitted && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">Password is required</div>
       </div>
 
-      <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue">Log In</button>
-      <button routerLink="/register" class="btn btn-outline-primary border-box" style="color:aliceblue">Register</button>
+      <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue ;text-align : center;">Login</button>
+      <button routerLink="/register" class="btn btn-outline-primary border-box" style="color:aliceblue ;text-align : center;">Register</button>
+
     </form>
+  </div>
+</div>
   </section>
+
+</div>
 </div>

@@ -1,18 +1,18 @@
 
 <div class="row">
 
-    <div class="col-sm-12">
+    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" align="center">
 
         <div class="cd-tabs js-cd-tabs" *ngIf="currentUser" >
             <nav>
-      <ul style="margin-left: 6rem" class="cd-tabs__navigation js-cd-navigation">
+      <ul style="margin-left: 10rem" class="cd-tabs__navigation js-cd-navigation">
         <li>
-          <a data-content="inbox" routerLinkActive="cd-selected" routerLink="/home">Home</a>
+          <a  routerLinkActive="cd-selected" routerLink="/home"><label>Home</label></a>
         </li>
-        <li><a data-content="new" routerLinkActive="cd-selected" routerLink="/settings">Settings</a></li>
-        <li><a data-content="gallery" routerLinkActive="cd-selected" routerLink="/income">Income</a></li>
+        <li><a  routerLinkActive="cd-selected" routerLink="/settings"><label>Settings</label></a></li>
+        <li><a  routerLinkActive="cd-selected" routerLink="/income"><label>Income</label></a></li>
         <li>
-          <a data-content="store" routerLinkActive="cd-selected" routerLink="/notifications">Notifications</a>
+          <a  routerLinkActive="cd-selected" routerLink="/notifications"><label>Notifications</label></a>
         </li>
       </ul>
 

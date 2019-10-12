@@ -1,8 +1,7 @@
 .foot{
 
   color: white;
-  margin-bottom: 20px;
-  margin-left: 54%;
+
 }
 
 .footer1{
@@ -13,3 +12,27 @@
     color: white;
 
 }
+h1 {
+  font-size: 5.9vw;
+ }
+ h2 {
+  font-size: 3.0vh;
+ }
+ p {
+  font-size: 2vmin;
+ }
+ label {
+  font-size: 2.5vmin;
+ }
+ button {
+  font-size: 2.5vmin;
+ }
+ th {
+  font-size: 2.5vmin;
+ }
+ td {
+  font-size: 2.5vmin;
+ }
+ a {
+  font-size: 2.5vmin;
+ }

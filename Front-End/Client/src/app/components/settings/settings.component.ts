@@ -67,11 +67,13 @@ export class SettingsComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.settingsForm.invalid) {
+      console.log(this.settingsForm.invalid);
       return;
     }
 
     if (this.settingsForm.value.password !== this.settingsForm.value.repassword) {
       this.alertService.error('Password not matched');
+
       return;
     }
 
@@ -89,8 +91,7 @@ export class SettingsComponent implements OnInit {
           password: this.f.password.value,
           socialLink: this.f.socialLink.value
         };
-      }
-        else if (!this.f.password.value && this.f.image.value) {
+      } else if (!this.f.password.value && this.f.image.value) {
 
           this.userUpdated = {
             id: this.currentUser.user.id,
@@ -98,9 +99,7 @@ export class SettingsComponent implements OnInit {
             image: this.f.image.value.title
 
           };
-        }
-
-      else {
+        } else {
         this.userUpdated = {
           id: this.currentUser.user.id,
           password: this.f.password.value,
@@ -117,7 +116,7 @@ export class SettingsComponent implements OnInit {
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);
-            //            window.location.reload();
+                       //window.location.reload();
           },
           error => {
             this.alertService.error(error.message);
