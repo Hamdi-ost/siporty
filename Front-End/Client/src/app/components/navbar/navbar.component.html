@@ -1,4 +1,4 @@
-
+<!--
 <div class="row">
 
     <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" align="center">
@@ -20,8 +20,49 @@
 </nav>
   </div>
 </div>
+</div> -->
+
+<!-- <div   class="cd-tabs js-cd-tabs" *ngIf="currentUser" >
+    <div class="container">
+<nav>
+<div class="topnav">
+    <a  routerLinkActive="active" routerLink="/home" >Home</a>
+    <a  routerLinkActive="active" routerLink="/settings" >settings</a>
+    <a routerLinkActive="active" routerLink="/income" >Income</a>
+    <a routerLinkActive="active" routerLink="/notifications" >Notifications</a>
+    <a routerLinkActive="active" [routerLink]="['/donation/SiportY']" >Donate</a>
+    <a routerLinkActive="active" [routerLink]="['/contact']" >Contact</a>
+    <a routerLinkActive="active" [routerLink]="['/aboutUs']">About-us</a>
+
+    <a (click)="logout()">Logout</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</nav>
 </div>
+</div> -->
 
 
 
+<div class="header" *ngIf="currentUser">
 
+    <input type="checkbox" id="chk">
+    <label for="chk" class="show-menu-btn">
+      <i class="fas fa-ellipsis-h"></i>
+    </label>
+
+    <ul class="menu">
+      <a routerLinkActive="active" routerLink="/home">Home</a>
+      <a routerLinkActive="active" routerLink="/settings">Settings</a>
+      <a routerLinkActive="active" routerLink="/income">Income</a>
+      <a routerLinkActive="active" routerLink="/notifications">Notifications</a>
+      <a routerLinkActive="active" [routerLink]="['/donation/SiportY']">Donate</a>
+      <a routerLinkActive="active" [routerLink]="['/contact']">Contact</a>
+      <a routerLinkActive="active" [routerLink]="['/aboutUs']">About-us</a>
+      <a (click)="logout()">Logout</a>
+      <label for="chk" class="hide-menu-btn">
+        <i class="fas fa-times"></i>
+      </label>
+    </ul>
+  </div>

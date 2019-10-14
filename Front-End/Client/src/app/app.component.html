@@ -1,4 +1,4 @@
-<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" align="right">
+<!-- <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" align="right">
 
     <button [disabled]="loading" type="submit"
       class="btn btn-outline-primary border-box fix-it" style="color:aliceblue"
@@ -7,7 +7,7 @@
         Support SiportY!</button>
 
 
-</div>
+</div> -->
 
 
 
@@ -15,7 +15,7 @@
 
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
 
-<nav role="navigation" *ngIf="url !== '/myGiffy'">
+<!-- <nav role="navigation" *ngIf="url !== '/myGiffy'">
   <div id="menuToggle" style="z-index: 99;">
     <input type="checkbox" />
 
@@ -41,13 +41,14 @@
       </a>
     </ul>
   </div>
-</nav>
+</nav> -->
 <app-navbar *ngIf="url !== '/myGiffy'"></app-navbar>
 <!-- main app container -->
 <div class="container">
   <alert></alert>
+
   <router-outlet></router-outlet>
 
-  <app-footer *ngIf="url !== '/login' && url !== '/myGiffy'"></app-footer>
+  <app-footer *ngIf="url !== '/login' && url !== '/myGiffy'"  ></app-footer>
 </div>
 </div>
