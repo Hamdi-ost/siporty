@@ -1,9 +1,12 @@
 package com.donation.backend.demo.controller;
 
 import com.donation.backend.demo.message.request.UserInfo;
+import com.donation.backend.demo.security.services.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,6 +47,9 @@ public class AuthRestAPIs {
 
     @Autowired
     JwtProvider jwtProvider;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
@@ -118,18 +124,9 @@ public class AuthRestAPIs {
         user.setUsername(signUpRequest.getUsername());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
-        user.setEnabled(true);
+        user.setEnabled(false);
 
-        //Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-
-
-        /*strRoles.forEach(role -> {
-            Role roleDb = roleRepository.findByName(RoleName.valueOf(role))
-                    .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
-            roles.add(roleDb);
-        });*/
-
         Role roleDb = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Role not found."));
         roles.add(roleDb);
@@ -146,5 +143,91 @@ public class AuthRestAPIs {
         ,_roles, user.isEnabled(), user.getPhone());
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
+    }
+
+    @PostMapping("/register/validate/{id}")
+    public ResponseEntity<?> validateRegistrationUser(@PathVariable("id") long id) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            /*UserInfo _user = new UserInfo();
+            _user.setId(user.getId());
+            _user.setFirstname(user.getFirstName());
+            _user.setLastname(user.getLastName());
+            _user.setUsername(user.getUsername());
+            _user.setBanque(user.getBanque());
+            _user.setAgence(user.getAgence());
+            _user.setCcb(user.getCcb());
+            _user.setPhone(user.getPhone());
+            _user.setAccountName(user.getAccountName());
+            _user.setSocialLink(user.getSocialLink());
+            _user.setEmail(user.getEmail());
+            _user.setEnabled(user.isEnabled());
+
+            List<String> _roles = new ArrayList<>();
+            Set<Role> roles = user.getRoles();
+            roles.forEach(role -> {
+                _roles.add(role.getName().name());
+            });
+
+            _user.setRoles(_roles);*/
+
+            user.setEnabled(true);
+            userRepository.save(user);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/register/validate-email/{id}")
+    public ResponseEntity<?> sendValidateRegistrationEmail(@PathVariable("id") long id) {
+
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setFrom("ibcomprodmail@gmail.com");
+            mailMessage.setSubject("Signup Successful !");
+            mailMessage.setText( "Hello "+user.getFirstName()+",\n\nYour username : \nUsername : "+user.getUsername()+"\n"+"\n" +"Cordialement,\n" +
+                    "Siporty.\n");
+
+            javaMailSender.send(mailMessage);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/reset-password/{email}")
+    public ResponseEntity<?> sendResetPasswordEmail(@PathVariable("email") String email) {
+
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            RandomString randomString = new RandomString();
+            String newPassword = randomString.nextString();
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setFrom("ibcomprodmail@gmail.com");
+            mailMessage.setSubject("Reset password Siporty!");
+            mailMessage.setText( "Hello "+user.getFirstName()+",\n\nVos identifiants : \nUsername : "+user.getUsername()+"\nPassword : "+ newPassword +" \n"+"\n" +"Cordialement,\n" +
+                    "Siporty.\n");
+
+            javaMailSender.send(mailMessage);
+            user.setPassword(encoder.encode(newPassword));
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
     }
 }
