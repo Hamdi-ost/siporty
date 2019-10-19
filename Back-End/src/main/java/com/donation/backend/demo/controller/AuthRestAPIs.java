@@ -27,7 +27,6 @@ import com.donation.backend.demo.repository.UserRepository;
 
 import java.util.*;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth/users")
@@ -145,7 +144,7 @@ public class AuthRestAPIs {
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
 
-    @PostMapping("/register/validate/{id}")
+    @GetMapping("/register/validate/{id}")
     public ResponseEntity<?> validateRegistrationUser(@PathVariable("id") long id) {
 
         Optional<User> optionalUser = userRepository.findById(id);
@@ -183,7 +182,7 @@ public class AuthRestAPIs {
         }
     }
 
-    @PostMapping("/register/validate-email/{id}")
+    @GetMapping("/register/validate-email/{id}")
     public ResponseEntity<?> sendValidateRegistrationEmail(@PathVariable("id") long id) {
 
         Optional<User> optionalUser = userRepository.findById(id);
@@ -205,7 +204,7 @@ public class AuthRestAPIs {
         }
     }
 
-    @PostMapping("/reset-password/{email}")
+    @GetMapping("/reset-password/{email}")
     public ResponseEntity<?> sendResetPasswordEmail(@PathVariable("email") String email) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
