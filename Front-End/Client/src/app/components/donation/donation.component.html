@@ -40,7 +40,7 @@ class="btn btn-outline-primary border-box fix-it" routerLink="/donation/SiportY"
           <!-- Donation montant -->
           <label for="montant">&nbsp;&nbsp;&nbsp;Amount</label>
           <input (change)="initPaymee()" class="montant" required name="login[montant]" type="number" formControlName="montant"
-            placeholder="5.00 DT" class="form-control  transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && f.montant.errors }" />
+            placeholder="5.00 DT" class="form-control  transparent-cla border-box" [ngClass]="{ 'is-invalid': submitted && (f.montant.errors || f.montant.value < 1) }" />
           <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.montant.errors"
             class="invalid-feedback">
             <div *ngIf="f.montant.errors.required">

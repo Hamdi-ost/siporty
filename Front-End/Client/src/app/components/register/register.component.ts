@@ -85,7 +85,8 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
+          this.alertService.success('Registration successful an email was sent to your email address', true);
+          this.userService.registerValidate(data['id']);
           this.donationDetails.postDonationDetails({ id: data['id'], socialLink: null }).subscribe();
           this.router.navigate(['/login']);
         },

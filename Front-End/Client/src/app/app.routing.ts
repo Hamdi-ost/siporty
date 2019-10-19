@@ -14,6 +14,7 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
 import { AuthGuard } from './guards';
 import { GiffyComponent } from './components/giffy/giffy.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
+import { IdentificationComponent } from './components/identification/identification.component';
 
 export const  appRoutes: Routes = [
 
@@ -31,6 +32,7 @@ export const  appRoutes: Routes = [
   { path: 'donationsucceeded/:username', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   { path : 'donationfailed' , component: DonationfailedComponent},
+  { path : 'identification' , component: IdentificationComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

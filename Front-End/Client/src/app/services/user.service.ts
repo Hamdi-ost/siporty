@@ -45,6 +45,10 @@ export class UserService implements OnInit {
     return this.http.get(`${this.apiUrl}/users/auth/username/` + username);
   }
 
+  registerValidate(id: Number) {
+     this.http.get(`${this.apiUrl}/register/validate-email/${id}`, null);
+  }
+
 
 
 }

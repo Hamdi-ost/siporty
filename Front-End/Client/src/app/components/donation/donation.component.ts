@@ -124,7 +124,7 @@ export class DonationComponent implements OnInit {
     if (this.donationForm.invalid) {
       return;
     }
-      console.log(this.donationForm.value);
+      //console.log(this.donationForm.value);
     this.loading = true;
     localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
 

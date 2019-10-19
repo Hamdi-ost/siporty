@@ -27,6 +27,7 @@ import { DonationfailedComponent } from './components/donationfailed/donationfai
 import { EventEmitterService } from './services/event-emitter.service';
 import { RouterModule } from '@angular/router';
 import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
+import { IdentificationComponent } from './components/identification/identification.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common'
     ThanksfordonComponent,
     TermsandconditionsComponent,
     GiffyComponent,
-    DonationfailedComponent
+    DonationfailedComponent,
+    IdentificationComponent
 
   ],
   imports: [
