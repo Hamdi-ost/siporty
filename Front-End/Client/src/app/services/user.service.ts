@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { User } from '../models';
 
 @Injectable({ providedIn: 'root' })
@@ -45,9 +44,7 @@ export class UserService implements OnInit {
     return this.http.get(`${this.apiUrl}/users/auth/username/` + username);
   }
 
-  registerValidate(id: Number) {
-     this.http.get(`${this.apiUrl}/register/validate-email/${id}`, null);
-  }
+
 
 
 

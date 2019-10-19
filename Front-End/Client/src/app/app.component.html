@@ -42,13 +42,13 @@
     </ul>
   </div>
 </nav> -->
-<app-navbar *ngIf="url !== '/myGiffy'"></app-navbar>
+<app-navbar *ngIf="url !== '/myGiffy' && url != '/activationsuccess/:id' && url !== '/identification'"></app-navbar>
 <!-- main app container -->
 <div class="container">
   <alert></alert>
 
   <router-outlet></router-outlet>
 
-  <app-footer *ngIf="url !== '/login' && url !== '/myGiffy'"  ></app-footer>
+  <app-footer *ngIf="url !== '/login' && url !== '/myGiffy' && url !== '/activationsuccess/:id' && url !== '/identification'"  ></app-footer>
 </div>
 </div>

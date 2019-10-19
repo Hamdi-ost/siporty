@@ -1,29 +1,32 @@
 <div class="container">
-    <div class="col-lg-6 col-xs-6 col-md-6 col-sm-6">
-<div class="modal-content">
-    <div class="modal-header text-center">
-      <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+    <div class="col-lg-6 col-xs-6 col-md-6 col-sm-6" style="margin: auto; ">
+<div class="modal-content transparent-cla" style="margin-top: 20px;" >
+    <div class="modal-header text-center"></div>
+        <form id="email" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
     <div class="modal-body mx-3">
       <div class="md-form mb-5">
-        <i class="fas fa-envelope prefix grey-text"></i>
-        <input type="email" id="defaultForm-email" class="form-control validate">
-        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-      </div>
+          <label data-error="wrong"  class="modal-title w-100 font-weight-bold" data-success="right"  style="color: #32C3A2;">Set your email</label>
+          <br/><br/>
+          <input type="email"  placeholder="Your email" formControlName="email" required id="email" class="form-control validate"
 
-      <div class="md-form mb-4">
-        <i class="fas fa-lock prefix grey-text"></i>
-        <input type="password" id="defaultForm-pass" class="form-control validate">
-        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+
+
+
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+           <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.email.errors"
+                class="invalid-feedback smaller">
+                <div *ngIf="f.email.errors.required" class="smaller">Email is required</div>
+              </div>
+              <br/><br/>
       </div>
 
     </div>
     <div class="modal-footer d-flex justify-content-center">
-      <button class="btn btn-default">Send</button>
+      <button [disabled]="loading" class="btn btn-outline-primary border-box" type="submit" style="color:#32C3A2;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
+  </form>
   </div>
+
 </div>
+
 </div>

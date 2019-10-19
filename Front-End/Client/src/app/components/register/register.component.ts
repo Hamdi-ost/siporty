@@ -10,6 +10,7 @@ import {
   AuthenticationService
 } from '../../services';
 import { DonationService } from 'src/app/services/donation.service';
+import { MailService } from 'src/app/services/mail.service';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -26,7 +27,8 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService,
-    private donationDetails: DonationService
+    private donationDetails: DonationService,
+    private mailService: MailService
   ) {
     $(function () {
       $('.hide-show').show();
@@ -86,7 +88,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Registration successful an email was sent to your email address', true);
-          this.userService.registerValidate(data['id']);
+          this.mailService.registerValidate(data['id']);
           this.donationDetails.postDonationDetails({ id: data['id'], socialLink: null }).subscribe();
           this.router.navigate(['/login']);
         },

@@ -28,6 +28,7 @@ import { EventEmitterService } from './services/event-emitter.service';
 import { RouterModule } from '@angular/router';
 import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 import { IdentificationComponent } from './components/identification/identification.component';
+import { AccountactivationComponent } from './components/accountactivation/accountactivation.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { IdentificationComponent } from './components/identification/identificat
     TermsandconditionsComponent,
     GiffyComponent,
     DonationfailedComponent,
-    IdentificationComponent
+    IdentificationComponent,
+    AccountactivationComponent
 
   ],
   imports: [

@@ -47,7 +47,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
-      console.log(this.TopDonorsPerWeek)
       });
   }
 
@@ -63,10 +62,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      accountName: ['', Validators.required],
-      rib: ['', Validators.required],
-      bankName: ['', Validators.required],
-      agency: ['', Validators.required],
+      accountName: [''],
+      rib: [''],
+      bankName: [''],
+      agency: [''],
       phone: ['', Validators.required]
     });
     this.datePerMonth = this.todaysDate();
@@ -106,7 +105,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     };
 
     this.loading = true;
-    console.log(updatedUser);
     this.userService.update(updatedUser).subscribe(data => {
       this.alertService.success('Payout Method successful', true);
       //        window.location.reload();
