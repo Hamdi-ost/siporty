@@ -20,7 +20,7 @@ export class AccountactivationComponent implements OnInit {
 
   ngOnInit() {
         if (this.getID() !== null) {
-        this.mailService.accountActivation(this.getID());
+        this.mailService.accountActivation(this.getID()).subscribe();
         this.alertService.success('Your account has been activated', true);
       } else
          if (this.getID() == null) {

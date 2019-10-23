@@ -41,8 +41,7 @@ export class IdentificationComponent implements OnInit {
     }
     this.loading = true;
     this.email = this.emailForm.value.email;
-    this.mailService.identification(this.email);
-    console.log(this.email);
+    this.mailService.identification(this.email).subscribe();
     this.alertService.success('Email sent successfully', true);
    //window.location.reload();
     //this.emailForm.reset();
