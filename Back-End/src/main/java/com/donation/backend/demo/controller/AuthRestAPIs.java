@@ -191,7 +191,7 @@ public class AuthRestAPIs {
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
-            mailMessage.setFrom("contact@siporty.tn");
+            mailMessage.setFrom("noreply@siporty.tn");
             mailMessage.setSubject("Signup Successful !");
             mailMessage.setText( "Hello "+user.getFirstName()+",\n\nYour username : \nUsername : "+user.getUsername()+"\n"+"\n"
                     + "Visit this url to activate your account : https://siporty.tn/activationsuccess/" + user.getId() + "\n"+"\n"
@@ -217,7 +217,7 @@ public class AuthRestAPIs {
 
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
-            mailMessage.setFrom("contact@siporty.tn");
+            mailMessage.setFrom("noreply@siporty.tn");
             mailMessage.setSubject("Reset password Siporty!");
             mailMessage.setText( "Hello "+user.getFirstName()+",\n\nVos identifiants : \nUsername : "+user.getUsername()+"\nPassword : "+ newPassword +" \n"+"\n" +"Cordialement,\n" +
                     "Siporty.\n");
