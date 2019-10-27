@@ -10,7 +10,7 @@ export class MailService implements OnInit {
 
   apiUrl = 'https://siporty.tn:8080';
 
-  headers;
+
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class MailService implements OnInit {
   }
 
   accountActivation(id: Number) {
-    return this.http.get(`${this.apiUrl}/auth/users/register/validate/${id}`);
+    return this.http.get(this.apiUrl + '/auth/users/register/validate-email/' + id);
   }
 
   identification(email: String) {
-    this.headers = new HttpHeaders().set('ResponseType', 'text');
+    const headers = new HttpHeaders().set('responseType', 'text as json');
     return this.http.get(this.apiUrl + '/auth/users/reset-password/' + email);
 }
 
