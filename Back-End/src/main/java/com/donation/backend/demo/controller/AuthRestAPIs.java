@@ -215,6 +215,9 @@ public class AuthRestAPIs {
             RandomString randomString = new RandomString();
             String newPassword = randomString.nextString();
 
+            user.setPassword(encoder.encode(newPassword));
+            userRepository.save(user);
+
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setTo(user.getEmail());
             mailMessage.setFrom("noreply@siporty.tn");
@@ -223,7 +226,6 @@ public class AuthRestAPIs {
                     "Siporty.\n");
 
             javaMailSender.send(mailMessage);
-            user.setPassword(encoder.encode(newPassword));
 
             return new ResponseEntity<>("Reset password send", HttpStatus.OK);
         } else {
