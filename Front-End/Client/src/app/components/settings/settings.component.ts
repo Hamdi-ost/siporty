@@ -14,7 +14,7 @@ import { mimeType } from './mime-type.validator';
 })
 export class SettingsComponent implements OnInit {
   currentUser;
-  imagePreview;
+  //imagePreview;
   url;
   settingsForm: FormGroup;
   submitted = false;
@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   loading = false;
   userUpdated;
   selectedFile: File;
-  image;
+  //image;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,8 +44,7 @@ export class SettingsComponent implements OnInit {
       password: ['', Validators.minLength(6)],
       repassword: [''],
       socialLink: [this.currentUser.user.socialLink],
-      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
-
+      //image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
     });
 
 
@@ -67,46 +66,47 @@ export class SettingsComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.settingsForm.invalid) {
-      console.log(this.settingsForm.invalid);
+      //console.log(this.settingsForm.invalid);
       return;
     }
 
     if (this.settingsForm.value.password !== this.settingsForm.value.repassword) {
       this.alertService.error('Password not matched');
-
       return;
     }
 
     if (this.currentUser) {
-      if (!this.f.password.value && !this.f.image.value ) {
+      this.userUpdated = {
+        id: this.currentUser.user.id,
+        password: this.f.password.value,
+        socialLink: this.f.socialLink.value
+      };
+      /*if (!this.f.password.value) {
         this.userUpdated = {
           id: this.currentUser.user.id,
           socialLink: this.f.socialLink.value
         };
-        console.log(this.userUpdated);
-      } else if (this.f.password.value && !this.f.image.value) {
+        //console.log(this.userUpdated);
+      } else if (this.f.password.value) {
 
         this.userUpdated = {
           id: this.currentUser.user.id,
           password: this.f.password.value,
           socialLink: this.f.socialLink.value
         };
-      } else if (!this.f.password.value && this.f.image.value) {
+      } else if (!this.f.password.value) {
 
           this.userUpdated = {
             id: this.currentUser.user.id,
             socialLink: this.f.socialLink.value,
-            image: this.f.image.value.title
-
           };
         } else {
         this.userUpdated = {
           id: this.currentUser.user.id,
           password: this.f.password.value,
           socialLink: this.f.socialLink.value,
-          image: this.f.image.value.title
         };
-      }
+      }*/
     }
 
     if (this.userUpdated) {
@@ -126,7 +126,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  onImagePicked(event: Event) {
+  /*onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.settingsForm.patchValue({ image: file }); // target a single controle wich is in our case the image
     this.settingsForm.get('image').updateValueAndValidity();
@@ -137,11 +137,5 @@ export class SettingsComponent implements OnInit {
     };
     reader.readAsDataURL(file);
     console.log(file);     console.log("here");
-
-
-  }
-
-
-
-
+  }*/
 }

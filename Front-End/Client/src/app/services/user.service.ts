@@ -16,7 +16,7 @@ export class UserService implements OnInit {
   }
 
   getById(id: number) {
-    return this.http.get(`${this.apiUrl}/user/${id}`);
+    return this.http.get(`${this.apiUrl}/users/${id}`);
   }
 
   register(user: User) {
@@ -30,14 +30,9 @@ export class UserService implements OnInit {
   }
 
   changePassword(updatedUser) {
-    const postDate = new FormData();
-    postDate.append('password', updatedUser.password);
-    postDate.append('socialLink', updatedUser.socialLink);
-    postDate.append('image', updatedUser.image);
-
     this.token = JSON.parse(localStorage.getItem('currentUser')).token;
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-    return this.http.put(`${this.apiUrl}/users/change-password`, postDate, { headers: this.headers });
+    return this.http.put(`${this.apiUrl}/users/change-password`, updatedUser, { headers: this.headers });
   }
 
   getUserByUsername(username) {

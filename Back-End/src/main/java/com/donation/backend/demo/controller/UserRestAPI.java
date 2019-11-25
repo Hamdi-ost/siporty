@@ -353,11 +353,14 @@ public class UserRestAPI {
         if(userOptional.isPresent()) {
             User _user = userOptional.get();
 
-            if(passwordChangeForm.getPassword()!= null && !encoder.matches(passwordChangeForm.getPassword(), _user.getPassword()))
-            {
-                _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));   
+            if(passwordChangeForm.getPassword() != null && !passwordChangeForm.getPassword().equals("")) {
+                if(!encoder.matches(passwordChangeForm.getPassword(), _user.getPassword()))
+                {
+                    System.out.println(passwordChangeForm.getPassword());
+                    _user.setPassword(encoder.encode(passwordChangeForm.getPassword()));
+                }
             }
-            if(passwordChangeForm.getSocialLink() != null) {
+            if(passwordChangeForm.getSocialLink() != null && !passwordChangeForm.getSocialLink().equals("")) {
                 _user.setSocialLink(passwordChangeForm.getSocialLink());
             }
             userRepository.save(_user);

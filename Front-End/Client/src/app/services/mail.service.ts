@@ -8,28 +8,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class MailService implements OnInit {
 
-  apiUrl = 'https://siporty.tn:8080';
-
-
+  apiUrl = 'https://siporty.tn:8080/auth/users';
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-
   registerValidate(id: Number) {
-    return this.http.get(`${this.apiUrl}/register/validate-email/${id}`);
+    return this.http.get(this.apiUrl + '/register/validate/' + id);
   }
 
   accountActivation(id: Number) {
-    return this.http.get(this.apiUrl + '/auth/users/register/validate-email/' + id);
+    return this.http.get(this.apiUrl + '/register/validate-email/' + id);
   }
 
   identification(email: String) {
     const headers = new HttpHeaders().set('responseType', 'text as json');
-    return this.http.get(this.apiUrl + '/auth/users/reset-password/' + email);
-}
-
+    return this.http.get(this.apiUrl + '/reset-password/' + email);
+  }
 
 }
