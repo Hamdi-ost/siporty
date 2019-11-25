@@ -51,7 +51,7 @@ export class DonationComponent implements OnInit {
 
 
 
-  ngOnInit() {
+    ngOnInit() {
 
     this.route.params.subscribe(params => {
       // this.id = params['id'];

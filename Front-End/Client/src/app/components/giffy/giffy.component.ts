@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
+import { Component, OnInit,EventEmitter, OnDestroy } from '@angular/core';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 @Component({
@@ -6,12 +6,15 @@ import { EventEmitterService } from 'src/app/services/event-emitter.service';
   templateUrl: './giffy.component.html',
   styleUrls: ['./giffy.component.scss']
 })
-export class GiffyComponent implements OnInit {
+export class GiffyComponent implements OnInit, OnDestroy {
+
 
   buttonHide = true;
   counter;
   soundfile;
   intervalId;
+  subscription;
+
   constructor(
     private eventEmitterService: EventEmitterService
   ) {
@@ -21,17 +24,25 @@ export class GiffyComponent implements OnInit {
   ngOnInit() {
       $('body').css('background-color', 'rgb(255, 255, 255)');
       document.getElementById('photo_equipe').style.display = 'none';
-    // if (this.eventEmitterService.subsVar === undefined) {
+    //   if (this.eventEmitterService.subsVar === undefined) {
     //   this.eventEmitterService.subsVar = this.eventEmitterService.
     //   invokeFirstComponentFunction.subscribe(() => {
-    //     $('body').css('background-color', 'rgb(255, 255, 255)');
-    //   this.myfnct();
-    //   this.counter = 5 ;
-    //    this.intervalId = null;
+    //   //   $('body').css('background-color', 'rgb(255, 255, 255)');
+    //   // this.myfnct();
+    //   // this.counter = 5 ;
+    //   //  this.intervalId = null;
+
     //     this.startGif();
     //   });
     // }
+
+    this.subscription = this.eventEmitterService.triggerFunction.subscribe( () => {
+      this.startGif();
+    });
+
   }
+
+
 
    playSound() {
     this.soundfile = '../../../assets/images/sound.ogg';
@@ -52,6 +63,12 @@ export class GiffyComponent implements OnInit {
     document.getElementById('btnGif').style.display = 'none';
     setTimeout( this.myfnct, 5000);
 
+  }
+
+
+  ngOnDestroy(): void {
+
+    this.subscription.unsubscribe();
   }
 
 }

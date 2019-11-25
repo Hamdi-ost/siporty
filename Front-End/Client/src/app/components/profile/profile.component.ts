@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { User } from '../../models';
@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 import { DonationService } from 'src/app/services/donation.service';
 import { GiffyComponent } from '../giffy/giffy.component';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
+import { EventEmitter } from 'events';
 
 @Component({ selector: 'app-profile', styleUrls: ['./profile.component.css'], templateUrl: 'profile.component.html' })
 export class ProfileComponent implements OnInit, OnDestroy {
@@ -33,9 +34,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
     private eventEmitterService: EventEmitterService,
-    private donationService: DonationService
+    private donationService: DonationService,
+
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+       // console.log(user);
       if (user) {
         this.currentUser = user['user'];
       }
@@ -44,10 +47,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   fetchTopFans() {
+    console.log(this.currentUser);
+    if (this.currentUser.id && this.currentUser) { //added
     this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
       });
+    }
   }
 
   reformatDate(dateStr) {
@@ -124,8 +130,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   firstComponentFunction() {
-    this.eventEmitterService.onFirstComponentButtonClick();
+     this.eventEmitterService.onFirstComponentButtonClick();
 
+  }
+
+  launch() {
+    this.eventEmitterService.launchMyFunction();
   }
 
 

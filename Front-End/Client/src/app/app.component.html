@@ -47,7 +47,7 @@
 <div class="container">
   <alert></alert>
 
-  <router-outlet></router-outlet>
+  <router-outlet (arraysizeEvent)="receiveSize($event)"></router-outlet>
 
   <app-footer *ngIf="url !== '/login' && url !== '/myGiffy' && url !== '/activationsuccess/:id' && url !== '/identification'"  ></app-footer>
 </div>

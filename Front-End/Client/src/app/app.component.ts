@@ -1,6 +1,11 @@
 import { Component, AfterViewChecked, OnInit } from '@angular/core';
 import { AuthenticationService } from './services';
 import { Router } from '@angular/router';
+import { DonationService } from './services/donation.service';
+import { EventEmitterService } from './services/event-emitter.service';
+import { interval } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-root',
@@ -10,13 +15,19 @@ import { Router } from '@angular/router';
 
 
 
-export class AppComponent implements AfterViewChecked {
+export class AppComponent implements AfterViewChecked, OnInit {
   title = 'JEISITE';
   logIn = false;
-  url='';
-  chaine='';
+  url = '';
+  chaine = '';
+  arraySize;
+  user;
+  notifications = [];
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router,
+    private userAuth: AuthenticationService, private donationService: DonationService,
+    private eventService: EventEmitterService
+    ) { }
 
   ngAfterViewChecked() {
     setTimeout(() => {
@@ -28,15 +39,58 @@ export class AppComponent implements AfterViewChecked {
     });
   }
 
+
+
+  ngOnInit() {
+
+    this.url = window.location.pathname;
+
+    this.user = this.userAuth.currentUser.subscribe(data => {
+      if (data) {
+        this.donationService.getAllDonationDetails(data['user'].id)
+          .subscribe(donation => {
+            this.notifications = Array.from(donation['donationMessages']).reverse();
+            this.arraySize = this.notifications.length;
+            console.log(this.arraySize);
+          });
+      }
+    }
+    );
+
+      this.eventService.triggerArray.subscribe(
+          (lengthArray: number) => {
+          if ( lengthArray > this.arraySize) {
+            lengthArray  = this.arraySize;
+            window.location.reload();
+          }
+
+          }
+
+
+      );
+
+  }
+
+
   logout() {
 
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  ngOnInit() {
 
-    this.url = window.location.pathname;
+  receiveSize($event: any) {
+    console.log(this.arraySize);
+    this.arraySize = $event;
 
   }
+
+
+
+
+
 }
+
+interval(500 * 60).subscribe(data => {
+  this.ngOnInit()();
+});
