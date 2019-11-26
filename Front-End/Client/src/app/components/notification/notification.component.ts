@@ -30,7 +30,7 @@ export class NotificationComponent implements OnInit {
       if (data) {
         this.donationService.getAllDonationDetails(data['user'].id)
           .subscribe(donation => {
-            console.log(donation);
+            //console.log(donation);
             this.notifications = Array.from(donation['donationMessages']).reverse();
           });
       }
@@ -63,7 +63,7 @@ onGetlength() {
     if (data) {
       this.donationService.getAllDonationDetails(data['user'].id)
         .subscribe(donation => {
-          console.log(donation);
+          //console.log(donation);
           this.notifications = Array.from(donation['donationMessages']).reverse();
         });
     }

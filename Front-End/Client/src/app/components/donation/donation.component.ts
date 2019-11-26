@@ -30,7 +30,7 @@ export class DonationComponent implements OnInit {
   token = '';
 
   paymeeConfig = {};
-   init_token: any = {token: '' };
+  init_token: any = {token: '' };
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -45,11 +45,6 @@ export class DonationComponent implements OnInit {
         }
       });
     }
-
-
-
-
-
 
     ngOnInit() {
 
@@ -76,9 +71,6 @@ export class DonationComponent implements OnInit {
     this.paymeeConfig['note'] = this.donationForm.value.message;
   }
 
-
-
-
   initPaymee() {
 
     this.paymeeConfig = {
@@ -93,7 +85,6 @@ export class DonationComponent implements OnInit {
       data => {
         if (data) {
           this.init_token = data;
-
         }
       },
       error => {
@@ -104,7 +95,6 @@ export class DonationComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() {
-
     return this.donationForm.controls;
   }
 
@@ -115,25 +105,20 @@ export class DonationComponent implements OnInit {
       });
   }
 
+  submit() {
+    this.donationService.postDonation(this.donationForm).subscribe(data => {
+      this.submitted = true;
 
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.donationForm.invalid) {
-      return;
-    }
+      // stop here if form is invalid
+      if (this.donationForm.invalid) {
+        return;
+      }
       //console.log(this.donationForm.value);
-    this.loading = true;
-    localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
+      this.loading = true;
+      localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
 
-
+    });
   }
-
-
-
-
 
   todaysDate() {
     const today = new Date();
@@ -142,7 +127,6 @@ export class DonationComponent implements OnInit {
     const yyyy = today.getFullYear();
       return dd + '/' + mm + '/' + yyyy;
   }
-
 
 }
 

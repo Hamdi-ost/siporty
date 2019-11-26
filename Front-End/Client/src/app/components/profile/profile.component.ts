@@ -129,15 +129,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
 
-  firstComponentFunction() {
+  /*firstComponentFunction() {
      this.eventEmitterService.onFirstComponentButtonClick();
-
   }
 
   launch() {
     this.eventEmitterService.launchMyFunction();
-  }
-
-
-
+  }*/
 }

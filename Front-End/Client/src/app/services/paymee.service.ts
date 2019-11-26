@@ -23,7 +23,7 @@ export class PaymeeService {
   }
 
   startPayment(value) {
-    console.log(value);
+    //console.log(value);
     this.headers = new HttpHeaders().set('Authorization', 'Token 7fdc06e669739f1e4f10322863eafff60a5e1e1c');
     return this.http.post(this.apiUrl + '/gateway/', value, { headers: this.headers });
   }

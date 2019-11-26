@@ -58,7 +58,7 @@ export class SettingsComponent implements OnInit {
 
   onFileUpload(event){
     this.selectedFile = event.target.files[0];
-    console.log(event);
+    //console.log(event);
   }
 
   onSubmit() {
