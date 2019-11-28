@@ -45,7 +45,16 @@ public class DonationInfoController {
     public ResponseEntity<List<DonationInfoMessage>> allDonationInfos() {
 
         try {
-            List<DonationInfo> donationInfos = new ArrayList<>(donationInfoRepository.findAll());
+            List<DonationInfo> donationInfosDb = new ArrayList<>(donationInfoRepository.findByEnabled(true));
+            List<DonationInfo> donationInfos = new ArrayList<>();
+
+            donationInfosDb.forEach(donationInfo -> {
+                Optional<User> optionalUser = userRepository.findById(donationInfo.getUser().getId());
+                if(optionalUser.isPresent()) {
+                    donationInfos.add(donationInfo);
+                }
+            });
+
             if(donationInfos.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -101,6 +110,7 @@ public class DonationInfoController {
             return new ResponseEntity<>(donationInfoMessages, HttpStatus.OK);
 
         } catch(Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
