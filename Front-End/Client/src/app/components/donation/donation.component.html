@@ -70,7 +70,7 @@ class="btn btn-outline-primary border-box fix-it" routerLink="/donation/SiportY"
         <input type="hidden" name="payment_token" value="{{init_token.token}}">
         <input type="hidden" name="url_ok" value="https://siporty.tn/donationsucceeded/{{username}}/">
         <input type="hidden" name="url_ko" value="https://siporty.tn/donationfailed/">
-        <button [disabled]="loading" type="button" class="btn btn-outline-primary border-box" (click)="submit()" style="height:50px; width: 44.5%; margin-top: 10px;">
+        <button [disabled]="loading" type="submit" class="btn btn-outline-primary border-box" (click)="submit()" style="height:50px; width: 44.5%; margin-top: 10px;">
           <img src="../../../assets/images/paymee.png" style="color:aliceblue; width: 70%;">
         </button>
 

@@ -55,6 +55,7 @@ export class DonationComponent implements OnInit {
         this.socialLink = data['socialLink'];
         this.id = data['id'];
 
+
         this.donationForm = this.formBuilder.group({
           id: this.id,
           name: ['', Validators.required],
@@ -99,6 +100,7 @@ export class DonationComponent implements OnInit {
   }
 
   fetchTopFans() {
+
       this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
       this.TopDonorsPerWeek = data['topTenDonorsWeek'];
@@ -106,14 +108,16 @@ export class DonationComponent implements OnInit {
   }
 
   submit() {
-    this.donationService.postDonation(this.donationForm).subscribe(data => {
-      this.submitted = true;
 
+    this.donationService.postDonation(this.donationForm.value).subscribe(data => {
+
+      this.submitted = true;
+      // console.log(this.donationForm.value);
       // stop here if form is invalid
       if (this.donationForm.invalid) {
-        return;
+
+         return;
       }
-      //console.log(this.donationForm.value);
       this.loading = true;
       localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
 

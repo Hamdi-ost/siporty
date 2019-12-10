@@ -47,7 +47,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
   fetchTopFans() {
-    console.log(this.currentUser);
     if (this.currentUser.id && this.currentUser) { //added
     this.donationService.getStatsById(this.currentUser.id, { date: this.todaysDate() }).subscribe(data => {
       this.TopDonorsPerMonth = data['topTenDonorsMonth'];
