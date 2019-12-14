@@ -59,7 +59,7 @@ export class DonationComponent implements OnInit {
         this.donationForm = this.formBuilder.group({
           id: this.id,
           name: ['', Validators.required],
-          montant: ['', Validators.required],
+          montant: ['', [Validators.required, Validators.min(1)]],
           message: ['', Validators.required]
         });
       });
@@ -115,8 +115,7 @@ export class DonationComponent implements OnInit {
       // console.log(this.donationForm.value);
       // stop here if form is invalid
       if (this.donationForm.invalid) {
-
-         return;
+          return;
       }
       this.loading = true;
       localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
