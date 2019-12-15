@@ -14,6 +14,7 @@ import { AlertService } from 'src/app/services';
 export class ThanksfordonComponent implements OnInit {
 
   username;
+  formDonation;
   token = '';
   init_token: any = {token: '' };
  url = '';
@@ -25,10 +26,10 @@ export class ThanksfordonComponent implements OnInit {
     private paymeeService: PaymeeService, public activatedRoute: ActivatedRoute) {
    }
 
+
+
+
   ngOnInit() {
-
-
-
 
     this.route.params.subscribe(params => {
       this.username = params['username'];
@@ -37,7 +38,7 @@ export class ThanksfordonComponent implements OnInit {
                this.paymeeService.verifyPayment(this.getToken()).subscribe(
                     data => {
                     if (data) {
-                      if (data['result'] === 1 ) {}
+                      if (data['result'] === 1 ) {
                       //console.log(JSON.parse(localStorage.getItem('formSource')));
                       this.donationService
                       .postDonation(JSON.parse(localStorage.getItem('formSource')))
@@ -53,7 +54,7 @@ export class ThanksfordonComponent implements OnInit {
                          // this.alertService.error('Your donation has already been sent');
 
                         }
-                      );
+                      ); }
 
                         if (data['result'] === 0) {
                           window.location.href = 'http://siporty.tn/donationfailed/';

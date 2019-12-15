@@ -23,7 +23,7 @@ export class NotificationComponent implements OnInit {
 
   notifications = [];
 
-  @Output() arraysizeEvent = new EventEmitter<number>();
+  //@Output() arraysizeEvent = new EventEmitter<number>();
 
   ngOnInit() {
     this.user = this.userAuth.currentUser.subscribe(data => {

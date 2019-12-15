@@ -39,7 +39,8 @@ export class DonationService {
   }
 
   postDonation(data): Observable<any> {
-    return this.http.post(apiUrl + 'donations/auth/', data);
+
+     return this.http.post(apiUrl + 'donations/auth/', data);
   }
 
   postDonationDetails(data) {

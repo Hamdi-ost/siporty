@@ -109,18 +109,20 @@ export class DonationComponent implements OnInit {
 
   submit() {
 
-    this.donationService.postDonation(this.donationForm.value).subscribe(data => {
+    // this.donationService.postDonation(this.donationForm.value).subscribe((data) => {
 
       this.submitted = true;
       // console.log(this.donationForm.value);
       // stop here if form is invalid
-      if (this.donationForm.invalid) {
-          return;
-      }
-      this.loading = true;
+      // if (this.donationForm.invalid) {
+      //     return;
+      // }
+     // this.loading = true;
+
       localStorage.setItem('formSource', JSON.stringify(this.donationForm.value));
 
-    });
+    // });
+
   }
 
   todaysDate() {
