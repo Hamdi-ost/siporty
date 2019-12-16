@@ -22,7 +22,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-      $('body').css('background-color', 'rgb(255, 255, 255)');
+      $('body').css('background-color', 'rgba(0,0,0,0.15)');
       document.getElementById('photo_equipe').style.display = 'none';
     //   if (this.eventEmitterService.subsVar === undefined) {
     //   this.eventEmitterService.subsVar = this.eventEmitterService.
