@@ -48,7 +48,7 @@ export class AppComponent implements AfterViewChecked, OnInit {
             this.notifications = Array.from(donation['donationMessages']).reverse();
             this.arraySize = this.notifications.length;
             //console.log(this.notifications);
-            this.checkLength();
+           // this.checkLength();
         });
       }
     });
@@ -81,15 +81,16 @@ export class AppComponent implements AfterViewChecked, OnInit {
     });
   }
 
-  checkLength() {
-    interval(1000).subscribe(data => {
-      //console.log(this.user.user.id)
-      this.loadData();
-      if(this.newArraySize > this.arraySize) {
-        window.location.reload();
-      }
-    });
-  }
+  // checkLength() {
+  //   interval(1000).subscribe(data => {
+  //     //console.log(this.user.user.id)
+  //     this.loadData();
+  //     if(this.newArraySize > this.arraySize) {
+  //       window.location.reload();
+  //     }
+  //   });
+  // }
+
 }
 
 /*interval(500 * 60).subscribe(data => {

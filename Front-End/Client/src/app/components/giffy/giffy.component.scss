@@ -1,12 +1,24 @@
-#photo_equipe {
-	text-align: center;
-             }
+// #photo_equipe {
+// 	text-align: center;
+//              }
 
-             .centered {
+#photo_equipe {
               position: fixed;
               top: 50%;
               left: 50%;
               /* bring your own prefixes */
               transform: translate(-50%, -50%);
-            }
+           }
 
+
+            // #photo_equipe{
+            //   display:block;
+            //   float:left;
+            //   background-repeat:no-repeat;
+            //   height:1660px;
+            //   width:1660px;
+            //   margin-right:auto;
+            //   margin-left:auto;
+            //   text-align:center;
+            //   overflow:hidden;
+            // }
