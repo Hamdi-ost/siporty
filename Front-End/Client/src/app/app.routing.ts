@@ -29,7 +29,7 @@ export const  appRoutes: Routes = [
   { path: 'donation/:username', component: DonationComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'myGiffy', component: GiffyComponent },
+  { path: 'myGiffy/:id', component: GiffyComponent },
   { path: 'donationsucceeded/:username', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   { path : 'donationfailed' , component: DonationfailedComponent},

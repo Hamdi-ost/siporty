@@ -2,7 +2,7 @@ import { Component, OnInit,EventEmitter, OnDestroy } from '@angular/core';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { DonationService } from 'src/app/services/donation.service';
 import { interval } from 'rxjs';
-import { AuthenticationService } from 'src/app/services';
+import { AuthenticationService, UserService } from 'src/app/services';
 
 
 @Component({
@@ -23,11 +23,13 @@ export class GiffyComponent implements OnInit, OnDestroy {
   arraySize;
   url = '';
   user;
+  id;
 
   constructor(
     private eventEmitterService: EventEmitterService,
     private donationService: DonationService,
-    private userAuth: AuthenticationService
+    private userAuth: AuthenticationService,
+    private Userservice: UserService
   ) {
 
    }
@@ -38,6 +40,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
     this.url = window.location.pathname;
     this.userAuth.currentUser.subscribe((data: any) => {
       if (data) {
+        console.log(data);
         this.user = data.user;
         this.donationService.getAllDonationDetails(data['user'].id).subscribe(donation => {
             this.notifications = Array.from(donation['donationMessages']).reverse();
@@ -47,6 +50,12 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
         });
       }
+    });
+
+    this.getID();
+    this.Userservice.getById(this.id).subscribe((data) => {
+      console.log(data);
+
     });
 
     //   $('body').css('background-color', '#00ff00');
@@ -111,14 +120,20 @@ export class GiffyComponent implements OnInit, OnDestroy {
       // console.log(this.user.user.id)
       this.loadData();
       if(this.newArraySize > this.arraySize) {
-         window.location.reload();
+         //window.location.reload();
+         this.ngOnInit();
          this.startGif();
         this.arraySize = this.newArraySize ;
       }
     });
   }
 
+  getID() {
 
+    this.url = window.location.href ;
+    return this.id = this.url.substring(this.url.lastIndexOf('/') + 1);
+
+  }
 
   ngOnDestroy(): void {
 

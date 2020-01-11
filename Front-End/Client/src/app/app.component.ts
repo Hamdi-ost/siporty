@@ -24,7 +24,8 @@ export class AppComponent implements AfterViewChecked, OnInit {
   newArraySize;
   user;
   notifications = [];
-
+  id;
+  display = true;
   constructor(private authService: AuthenticationService, private router: Router,
     private userAuth: AuthenticationService, private donationService: DonationService,
     private eventService: EventEmitterService) { }
@@ -38,12 +39,17 @@ export class AppComponent implements AfterViewChecked, OnInit {
       }
     });
   }
-
+ // url !== '/myGiffy/:id' && url != '/activationsuccess/:id' && url !== '/identification'
   ngOnInit() {
     this.url = window.location.pathname;
+    //console.log(this.url)
     this.userAuth.currentUser.subscribe((data:any) => {
       if (data) {
         this.user = data.user;
+        this.id = data['user'].id;
+        // if (this.url === `/myGiffy/${this.id}` or  this.url === `/activationsuccess/${this.id}` or this.url === `/identification`)
+        // { this.display = false; }
+
         this.donationService.getAllDonationDetails(data['user'].id).subscribe(donation => {
             this.notifications = Array.from(donation['donationMessages']).reverse();
             this.arraySize = this.notifications.length;
