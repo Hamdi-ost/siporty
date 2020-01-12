@@ -173,7 +173,6 @@ public class DonationInfoController {
     }
 
     @GetMapping("/auth/{username}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<DonationInfoMessage> getDonationInfoById(@PathVariable("username") String username) {
 
         Optional<User> user_ = userRepository.findByUsername(username);
