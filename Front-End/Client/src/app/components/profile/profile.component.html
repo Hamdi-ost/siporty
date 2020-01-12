@@ -143,7 +143,7 @@
                 class="invalid-feedback smaller">
                 <div *ngIf="f.agency.errors.required" class="smaller">&nbsp;&nbsp;&nbsp;Agency is required</div>
               </div> -->
-              <label for="phone" class="smaller">&nbsp;&nbsp;&nbsp;Paymee phone number</label>
+              <label for="phone" class="smaller">&nbsp;&nbsp;&nbsp;Paymee id</label>
               <input class="phone" required name="login[phone]" type="text" formControlName="phone"
               placeholder="Paymee id (4 digits)" class="form-control smaller transparent-cla border-box"
                 [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />

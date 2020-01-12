@@ -24,6 +24,9 @@ export class GiffyComponent implements OnInit, OnDestroy {
   url = '';
   user;
   id;
+  message;
+  amount;
+  donator;
 
   constructor(
     private eventEmitterService: EventEmitterService,
@@ -53,13 +56,11 @@ export class GiffyComponent implements OnInit, OnDestroy {
     // });
 
 
-    this.Userservice.getuserById(this.id).subscribe((data) => {
+         this.Userservice.getuserById(this.id).subscribe((data) => {
         this.user = data['username'];
         this.arraySize = data['size'];
-        console.log(data);
+
         this.checkLength();
-
-
   });
 
     // this.Userservice.getById(this.id).subscribe((data) => {
@@ -110,7 +111,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
     this.playSound();
     document.getElementById('photo_equipe').style.display = 'block';
    // document.getElementById('btnGif').style.display = 'none';
-    setTimeout( this.myfnct, 5000);
+    setTimeout( this.myfnct, 10000);
 
   }
 
@@ -118,16 +119,32 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
 
   loadData() {
-    this.donationService.getAllDonationDetails(this.id).subscribe(donation => {
-        this.notifications = Array.from(donation['donationMessages']);
-        this.newArraySize = this.notifications.length;
+    //     this.donationService.getAllDonationDetails(this.id).subscribe(donation => {
+    //     this.notifications = Array.from(donation['donationMessages']);
+    //     this.newArraySize = this.notifications.length;
 
-    });
+    // });
 
     this.Userservice.getuserById(this.id).subscribe((data) => {
       this.newArraySize = data['size'];
 
 });
+
+
+
+
+    // this.donationService.getDonationDetailsByUsername(this.user).subscribe( details => {
+    //   console.log(details);
+    // });
+
+    this.donationService.getDonationDetailsByUsername(this.user).subscribe((donation) => {
+        this.message = donation['donationMessages'][donation['donationMessages'].length - 1].message;
+        this.amount = donation['donationMessages'][donation['donationMessages'].length - 1].montant;
+        this.donator = donation['donationMessages'][donation['donationMessages'].length - 1].name;
+
+});
+
+
   }
 
 
@@ -135,6 +152,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
     interval(1000).subscribe(data => {
 
       this.loadData();
+
       if(this.newArraySize > this.arraySize) {
          window.location.reload();
          //this.ngOnInit();
