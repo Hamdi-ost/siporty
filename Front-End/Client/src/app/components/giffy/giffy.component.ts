@@ -38,25 +38,36 @@ export class GiffyComponent implements OnInit, OnDestroy {
     document.getElementById('photo_equipe').style.display = 'none';
 
     this.url = window.location.pathname;
-    this.userAuth.currentUser.subscribe((data: any) => {
-      if (data) {
-        console.log(data);
-        this.user = data.user;
-        this.donationService.getAllDonationDetails(data['user'].id).subscribe(donation => {
-            this.notifications = Array.from(donation['donationMessages']).reverse();
-            this.arraySize = this.notifications.length;
-            // console.log(this.notifications);
-            this.checkLength();
-
-        });
-      }
-    });
-
     this.getID();
-    this.Userservice.getById(this.id).subscribe((data) => {
-      console.log(data);
+    // this.userAuth.currentUser.subscribe((data: any) => {
+    //   if (data) {
 
-    });
+    //     this.user = data.user;
+    //     this.donationService.getAllDonationDetails(data['user'].id).subscribe(donation => {
+    //         this.notifications = Array.from(donation['donationMessages']).reverse();
+    //         this.arraySize = this.notifications.length;
+    //         this.checkLength();
+
+    //     });
+    //   }
+    // });
+
+
+    this.Userservice.getuserById(this.id).subscribe((data) => {
+        this.user = data['username'];
+        this.arraySize = data['size'];
+        console.log(data);
+        this.checkLength();
+
+
+  });
+
+    // this.Userservice.getById(this.id).subscribe((data) => {
+    //   console.log(data);
+
+    // });
+
+
 
     //   $('body').css('background-color', '#00ff00');
     //   document.getElementById('photo_equipe').style.display = 'none';
@@ -107,22 +118,27 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
 
   loadData() {
-    this.donationService.getAllDonationDetails(this.user.id).subscribe(donation => {
+    this.donationService.getAllDonationDetails(this.id).subscribe(donation => {
         this.notifications = Array.from(donation['donationMessages']);
         this.newArraySize = this.notifications.length;
-        // console.log(this.newArraySize);
+
     });
+
+    this.Userservice.getuserById(this.id).subscribe((data) => {
+      this.newArraySize = data['size'];
+
+});
   }
 
 
   checkLength() {
     interval(1000).subscribe(data => {
-      // console.log(this.user.user.id)
+
       this.loadData();
       if(this.newArraySize > this.arraySize) {
-         //window.location.reload();
-         this.ngOnInit();
-         this.startGif();
+         window.location.reload();
+         //this.ngOnInit();
+        // this.startGif();
         this.arraySize = this.newArraySize ;
       }
     });
