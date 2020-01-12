@@ -230,18 +230,14 @@ public class DonationInfoController {
     }
 
     @GetMapping("/auth/user/{id}")
-    public ResponseEntity<JSONObject> getDonationSizeById(@PathVariable("id") long id) {
-
-        Optional<User> user_ = userRepository.findById(id);
-        Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(user_.get().getId());
+    public ResponseEntity<HashMap> getDonationSizeById(@PathVariable("id") long id) {
+        Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(id);
         if(_donationInfo.isPresent()) {
             DonationInfo donationInfo = _donationInfo.get();
-
-            JSONObject jo = new JSONObject();
-            jo.put("size", donationInfo.getDonations().size());
-            jo.put("username", donationInfo.getUser().getUsername());
-
-            return new ResponseEntity<>(jo, HttpStatus.OK);
+            HashMap<String, String> map = new HashMap<>();
+            map.put("size", String.valueOf(donationInfo.getDonations().size()));
+            map.put("username", donationInfo.getUser().getUsername());
+            return new ResponseEntity<>(map, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
