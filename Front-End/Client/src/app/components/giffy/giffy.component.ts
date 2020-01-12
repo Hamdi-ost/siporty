@@ -39,7 +39,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.getElementById('photo_equipe').style.display = 'none';
-
+    document.getElementById('text_equipe').style.display = 'none';
     this.url = window.location.pathname;
     this.getID();
     // this.userAuth.currentUser.subscribe((data: any) => {
@@ -102,6 +102,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
   myfnct() {
     document.getElementById('photo_equipe').style.display = 'none';
+    document.getElementById('text_equipe').style.display = 'none';
    // document.getElementById('btnGif').style.display = 'block';
   }
 
@@ -110,6 +111,7 @@ export class GiffyComponent implements OnInit, OnDestroy {
 
     this.playSound();
     document.getElementById('photo_equipe').style.display = 'block';
+    document.getElementById('text_equipe').style.display = 'block';
    // document.getElementById('btnGif').style.display = 'none';
     setTimeout( this.myfnct, 10000);
 

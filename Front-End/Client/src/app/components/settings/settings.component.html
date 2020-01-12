@@ -100,6 +100,14 @@ routerLink="/donation/SiportY!"
       >
     </label>
 
+    <label class="link">
+      This is the URL for OBS, add it as a "browser source" to get live notifications.
+      <br/>
+      <a routerLink="/myGiffy/{{ currentUser.user.id }}"
+        >https://siporty.tn/myGiffy/{{ currentUser.user.id }}</a
+      >
+    </label>
+
         <!-- This is a test-->
 
     <button  [disabled]="loading" type="submit" class="button-save btn btn-outline-primary border-box">Save</button>
