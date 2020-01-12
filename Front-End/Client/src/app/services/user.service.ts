@@ -39,7 +39,9 @@ export class UserService implements OnInit {
     return this.http.get(`${this.apiUrl}/users/auth/username/` + username);
   }
 
-
+  getuserById(id: number) {
+    return this.http.get(`${this.apiUrl}/donation-details/auth/user/${id}`);
+  }
 
 
 

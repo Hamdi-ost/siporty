@@ -44,6 +44,7 @@ export class ThanksfordonComponent implements OnInit {
                       .postDonation(JSON.parse(localStorage.getItem('formSource')))
                       .subscribe(
                         data => {
+                          console.log(JSON.parse(localStorage.getItem('formSource')));
                           localStorage.removeItem('formSource');
 
                           //this.alertService.success('Your Donation sent');
