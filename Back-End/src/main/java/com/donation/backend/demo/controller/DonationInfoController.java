@@ -239,8 +239,7 @@ public class DonationInfoController {
 
             JSONObject jo = new JSONObject();
             jo.put("size", donationInfo.getDonations().size());
-            jo.put("name", donationInfo.getUser().getFirstName() + " " + donationInfo.getUser().getLastName());
-            jo.put("city", "chicago");
+            jo.put("username", donationInfo.getUser().getUsername());
 
             return new ResponseEntity<>(jo, HttpStatus.OK);
         } else {
