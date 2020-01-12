@@ -13,6 +13,7 @@ import com.donation.backend.demo.repository.DonationInfoRepository;
 import com.donation.backend.demo.repository.DonationRepository;
 import com.donation.backend.demo.repository.UserRepository;
 import com.donation.backend.demo.security.services.RandomString;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -172,6 +173,7 @@ public class DonationInfoController {
     }
 
     @GetMapping("/auth/{username}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<DonationInfoMessage> getDonationInfoById(@PathVariable("username") String username) {
 
         Optional<User> user_ = userRepository.findByUsername(username);
@@ -222,6 +224,25 @@ public class DonationInfoController {
             dim.setUserInfo(_user);
 
             return new ResponseEntity<>(dim, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/auth/user/{id}")
+    public ResponseEntity<JSONObject> getDonationSizeById(@PathVariable("id") long id) {
+
+        Optional<User> user_ = userRepository.findById(id);
+        Optional<DonationInfo> _donationInfo = donationInfoRepository.findByUserId(user_.get().getId());
+        if(_donationInfo.isPresent()) {
+            DonationInfo donationInfo = _donationInfo.get();
+
+            JSONObject jo = new JSONObject();
+            jo.put("size", donationInfo.getDonations().size());
+            jo.put("name", donationInfo.getUser().getFirstName() + " " + donationInfo.getUser().getLastName());
+            jo.put("city", "chicago");
+
+            return new ResponseEntity<>(jo, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
