@@ -4,10 +4,14 @@
 
 #photo_equipe {
               position: fixed;
-              top: 50%;
+              top: 30%;
               left: 50%;
               /* bring your own prefixes */
               transform: translate(-50%, -50%);
+           }
+           #text_equipe{
+
+             padding-top: 410px;
            }
 
 
@@ -30,7 +34,7 @@
               color: #FFFFFF;
             }
 
-            h1{
+            h3{
 
               color: #FFFFFF;
               font-family: "Open Sans";
