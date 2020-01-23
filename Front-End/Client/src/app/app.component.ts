@@ -42,7 +42,7 @@ export class AppComponent implements AfterViewChecked, OnInit {
  // url !== '/myGiffy/:id' && url != '/activationsuccess/:id' && url !== '/identification'
   ngOnInit() {
     this.url = window.location.pathname;
-    //console.log(this.url)
+    console.log(this.url);
     this.userAuth.currentUser.subscribe((data:any) => {
       if (data) {
         this.user = data.user;
