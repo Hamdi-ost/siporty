@@ -12,7 +12,7 @@
 </div> -->
 
 
-<div class="container-fluid  clearfix">
+<div class="container">
   <div class="row">
     <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" align="center">
 
@@ -80,19 +80,18 @@
 </div>
   </div>
 
-  <div class="row">
 
-    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
-      <form id="login">
+
+      <form id="login" class="text-center">
         <button onclick="document.getElementById('id01').style.display='block'"
           [disabled]="loading"
-          type="submit" class="btn btn-outline-primary border-box" style="color:aliceblue; margin-top: -120px;" >
+          type="submit" class="btn btn-outline-primary border-box text-center" style="margin:  auto;">
           Payout Method
         </button>
       </form>
-    </div>
-  </div>
-</div>
+
+
+ </div>
 
 <div class="w3-container">
   <div id="id01" class="w3-modal">
@@ -103,13 +102,13 @@
         <div class="login_form">
           <section class="login-wrapper">
             <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <h2 style="text-align: center; color: white;">Payout Method</h2>
-              <label for="">
-                <hr style="margin-left: 0.5rem;border: 1px solid white" /></label>
 
-              <label for="accountName" class="smaller">&nbsp;&nbsp;&nbsp;Name on Account</label>
-              <input  name="login[accountName]" type="text" autocapitalize="off" autocorrect="off"
-                placeholder="The full name of your bank account" formControlName="accountName" class="form-control smaller transparent-cla border-box"
+              <!-- <label  > -->
+                <!-- <hr style="margin-left: 0.5rem;border: 1px solid white" /></label> -->
+
+              <label for="accountName" hidden >&nbsp;&nbsp;&nbsp;Name on Account</label>
+              <input  name="login[accountName]" hidden type="text" autocapitalize="off" autocorrect="off"
+                placeholder="The full name of your bank account" formControlName="accountName" class="form-control  transparent-cla border-box"
                 [ngClass]="{ 'is-invalid': submitted && f.accountName.errors }" />
               <!-- <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.accountName.errors"
                 class="invalid-feedback">
@@ -117,16 +116,16 @@
                   &nbsp;&nbsp;&nbsp;Account Name is required
                 </div>
               </div> -->
-              <label for="rib" class="smaller">&nbsp;&nbsp;&nbsp;RIB</label>
-              <input  name="login[rib]" type="number" autocapitalize="off" autocorrect="off"
+              <label for="rib" class="smaller" hidden>&nbsp;&nbsp;&nbsp;RIB</label>
+              <input  name="login[rib]" type="number" hidden autocapitalize="off" autocorrect="off"
                 placeholder="RIB series" formControlName="rib" class="form-control smaller transparent-cla border-box"
                 [ngClass]="{ 'is-invalid': submitted && f.rib.errors }" />
               <!-- <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.rib.errors"
                 class="invalid-feedback">
                 <div *ngIf="f.rib.errors.required" class="smaller">&nbsp;&nbsp;&nbsp;RIB is required</div>
               </div> -->
-              <label for="bankName" class="smaller">&nbsp;&nbsp;&nbsp;Bank Name</label>
-              <input  name="login[bankName]" type="text" autocapitalize="off" autocorrect="off"
+              <label for="bankName" hidden class="smaller">&nbsp;&nbsp;&nbsp;Bank Name</label>
+              <input  name="login[bankName]" hidden type="text" autocapitalize="off" autocorrect="off"
                 placeholder="Examples: ATB, UIB ..." formControlName="bankName" class="form-control smaller transparent-cla border-box"
                 [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }" />
               <!-- <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.bankName.errors"
@@ -135,8 +134,8 @@
                   &nbsp;&nbsp;&nbsp;Bank Name is required
                 </div>
               </div> -->
-              <label for="agency" class="smaller">&nbsp;&nbsp;&nbsp;Agency</label>
-              <input class="agency"  name="login[agency]" type="text" formControlName="agency"
+              <label for="agency" hidden class="smaller">&nbsp;&nbsp;&nbsp;Agency</label>
+              <input class="agency"  hidden name="login[agency]" type="text" formControlName="agency"
                 placeholder="Examples: Tunis, Bizerte ..." class="form-control smaller transparent-cla border-box"
                 [ngClass]="{ 'is-invalid': submitted && f.agency.errors }" />
               <!-- <div style="margin-left: 1rem; margin-top:-1rem" *ngIf="submitted && f.agency.errors"

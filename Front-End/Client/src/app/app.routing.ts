@@ -16,10 +16,11 @@ import { GiffyComponent } from './components/giffy/giffy.component';
 import { DonationfailedComponent } from './components/donationfailed/donationfailed.component';
 import { IdentificationComponent } from './components/identification/identification.component';
 import { AccountactivationComponent } from './components/accountactivation/accountactivation.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
 
 export const  appRoutes: Routes = [
 
-  { path: '', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '', component: LandingpageComponent },
   { path: 'home', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
@@ -33,6 +34,7 @@ export const  appRoutes: Routes = [
   { path: 'donationsucceeded/:username', component: ThanksfordonComponent },
   { path: 'termsandconditions', component: TermsandconditionsComponent },
   { path : 'donationfailed' , component: DonationfailedComponent},
+  { path : 'landingpage' , component: LandingpageComponent},
   { path : 'identification' , component: IdentificationComponent},
   { path : 'activationsuccess/:id' , component: AccountactivationComponent},
   // otherwise redirect to home

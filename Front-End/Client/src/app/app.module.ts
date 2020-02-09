@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing, routingHash } from './app.routing';
 import { GiffyComponent } from './components/giffy/giffy.component';
@@ -29,6 +29,9 @@ import { RouterModule } from '@angular/router';
 import {LocationStrategy, Location, PathLocationStrategy} from '@angular/common';
 import { IdentificationComponent } from './components/identification/identification.component';
 import { AccountactivationComponent } from './components/accountactivation/accountactivation.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { NgwWowModule } from 'ngx-wow';
 
 
 @NgModule({
@@ -53,7 +56,8 @@ import { AccountactivationComponent } from './components/accountactivation/accou
     GiffyComponent,
     DonationfailedComponent,
     IdentificationComponent,
-    AccountactivationComponent
+    AccountactivationComponent,
+    LandingpageComponent
 
   ],
   imports: [
@@ -64,9 +68,11 @@ import { AccountactivationComponent } from './components/accountactivation/accou
     ReactiveFormsModule,
     HttpClientModule,
     routing,
-    routingHash
+    routingHash,
+    NgwWowModule,
+    MDBBootstrapModule.forRoot()
 
-  ],
+  ], schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     EventEmitterService,
     Location,

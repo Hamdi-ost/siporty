@@ -116,15 +116,15 @@ $maincolor2: #0b161c;
 
   img {
     max-width: 200px;
-    width: 100%;
+    // width: 100%;
     margin: 1em auto 2em;
   }
 }
 
 form {
   background: #09161D;
-  padding: 2em 1em;
-  padding-right: 2rem;
+  // padding: 2em 1em;
+  // padding-right: 2rem;
   font-family: helvetica, sans-serif;
   @include border-radius(5px);
 
@@ -137,9 +137,9 @@ form {
 
   input,
   textarea {
-    width: 94%;
+    // width: 94%;
     padding: 0.5em 0.25em;
-    margin: 0 3% 1em;
+    // margin: 0 3% 1em;
     font-size: 1.2em;
     border: 2px solid #000;
     outline: none;
@@ -157,15 +157,15 @@ form {
   }
 
   button {
-    width: 40%;
-    margin: 2em 30% 0;
-    border: none;
-    background: $maincolor;
+    // width: 40%;
+     margin: 2em 30% 20px;
+    // border: none;
+    // background: $maincolor;
     padding: 1em 0;
-    font-size: 1.25em;
-    clear: both;
-    color: #000;
-    @include border-radius(5px);
+    // font-size: 1.25em;
+    // clear: both;
+      color: #000;
+      @include border-radius(5px);
     outline: none;
     @include trans(all, 0.25s);
     cursor: pointer;
